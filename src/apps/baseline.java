@@ -22,22 +22,16 @@ public class baseline implements Watcher {
 
 	static ZooKeeper zk;
 	
+	/**
+	 * This function is notified when an event we watched
+	 * happens.
+	 */
 	@Override
 	public void process(WatchedEvent event) {
-		// TODO Auto-generated method stub
 		System.out.println ("I watched!");
-		try {
-			zk.getChildren("/faisal2", true);
-		} catch (KeeperException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
-	Mytest () {
+	baseline () {
 		try {
 			zk = new ZooKeeper("127.0.0.1", 3000, this);
 		} catch (IOException e) {
@@ -49,15 +43,16 @@ public class baseline implements Watcher {
 	
 	public static void main (String argv[]) {
 		
-		Mytest mt = new Mytest ();
+		baseline mt = new baseline ();
 		
 		
 		try {
 			Stat s = zk.exists("/faisal2", true);
-			if ( s == null )
+			if ( s == null ) {
 				zk.create("/faisal2", new byte[0], Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
-
-			zk.getChildren("/faisal2", true);
+				zk.delete("/faisal2", -1);
+			}
+			
 		} catch (KeeperException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
