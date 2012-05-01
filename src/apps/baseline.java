@@ -39,7 +39,7 @@ public class baseline extends Thread implements Watcher {
 		super (name);
 		this.name = name;
 		try {
-			zk = new ZooKeeper("127.0.0.1", 3000, this);
+			zk = new ZooKeeper("127.0.0.1:2181", 3000, this);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
