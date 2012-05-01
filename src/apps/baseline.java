@@ -18,11 +18,11 @@ import org.apache.zookeeper.data.Stat;
 
 
 
-public class baseline implements Watcher {
+public class baseline extends Thread implements Watcher {
 
 	static ZooKeeper zk;
 	static int counter = 1000;
-	
+	String name;
 	static long starttime;
 	
 	/**
@@ -32,38 +32,12 @@ public class baseline implements Watcher {
 	@Override
 	public void process(WatchedEvent event) {
 		//System.out.println ("I watched! "+counter);
-		counter--;
-		if (counter == 0){
-			try {
-				zk.close();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			System.out.println ( System.currentTimeMillis() - starttime );
-			System.exit(0);
-		}
-		
-		
-		Stat s;
-		try {
-			s = zk.exists("/faisal2", true);
-			if ( s == null ) {
-				zk.create("/faisal2", new byte[0], Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
-			}
-			zk.delete("/faisal2", -1);
-			zk.
-		} catch (KeeperException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 	}
 	
-	baseline () {
+	baseline (String name) {
+		super (name);
+		this.name = name;
 		try {
 			zk = new ZooKeeper("127.0.0.1", 3000, this);
 		} catch (IOException e) {
@@ -73,20 +47,29 @@ public class baseline implements Watcher {
 				
 	}
 	
+	public void run () {
+		System.out.println (name);
+		
+	}
+	
+	
 	public static void main (String argv[]) {
 		
 		
-		baseline mt = new baseline ();
+		baseline mt = new baseline ("/faisal2/");
 		
 		starttime = System.currentTimeMillis();
+		
+		
 		try {
-//			try {
-//				zk.delete("/faisal2", -1)
-//			} catch (Exception e) {
-//				// ignore
-//			}
 			
-			zk.create("/faisal2", new byte[0], Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+			for ( int i=0 ; i < 1000 ; i++ ) {
+				String zkpath = zk.create("/faisal2/baseline", new byte[0], Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT_SEQUENTIAL);
+				zk.delete(zkpath, -1, null, null);
+				
+				//new baseline (zkpath).start();
+			}			
+			
 
 		} catch (KeeperException e) {
 			// TODO Auto-generated catch block
@@ -95,10 +78,8 @@ public class baseline implements Watcher {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-        while (true){
-        	
-        }
+		
+		System.out.println("Elapsed: "+ (System.currentTimeMillis() - starttime) );
 		
 	}
 	
