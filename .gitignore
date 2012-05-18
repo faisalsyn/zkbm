@@ -1,5 +1,7 @@
 *.class
 *.pdf
+*.log
+*.dvi
 *~
 
 # Package Files #
