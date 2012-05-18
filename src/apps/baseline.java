@@ -48,14 +48,20 @@ public class baseline extends Thread implements Watcher {
 	}
 	
 	public void run () {
-		System.out.println (name);
-		
+		while (true) {
+			float x = (float) 5.0;
+			x = x * x * x * x;
+		}		
 	}
 	
 	
 	public static void main (String argv[]) {
 		
-		
+		new baseline ("AA").start();
+		new baseline ("AA").start();
+		new baseline ("AA").start();
+		new baseline ("AA").start();
+		/*
 		baseline mt = new baseline ("/faisal2/");
 		
 		starttime = System.currentTimeMillis();
@@ -80,7 +86,7 @@ public class baseline extends Thread implements Watcher {
 		}
 		
 		System.out.println("Elapsed: "+ (System.currentTimeMillis() - starttime) );
-		
+		*/
 	}
 	
 	
