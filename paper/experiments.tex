@@ -1,4 +1,26 @@
 \section{Experimental evaluation}\label{sec:eval}
+In this section we establish a baseline performance for zookeeper on our
+testbed and then provide latency and throughput numbers for the selected
+synchronization primitives.
+
+Baseline numbers for zookeeper are obtained using smoketest [ref]. We explore
+the performance of test-and-set locks, queues and barriers implemented in Java.
+
+We first set up zookeeper with 1, 3 and 5 processes on a single machine and
+observe the experiments. Then, we fan out the processes to distict machines and
+measure the impact of added network latency on basic operations and the
+synchronization primitives. (Finally, we repeat the experiments on
+geographically distributed nodes in EC2)
+
+\subsection{Test bed}
+\note{multiple physical machines}
+The testbed consists of 5 quad-core Xeon (type and clock) machines with commodity 500GB 7.2k rpm disks. They are interconnected with 1Gbps Ethernet on a single switch.
+
+Average RTT for pings is (ping lat)
+Average network throughput is (throughput=
+
+\subsection{Baseline performance}
+\note{smoketest}
 
 \subsection{Request latency}
 \note{baseline experiment. effect of adding machines, effect of adding zookeeper servers.}
@@ -8,10 +30,5 @@
 
 \subsection{application performance}
 \note{map reduce. effect of adding machines, effect of adding zookeeper servers.}
-
-
-
-
-
 
 
