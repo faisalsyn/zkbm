@@ -1,0 +1,10 @@
+\begin{thebibliography}{1}
+
+\bibitem{Cooper:2008:PYH:1454159.1454167}
+Brian~F. Cooper, Raghu Ramakrishnan, Utkarsh Srivastava, Adam Silberstein,
+  Philip Bohannon, Hans-Arno Jacobsen, Nick Puz, Daniel Weaver, and Ramana
+  Yerneni.
+\newblock Pnuts: Yahoo!'s hosted data serving platform.
+\newblock {\em Proc. VLDB Endow.}, 1(2):1277--1288, August 2008.
+
+\end{thebibliography}
