@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.2.29)  17 MAY 2012 20:21
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.2.29)  17 MAY 2012 21:12
 entering extended mode
  %&-line parsing enabled.
 **CostOfConsensus.tex
@@ -307,7 +307,10 @@ LaTeX Warning: No \author given.
 (./abstract.tex)
 ** ATTENTION: \keywords is deprecated (line 38). Use \IEEEkeywords instead.
 (./introduction.tex) (./framework.tex) (./analysis.tex) (./experiments.tex)
-(./CostOfConsensus.bbl)
+(./CostOfConsensus.bbl [1
+
+
+])
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -319,17 +322,16 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[1
-
+[2
 
 ] (./CostOfConsensus.aux) ) 
 Here is how much of TeX's memory you used:
  3615 strings out of 495062
  54468 string characters out of 1182644
- 118767 words of memory out of 3000000
+ 120767 words of memory out of 3000000
  6777 multiletter control sequences out of 15000+50000
  25356 words of font info for 55 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 44i,9n,42p,712b,299s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,9n,42p,886b,299s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on CostOfConsensus.dvi (1 page, 4764 bytes).
+Output written on CostOfConsensus.dvi (2 pages, 7604 bytes).
