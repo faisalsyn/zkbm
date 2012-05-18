@@ -1,10 +1,73 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
-\bibitem{Cooper:2008:PYH:1454159.1454167}
-Brian~F. Cooper, Raghu Ramakrishnan, Utkarsh Srivastava, Adam Silberstein,
-  Philip Bohannon, Hans-Arno Jacobsen, Nick Puz, Daniel Weaver, and Ramana
-  Yerneni.
-\newblock Pnuts: Yahoo!'s hosted data serving platform.
-\newblock {\em Proc. VLDB Endow.}, 1(2):1277--1288, August 2008.
+\bibitem{chubby}
+Mike Burrows.
+\newblock The chubby lock service for loosely-coupled distributed systems.
+\newblock In {\em Proceedings of the 7th symposium on Operating systems design
+  and implementation}, OSDI '06, pages 335--350, Berkeley, CA, USA, 2006.
+  USENIX Association.
+
+\bibitem{cloudsuite}
+M.~Ferdman, A.~Adileh, O.~Kocberber, S.~Volos, M.~Alisafaee, D.~Jevdjic,
+  C.~Kaynak, A.~D. Popescu, A.~Ailamaki, , and B.~Falsaﬁ.
+\newblock Clearing the clouds: A study of emerging scale-out workloads on
+  modern hardware.
+\newblock {\em Conf. on Architectural Support for Programming Languages and
+  Operating Systems}, March 2012.
+
+\bibitem{93948}
+A.B. Hastings.
+\newblock Distributed lock management in a transaction processing environment.
+\newblock In {\em Reliable Distributed Systems, 1990. Proceedings., Ninth
+  Symposium on}, pages 22 --31, oct 1990.
+
+\bibitem{Herlihy:1991:WS:114005.102808}
+Maurice Herlihy.
+\newblock Wait-free synchronization.
+\newblock {\em ACM Trans. Program. Lang. Syst.}, 13(1):124--149, January 1991.
+
+\bibitem{Zookeeper}
+Patrick Hunt, Mahadev Konar, Flavio~P. Junqueira, and Benjamin Reed.
+\newblock Zookeeper: wait-free coordination for internet-scale systems.
+\newblock pages 11--11, 2010.
+
+\bibitem{ZAB}
+Flavio~P. Junqueira, Benjamin~C. Reed, and Marco Serafini.
+\newblock Zab: High-performance broadcast for primary-backup systems.
+\newblock {\em Dependable Systems and Networks, International Conference on},
+  0:245--256, 2011.
+
+\bibitem{paxos}
+Leslie Lamport.
+\newblock The part-time parliament.
+\newblock {\em ACM Trans. Comput. Syst.}, 16(2):133--169, May 1998.
+
+\bibitem{reactive}
+Beng-Hong Lim and Anant Agarwal.
+\newblock Reactive synchronization algorithms for multiprocessors.
+\newblock {\em SIGOPS Oper. Syst. Rev.}, 28(5):25--35, November 1994.
+
+\bibitem{YCSB}
+Swapnil Patil, Milo Polte, Kai Ren, Wittawat Tantisiriroj, Lin Xiao, Julio
+  L\'{o}pez, Garth Gibson, Adam Fuchs, and Billie Rinaldi.
+\newblock Ycsb++: benchmarking and performance debugging advanced features in
+  scalable table stores.
+\newblock In {\em Proceedings of the 2nd ACM Symposium on Cloud Computing},
+  SOCC '11, pages 9:1--9:14, New York, NY, USA, 2011. ACM.
+
+\bibitem{Rao:2011:UPB:1938545.1938549}
+Jun Rao, Eugene~J. Shekita, and Sandeep Tata.
+\newblock Using paxos to build a scalable, consistent, and highly available
+  datastore.
+\newblock {\em Proc. VLDB Endow.}, 4(4):243--254, January 2011.
+
+\bibitem{activemessages}
+Thorsten von Eicken, David~E. Culler, Seth~Copen Goldstein, and Klaus~Erik
+  Schauser.
+\newblock Active messages: a mechanism for integrated communication and
+  computation.
+\newblock In {\em Proceedings of the 19th annual international symposium on
+  Computer architecture}, ISCA '92, pages 256--266, New York, NY, USA, 1992.
+  ACM.
 
 \end{thebibliography}

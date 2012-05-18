@@ -2,44 +2,46 @@ This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
 The top-level auxiliary file: CostOfConsensus.aux
 The style file: plain.bst
 Database file #1: concurrency.bib
-You've used 1 entry,
+Warning--empty journal in Zookeeper
+You've used 11 entries,
             2118 wiz_defined-function locations,
-            505 strings with 4349 characters,
-and the built_in function-call counts, 590 in all, are:
-= -- 51
-> -- 48
-< -- 0
-+ -- 19
-- -- 18
-* -- 61
-:= -- 108
-add.period$ -- 3
-call.type$ -- 1
-change.case$ -- 12
+            580 strings with 6413 characters,
+and the built_in function-call counts, 4678 in all, are:
+= -- 472
+> -- 229
+< -- 5
++ -- 93
+- -- 80
+* -- 353
+:= -- 751
+add.period$ -- 36
+call.type$ -- 11
+change.case$ -- 73
 chr.to.int$ -- 0
-cite$ -- 1
-duplicate$ -- 11
-empty$ -- 30
-format.name$ -- 18
-if$ -- 108
+cite$ -- 12
+duplicate$ -- 175
+empty$ -- 337
+format.name$ -- 80
+if$ -- 991
 int.to.chr$ -- 0
-int.to.str$ -- 1
-missing$ -- 1
-newline$ -- 8
-num.names$ -- 2
-pop$ -- 10
+int.to.str$ -- 11
+missing$ -- 11
+newline$ -- 58
+num.names$ -- 22
+pop$ -- 68
 preamble$ -- 1
-purify$ -- 11
+purify$ -- 62
 quote$ -- 0
-skip$ -- 7
+skip$ -- 135
 stack$ -- 0
-substring$ -- 36
-swap$ -- 1
-text.length$ -- 0
+substring$ -- 320
+swap$ -- 54
+text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 4
-warning$ -- 0
-while$ -- 4
-width$ -- 2
-write$ -- 13
+type$ -- 44
+warning$ -- 1
+while$ -- 45
+width$ -- 13
+write$ -- 130
+(There was 1 warning)

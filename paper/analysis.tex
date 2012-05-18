@@ -1,12 +1,59 @@
-\section{Analysis of consensus cost}
+\section{Analysis of consensus cost}\label{sec:analysis}
 
 
 \subsection{Round-trip time latency}
 \note{display data we got from experiments (using ping for example) to get the distribution of RTTs. Maybe we should check with inter- and intra-datacenter communications. we discuss insights from the behavior of RTTs regarding their cost on consensus}
 \note{ then we develop a model to describe RTTs, and develop a model to expect latency of getting all responses.}
+In distributed systems communication overhead is much larger than multiprocessing systems. RTTs can reach up to a millisecond in systems in a single data center and can reach hundreds of milliseconds in geographically separated data centers. It is important to understand the behavior of RTTs and the factors that affect its value. Also, it is important to observe how different communication patterns affect observed RTTs. In this section we will show some results on simple experiments to observe the distribution of RTT values. Afterwards, we will analyze the effect of RTT distribution, control patterns, and number of systems on observed latency.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.5]{img/rttpdf2.eps}
+\caption{probability density function of two machines i nthe same cluster. X-axis is RTT and y-axis is number of ocurrences}
+\label{fig:rttpdf}
+\end{figure}
+
+First, we show a probability density function of RTTs between two machines in the same vicinity in Figure~\ref{fig:rttpdf2}. It is apparent from the figure that most RTT values are clustered around the average, but also experience variation in values. What is interesting is that obtained results do not resemble traditionally used distributions to approximate them, namely exponential and Gaussian distributions. They are better approximated by a uniform distribution that captures the two largest bars in the displayed histogram.
+
+Simple analysis of a distributed protocol's latency might be deceptive. Lets take 2-Phase commit~(2PC) for example. In this protocol, two rounds of message exchange are required. An observer might naively expect the latency of each operation to be 2 RTTs. However, as we will show in our analysis, this is not the case. The importance of this observation is driven from the fact that coordination systems employ, in one way or another, a consensus or atomic broadcast protocols. These protocol exhibit the same behavior that we will demonstrate analytically in the rest of this section.
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.8]{img/markov_general.eps}
+\caption{Markov chain to model latency for one master and two slave servers}
+\label{fig:markovgeneral}
+\end{figure}
+
+Consensus protocols requires the master coordinator to send control messages to associated slave coordinator. Although the average of RTTs when observed with a pair of servers, when we have the master coordinator waiting for more than one slave server the waiting time becomes
+\begin{equation}
+latency_i = max \{ RTT_i^1, RTT_i^2, \ldots, RTT_i^n \}
+\end{equation}
+where $latency_i$ is the latency experienced to receive all replies from slaves for request $i$, and $RTT_i^j$ is the RTT for request $i$ for the communication between master and slave $j$. It is clear that the process $latency_i$ has an average larger than $\bar{RTT}$. We model the system as a Markov chain as the one represented in Figure~\ref{fig:markovgeneral} for the case of one master and two slaves. Each state represent the time until receiving the reply of the control message. State $(i, j)$ for example denote that $i$ and $j$ time units are remaining until receiving a reply from slave 1 and 2 respectively. The transition probabilities are described as the following:
+\begin{itemize}
+\item{A transition from state ($i$, $j$) to state (N($i-1$), N($j-1$)) for all $i$ and $j$ satisfying $i + j > 0$. N(i) returns $i$ if it is positive or zero otherwise.}
+\item{A transition from state (0, 0) to state ($i$, $j$) with probability $\psi_i\psi_j$ where $\psi_k$ is the probability distribution of the RTT process.} 
+\end{itemize}
+\note{solve to find average using the model}
+
+
 
 \subsection{Consensus latency}
 \note{ developa model to describe the latency of requests (such as the ones used for our baseline case, like zookeeper's paper). this will develop over previous section in addition to accounting the effect of service times in clients.}
 
 \subsection{Synchronization primitives latency}
 \note{ barriers, test-and-set, queues}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
