@@ -1,0 +1,8 @@
+"operation"	"trial 1 (ms/op)"	"trial 2 (ms/op)"	"trial 3 (ms/op)"
+"create (permanent)"	3970	3650	3245
+"set"	3029	2785	2697
+"get"	2393	2428	2517
+"delete (permanent)"	4182	2758	2851
+"create (ephemeral)"	2905	2747	2971
+"watch"	2391	2406	2315
+"delete (ephemeral)"	3203	3575	3174
