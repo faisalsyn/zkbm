@@ -1,0 +1,8 @@
+"operation"	"1 machine (ms/op)"	"3 machines (ms/op)"	"5 machines (ms/op)"
+"create (permanent)"	3410	4264	0
+"set"	3373	4072	0
+"get"	1345	700	0
+"delete (permanent)"	3423	3943	0
+"create (ephemeral)"	2942	3592	0
+"watch"	1230	1426	0
+"delete (ephemeral)"	2205	4008	0

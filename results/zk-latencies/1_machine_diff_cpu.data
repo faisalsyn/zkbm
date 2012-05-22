@@ -1,0 +1,8 @@
+"operation"	"1 server (ms/op)"	"3 servers (ms/op)"	"5 servers (ms/op)"
+"create (permanent)"	1977	3410	21271
+"set"	1740	3373	22852
+"get"	729	1345	699
+"delete (permanent)"	1592	3423	21853
+"create (ephemeral)"	1758	2942	21935
+"watch"	659	1230	840
+"delete (ephemeral)"	2073	2205	20741

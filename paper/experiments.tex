@@ -9,23 +9,44 @@ the performance of test-and-set locks, queues and barriers implemented in Java.
 We first set up zookeeper with 1, 3 and 5 processes on a single machine and
 observe the experiments. Then, we fan out the processes to distict machines and
 measure the impact of added network latency on basic operations and the
-synchronization primitives. (Finally, we repeat the experiments on
-geographically distributed nodes in EC2)
+synchronization primitives. \note{Finally, we repeat the experiments on
+geographically distributed nodes in EC2}
 
 \subsection{Test bed}
 \note{multiple physical machines}
-The testbed consists of 5 quad-core Xeon (type and clock) machines with commodity 500GB 7.2k rpm disks. They are interconnected with 1Gbps Ethernet on a single switch.
+The testbed consists of 5 quad-core Xeon \note{type and clock} machines with commodity 500GB 7.2k rpm disks. They are interconnected with 1Gbps Ethernet on a single switch.
 
-Average RTT for pings is (ping lat)
-Average network throughput is (throughput=
+\note{Average RTT for pings is (ping lat)
+Average network throughput is (throughput=)}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.75]{img/1_machine_1_server.eps}
+\caption{}
+\label{fig:1machine_1server_latency}
+\end{figure}
 
 \subsection{Baseline performance}
-\note{smoketest and baseline} In this section we will perform two experiments to establish a baseline for later sections. We would like to establish limits on the system. These limits represent workloads and environment conditions that will saturate the system. Workload is represented by the number of clients, number of requests per second, and the type of requests. Environment conditions are the number of zookeeper servers and condition of links connecting them.
+\note{smoketest, zk-latencies and baseline} In this section we will perform experiments to establish a baseline for later sections. We would like to establish limits on the system. These limits represent workloads and environment conditions that will saturate the system. Workload is represented by the number of clients, number of requests per second, and the type of requests. Environment conditions are the number of zookeeper servers and condition of links connecting them.
 
+We begin by measuring the latencies of operations on zookeeper. Our first experiment is performed on one machine having one zookeeper server. This means that there are no communication overhead for consensus. One client issues 10000 calls of each tested operations and we report the total time required to complete them. The results as shown in Figure~\ref{fig:1machine_1server_latency}\footnote{These results are obtained from a different server than those in next figures. It will be changed in the final draft for consistency} for asynchronous versions of operations. We report detailed results of three trials to show the variability of zookeeper behavior. In the figure we report latencies of adding and deleting in both cases, permanent and ephemeral. Creating a permanent node incur more bandwidth than creating a ephemeral node. On the other hand, deleting an ephemeral node incur more bandwidth than deleting permanent nodes (except for first trial that is due variability of behavior). Other observations are that set operations are more expensive than get operations, as expected. Also, the implementation of watches is efficient.
 
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.75]{img/1_machine_diff_cpu.eps}
+\caption{Latencies of 10000 operations on various number of zookeeper servers with asynchronous operations on one machines}
+\label{fig:1machine_diffcpu_latency}
+\end{figure}
 
-\subsection{Request latency}
-\note{baseline experiment. effect of adding machines, effect of adding zookeeper servers.}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.75]{img/1_machine_diff_machines.eps}
+\caption{Latencies of 10000 operations on three zookeeper server with asynchronous operations while changing number of machines}
+\label{fig:1machine_diffservers}
+\end{figure}
+
+Our next set of results are done to test the effect of increasing the number of Zookeeper servers. Results are shown in Figure~\ref{fig:1machine_diffcpu_latency}. These results are collected when running all servers in one machine. Thus, communication overhead between servers is minimal. As shown in the figure, increasing the number of servers to five servers have a dramatic effect on latency.
+In Figure~\ref{fig:1machine_diffservers} we show results of fanning out Zookeeper servers. We test the performance of three Zookeeper servers running on different number of machines, namely 1, 2, and 3 servers\footnote{results for five servers are not ready yet}.
 
 \subsection{synchronization primitives}
 \note{test test-and-set and queues (as in paper: reactive synchronization}
