@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=latex 2011.7.2)  22 MAY 2012 11:24
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=latex 2011.7.2)  22 MAY 2012 11:31
 entering extended mode
  %&-line parsing enabled.
 **CostOfConsensus.tex
@@ -380,11 +380,11 @@ Overfull \hbox (19.01248pt too wide) in paragraph at lines 43--44
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-) (./conclusion.tex) (./CostOfConsensus.bbl
+) (./conclusion.tex) (./CostOfConsensus.bbl [3]
 Missing character: There is no Ô in font ptmr7t!
 Missing character: There is no ¨ in font ptmr7t!
 Missing character: There is no Å in font ptmr7t!
- [3])
+)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -404,12 +404,12 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3275 strings out of 256217
- 48021 string characters out of 1917096
+ 3276 strings out of 256217
+ 48037 string characters out of 1917096
  102441 words of memory out of 1500000
- 6475 multiletter control sequences out of 10000+200000
+ 6476 multiletter control sequences out of 10000+200000
  35913 words of font info for 97 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
  43i,9n,42p,1214b,299s stack positions out of 5000i,500n,6000p,200000b,15000s
 
-Output written on CostOfConsensus.dvi (4 pages, 22084 bytes).
+Output written on CostOfConsensus.dvi (4 pages, 22472 bytes).
