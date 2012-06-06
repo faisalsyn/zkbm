@@ -23,7 +23,7 @@ public class ZkLock implements Watcher {
 	@Override
 	public void process(WatchedEvent event) {
 		// TODO Auto-generated method stub
-		System.out.println(event + " " + event.getType());
+		//System.out.println(event + " " + event.getType());
 		if (event.getType().toString() == "NodeDeleted" )
 			acquire_helper();
 		
@@ -53,9 +53,17 @@ public class ZkLock implements Watcher {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		myPath = null;
+
 	}
 	
 	public void acquire () {
+		
+		if (myPath != null) {
+			System.err.println ("Already have the lock on "+name);
+			return;
+		}
+		
 		gotLock = false;
 		
 		acquire_helper();
@@ -71,7 +79,7 @@ public class ZkLock implements Watcher {
 			}
 		}
 		
-		System.out.println("YAY! I can do whatever I want");
+		//System.out.println("YAY! I can do whatever I want");
 
 	}
 	
@@ -80,20 +88,21 @@ public class ZkLock implements Watcher {
 		
 		try {
 			if (myPath == null) {
-				System.out.println ("CREATING! " + myPath);
-				myPath = zk.create("/lock/", new byte[0], Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
-				System.out.println ("a " + Thread.currentThread() + "-" + myPath);
+				//System.out.println ("CREATING! " + myPath);
+				myPath = zk.create("/lock/"+name+"-", new byte[0], Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
+				//System.out.println ("a " + Thread.currentThread() + "-" + myPath);
 
 			}
 			
 			children = zk.getChildren("/lock", false);
 			
-			int myPri = Integer.parseInt(myPath.split("/", 0)[2]);
+			int myPri = Integer.parseInt(myPath.split("/", 0)[2].split("-")[1]);
 			int nextToMe = -1;
 			String nextToMeS = "-1";
 			boolean success = true;
 			for (String child : children) {
-				int thisPri = Integer.parseInt(child);
+				if (!child.split("-")[0].equals(name)) continue;
+				int thisPri = Integer.parseInt(child.split("-")[1]);
 				if ( thisPri < myPri ){
 					success = false;
 					if ( thisPri > nextToMe ) {
@@ -103,7 +112,7 @@ public class ZkLock implements Watcher {
 				}
 			}
 			
-			System.out.println(success + " " + myPri + " " + nextToMe);
+			//System.out.println(success + " " + myPri + " " + nextToMe);
 
 			if ( success ){
 				gotLock = true;
@@ -113,6 +122,7 @@ public class ZkLock implements Watcher {
 				return 1;
 			}
 
+			System.out.println (nextToMeS);
 			Stat st = zk.exists("/lock/"+nextToMeS, true);
 			if ( st == null  ){
 				acquire_helper();
