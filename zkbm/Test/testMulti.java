@@ -133,6 +133,7 @@ public class testMulti implements Runnable {
 		ops.addOption("servers", true, "a comma separated list of servers");
 		ops.addOption("i","interarrivaltime", true, "interarrival time");
 		ops.addOption("s", "servicetime", true, "service time");
+		ops.addOption("n", "number", true, "number of customers (trying to acquire the lock)");
 		
 		CommandLineParser parser = new PosixParser();
 		CommandLine cmd = null;
@@ -168,12 +169,17 @@ public class testMulti implements Runnable {
 			serviceTime = Double.parseDouble(cmd.getOptionValue('s')); 
 		}
 
+		int num = 100;
+		if (cmd.hasOption('n')){
+			num = Integer.parseInt(cmd.getOptionValue('n')); 
+		}
+
 		System.out.println (name);		
 		
 		long startt = System.currentTimeMillis();
 
 		testMulti tm = new testMulti();
-		Thread[] threads = new Thread[100];
+		Thread[] threads = new Thread[num];
 		for (int i =0 ; i < threads.length ; i++ ){
 			threads[i] = new Thread(new LockThread(name, servers, serviceTime ));
 			threads[i].start();
@@ -194,8 +200,8 @@ public class testMulti implements Runnable {
 				e.printStackTrace();
 			}
 		}
-		System.out.println ("TOTAL: "+(System.currentTimeMillis() - startt));
-		System.out.println ("SUM: "+sum+" - AVERAGE: "+(sum/threads.length));
+
+		System.out.println ((sum/threads.length));
 
 	}
 
