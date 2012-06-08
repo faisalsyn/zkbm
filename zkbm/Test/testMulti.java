@@ -171,7 +171,7 @@ public class testMulti implements Runnable {
 		testMulti tm = new testMulti();
 		Thread[] threads = new Thread[100];
 		for (int i =0 ; i < threads.length ; i++ ){
-			threads[i] = new Thread(new LockThread("name", servers, serviceTime ));
+			threads[i] = new Thread(new LockThread(name, servers, serviceTime ));
 			threads[i].start();
 			try {
 				ExponentialDistribution exd = new ExponentialDistribution(interarrivalTime);
