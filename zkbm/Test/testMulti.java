@@ -1,9 +1,15 @@
 package Test;
 
 import java.io.RandomAccessFile;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.RandomAccess;
 
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
+import org.apache.commons.cli.PosixParser;
 import org.apache.commons.math3.distribution.ExponentialDistribution;
 
 import Primitives.ZkLock;
@@ -13,44 +19,68 @@ import Primitives.ZkTestAndSet;
 
 class LockThread implements Runnable {
 
+	
+	String name;
+	String[] servers;
+	double serviceTime;
+	
+	public LockThread(String name, String[] servers, double serviceTime) {
+		this.name = name;
+		this.servers = servers;
+		this.serviceTime = serviceTime;
+	}
+	
 	@Override
 	public void run() {
 		
-		long startt0 = System.currentTimeMillis();
+		// t0: absolute beginning
+		long t0 = System.currentTimeMillis();
 
-		ZkLock zkl = new ZkLock("name", "pacific");
-		
-		long startt = System.currentTimeMillis();
+		Random r = new Random();
+		int whicho = r.nextInt(servers.length);
+		ZkLock zkl = new ZkLock(name, servers[whicho]);
+
+		long t1 = System.currentTimeMillis();
 
 		zkl.acquire();
-		
-		long startt2 = System.currentTimeMillis();
+
+		// t2: after the lock was acquired
+		// t2-t1: latency of waiting for the lock
+		long t2 = System.currentTimeMillis();
 
 		long toSleep = 0;
 		
 		try {
-			ExponentialDistribution exd = new ExponentialDistribution(500.0/5.0);
+			ExponentialDistribution exd = new ExponentialDistribution(this.serviceTime);
+			// toSleep: time sampled to be slept
 			toSleep = (long) exd.sample();
-			String myS = "I want to sleep for: "+toSleep;
-			long start = System.currentTimeMillis();
-			/*if (toSleep > 25)
-				toSleep -= 25;
-			else
-				toSleep = 1;*/
 			Thread.sleep(toSleep);
-			System.out.println (myS+ " - but slept for "+(System.currentTimeMillis()-start));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		
+		// t3: time after spending time in mutual exclusion block
+		// t3-t2: time spent inside mutual exclusion block
+		long t3 = System.currentTimeMillis();
+
 		zkl.release();
 		
-		System.out.println ("VERYALL: "+(System.currentTimeMillis() - startt) +" ALL: "+(System.currentTimeMillis() - startt)+ " - PART:" + (System.currentTimeMillis() - startt2) + " - slept for: "+toSleep);
-		synchronized (testMulti.x) {
-			testMulti.sum = testMulti.sum + (System.currentTimeMillis() - startt);
-		}
-		zkl.close();
+		// t4: time after releasing the lock and before closing the connection
+		// t4-t3: time required to release the lock
+		long t4 = System.currentTimeMillis();
 		
-		System.out.println ("## VERYALL: "+(System.currentTimeMillis() - startt) +" ALL: "+(System.currentTimeMillis() - startt)+ " - PART:" + (System.currentTimeMillis() - startt2) + " - slept for: "+toSleep);
+		zkl.close();
+
+		// t5: time after closing connection
+		// t5-t4: time required to close connection
+		long t5 = System.currentTimeMillis();
+		
+		// add the 
+		synchronized (testMulti.x) {
+			testMulti.sum = testMulti.sum + (System.currentTimeMillis() - t0);
+		}
+
+		
 
 	}
 	
@@ -97,20 +127,56 @@ public class testMulti implements Runnable {
 		sum = 0;
 		x = "";
 		
+		Options ops = new Options();
+		
+		ops.addOption("name", true, "name of lock");
+		ops.addOption("servers", true, "a comma separated list of servers");
+		ops.addOption("i","interarrivaltime", true, "interarrival time");
+		ops.addOption("s", "servicetime", true, "service time");
+		
+		CommandLineParser parser = new PosixParser();
+		CommandLine cmd = null;
+		try {
+			cmd = parser.parse( ops, args);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		String name = "default";
+		if (cmd.hasOption("name")){
+			name = cmd.getOptionValue("name"); 
+		}
+
+		String[] servers  = {"127.0.0.1"};
+		if (cmd.hasOption("servers")){
+			String allServers = cmd.getOptionValue("servers");
+			servers = allServers.split(",");
+		}
+
+		double interarrivalTime = 250;
+		if (cmd.hasOption('i')){
+			interarrivalTime = Double.parseDouble( cmd.getOptionValue('i') ); 
+		}
+
+		double serviceTime = 250;
+		if (cmd.hasOption('s')){
+			serviceTime = Double.parseDouble(cmd.getOptionValue('s')); 
+		}
+
+		System.out.println (name);		
+		
 		long startt = System.currentTimeMillis();
 
 		testMulti tm = new testMulti();
-		Thread[] threads = new Thread[1000];
+		Thread[] threads = new Thread[100];
 		for (int i =0 ; i < threads.length ; i++ ){
-			threads[i] = new Thread(new LockThread());
+			threads[i] = new Thread(new LockThread("name", servers, serviceTime ));
 			threads[i].start();
 			try {
-				ExponentialDistribution exd = new ExponentialDistribution(500.0/4.0);
+				ExponentialDistribution exd = new ExponentialDistribution(interarrivalTime);
 				long toSleep = (long) exd.sample();
-				String myS = "I want to sleep for: "+toSleep;
-				long start = System.currentTimeMillis();
 				Thread.sleep(toSleep);
-				System.out.println (myS+ " - but slept for "+(System.currentTimeMillis()-start));
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
