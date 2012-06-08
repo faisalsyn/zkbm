@@ -15,10 +15,10 @@ import org.apache.zookeeper.data.Stat;
 public class ZkLock implements Watcher {
 	
 	
-	static String name;
-	static String myPath;
-	static boolean gotLock;
-	static ZooKeeper zk;
+	String name;
+	String myPath;
+	boolean gotLock;
+	ZooKeeper zk;
 	
 	@Override
 	public void process(WatchedEvent event) {
@@ -35,6 +35,7 @@ public class ZkLock implements Watcher {
 		this.myPath = null;
 		try {
 			zk = new ZooKeeper(zkhost, 3000, this);
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -43,16 +44,25 @@ public class ZkLock implements Watcher {
 		
 	}
 	
-	public void release () {
+	public void close () {
 		try {
-			zk.delete(myPath, -1);
+			zk.close();
 		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void release () {
+		//try {
+			zk.delete(myPath, -1, null, null);
+		/*} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (KeeperException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		myPath = null;
 
 	}

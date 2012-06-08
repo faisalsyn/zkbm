@@ -15,15 +15,19 @@ public class testLock {
 		// TODO Auto-generated method stub
 
 		ZkLock zkl = new ZkLock ("name", "127.0.0.1");
-		ZkLock zkl2 = new ZkLock ("name", "127.0.0.1");
+		//ZkLock zkl2 = new ZkLock ("name2", "127.0.0.1");
 
 		for (int i = 0 ; i < 10 ; i++ ) {
 
 			long startt = System.currentTimeMillis();
+			
 			zkl.acquire();
+			//zkl2.acquire();
+			
 			
 			//System.out.println ("acquired");
 			
+			//zkl2.release();
 			zkl.release();
 			
 			System.out.println ((System.currentTimeMillis() - startt));
