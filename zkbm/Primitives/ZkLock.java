@@ -132,7 +132,6 @@ public class ZkLock implements Watcher {
 				return 1;
 			}
 
-			System.out.println (nextToMeS);
 			Stat st = zk.exists("/lock/"+nextToMeS, true);
 			if ( st == null  ){
 				acquire_helper();

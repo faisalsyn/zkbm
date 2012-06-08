@@ -152,6 +152,10 @@ public class testMulti implements Runnable {
 		if (cmd.hasOption("servers")){
 			String allServers = cmd.getOptionValue("servers");
 			servers = allServers.split(",");
+			System.out.print ("Servers: ");
+			for (String server : servers )
+				System.out.print (server+", ");
+			System.out.println("");
 		}
 
 		double interarrivalTime = 250;
