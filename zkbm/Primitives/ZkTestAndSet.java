@@ -11,7 +11,7 @@ import org.apache.zookeeper.AsyncCallback.StringCallback;
 import org.apache.zookeeper.ZooDefs.Ids;
 import org.apache.zookeeper.data.Stat;
 
-public class ZkTestAndSet implements Watcher {
+public class ZkTestAndSet implements Watcher, Lock {
 	
 	String name;
 	ZooKeeper zk;
@@ -32,8 +32,13 @@ public class ZkTestAndSet implements Watcher {
 		}
 	}
 	
-	public boolean TestAndSet () {
-		String path = "/TestAndSet/"+name;
+	/**
+	 * A parallel test and set issue
+	 * @return
+	 */
+	@Override
+	public boolean acquire () {
+		String path = "/lock/"+name;
 		byte[] msg = {(byte) 0x40};
 		boolean success = true;
 		try {
@@ -53,6 +58,7 @@ public class ZkTestAndSet implements Watcher {
 	}
 	
 	
+	@Override
 	public void close () {
 		try {
 			zk.close();
@@ -62,11 +68,11 @@ public class ZkTestAndSet implements Watcher {
 		}
 	}
 
-	
+	@Override
 	public void release () {
 		//try {
 			//zk.delete("/TestAndSet/"+name, -1);
-			zk.delete("/TestAndSet/"+name, -1, null, null);
+			zk.delete("/lock/"+name, -1, null, null);
 		/*} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

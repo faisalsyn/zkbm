@@ -12,7 +12,7 @@ import org.apache.zookeeper.ZooDefs.Ids;
 import org.apache.zookeeper.data.Stat;
 
 
-public class ZkLock implements Watcher {
+public class ZkLock implements Watcher, Lock {
 	
 	
 	String name;
@@ -44,6 +44,7 @@ public class ZkLock implements Watcher {
 		
 	}
 	
+	@Override
 	public void close () {
 		try {
 			zk.close();
@@ -53,6 +54,7 @@ public class ZkLock implements Watcher {
 		}
 	}
 	
+	@Override
 	public void release () {
 		//try {
 			zk.delete(myPath, -1, null, null);
@@ -67,11 +69,12 @@ public class ZkLock implements Watcher {
 
 	}
 	
-	public void acquire () {
+	@Override
+	public boolean acquire () {
 		
 		if (myPath != null) {
 			System.err.println ("Already have the lock on "+name);
-			return;
+			return false;
 		}
 		
 		gotLock = false;
@@ -91,6 +94,7 @@ public class ZkLock implements Watcher {
 		
 		//System.out.println("YAY! I can do whatever I want");
 
+		return true;
 	}
 	
 	private int acquire_helper () {

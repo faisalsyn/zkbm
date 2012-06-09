@@ -18,7 +18,7 @@ public class testTestAndSet {
 			
 			boolean state;
 			
-			state = zktas.TestAndSet();
+			state = zktas.acquire();
 			
 			System.out.println( state) ;
 
