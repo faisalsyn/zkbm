@@ -1,5 +1,6 @@
 package Test;
 
+import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Random;
@@ -13,30 +14,26 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
 import org.apache.commons.math3.distribution.ExponentialDistribution;
+import org.apache.zookeeper.WatchedEvent;
+import org.apache.zookeeper.Watcher;
+import org.apache.zookeeper.ZooKeeper;
 
 import Primitives.ZkLock;
-import Primitives.ZkTestAndSet;
 
-
-
-class LockThread implements Runnable {
-
+class CreateThread implements Runnable, Watcher {
 	
 	String name;
 	String[] servers;
-	double serviceTime;
 	Logger logger;
 	
-	public LockThread(String name, String[] servers, double serviceTime) {
+	public CreateThread(String name, String[] servers) {
 		this.name = name;
 		this.servers = servers;
-		this.serviceTime = serviceTime;
 		
 		String loggerName = name+"-"+Thread.currentThread();
 		logger = Logger.getLogger(loggerName);
 		
 		logger.setLevel(Level.ALL);
-
 	}
 	
 	@Override
@@ -47,88 +44,42 @@ class LockThread implements Runnable {
 
 		Random r = new Random();
 		int whicho = r.nextInt(servers.length);
-		ZkLock zkl = new ZkLock(name, servers[whicho]);
+		
+		ZooKeeper zk = null;
+		try {
+			zk = new ZooKeeper(servers[whicho], 3000, this);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		long t1 = System.currentTimeMillis();
 
-		zkl.acquire();
-
-		// t2: after the lock was acquired
-		// t2-t1: latency of waiting for the lock
-		long t2 = System.currentTimeMillis();
-		
-		logger.info("waiting latency: "+(t2-t1));
-
-		long toSleep = 0;
 		
 		try {
-			ExponentialDistribution exd = new ExponentialDistribution(this.serviceTime);
-			// toSleep: time sampled to be slept
-			toSleep = (long) exd.sample();
-			Thread.sleep(toSleep);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
-		// t3: time after spending time in mutual exclusion block
-		// t3-t2: time spent inside mutual exclusion block
-		long t3 = System.currentTimeMillis();
-
-		logger.info("time in mutual exclusion: "+(t3-t2));
-
-		zkl.release();
-		
-		// t4: time after releasing the lock and before closing the connection
-		// t4-t3: time required to release the lock
-		long t4 = System.currentTimeMillis();
-		
-		zkl.close();
-
-		// t5: time after closing connection
-		// t5-t4: time required to close connection
-		long t5 = System.currentTimeMillis();
-		
-		// add the 
-		synchronized (testMulti.x) {
-			testMulti.sum = testMulti.sum + (System.currentTimeMillis() - t0);
-		}
-
-			
-		
-
-	}
-	
-}
-
-class TestAndSetThread implements Runnable {
-
-	@Override
-	public void run() {
-
-		ZkTestAndSet zktas = new ZkTestAndSet("name", "127.0.0.1");
-		
-		long startt = System.currentTimeMillis();
-
-		while(!zktas.TestAndSet());
-		
-		try {
-			Thread.sleep (200);
+			zk.close();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		zktas.release();
+
+		long t5 = System.currentTimeMillis();
 		
-		System.out.println ((System.currentTimeMillis() - startt));
-		synchronized (testMulti.x) {
-			testMulti.sum = testMulti.sum + (System.currentTimeMillis() - startt);
+		synchronized (Replica.x) {
+			Replica.sum = Replica.sum + (System.currentTimeMillis() - t0);
 		}
-		zktas.close();
+		
+	}
+
+	@Override
+	public void process(WatchedEvent event) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
 
-public class testMulti implements Runnable {
+public class Replica implements Runnable {
 
 	static long sum;
 	static String x;
@@ -146,7 +97,6 @@ public class testMulti implements Runnable {
 		ops.addOption("name", true, "name of lock");
 		ops.addOption("servers", true, "a comma separated list of servers");
 		ops.addOption("i","interarrivaltime", true, "interarrival time");
-		ops.addOption("s", "servicetime", true, "service time");
 		ops.addOption("n", "number", true, "number of customers (trying to acquire the lock)");
 		
 		CommandLineParser parser = new PosixParser();
@@ -173,17 +123,12 @@ public class testMulti implements Runnable {
 			System.out.println("");
 		}
 
-		double interarrivalTime = 250;
+		double interarrivalTime = 10;
 		if (cmd.hasOption('i')){
 			interarrivalTime = Double.parseDouble( cmd.getOptionValue('i') ); 
 		}
 
-		double serviceTime = 250;
-		if (cmd.hasOption('s')){
-			serviceTime = Double.parseDouble(cmd.getOptionValue('s')); 
-		}
-
-		int num = 100;
+		int num = 500;
 		if (cmd.hasOption('n')){
 			num = Integer.parseInt(cmd.getOptionValue('n')); 
 		}
@@ -195,7 +140,7 @@ public class testMulti implements Runnable {
 		testMulti tm = new testMulti();
 		Thread[] threads = new Thread[num];
 		for (int i =0 ; i < threads.length ; i++ ){
-			threads[i] = new Thread(new LockThread(name, servers, serviceTime ));
+			threads[i] = new Thread(new CreateThread(name, servers ));
 			threads[i].start();
 			try {
 				ExponentialDistribution exd = new ExponentialDistribution(interarrivalTime);
