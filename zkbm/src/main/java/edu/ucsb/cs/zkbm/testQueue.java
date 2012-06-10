@@ -1,9 +1,10 @@
 package edu.ucsb.cs.zkbm;
 
-public class testLock {
+public class testQueue {
 
 	String name;
-	testLock () {
+
+	public testQueue () {
 		this.name = "A";
 	}
 	/**
@@ -12,7 +13,7 @@ public class testLock {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		ZkLock zkl = new ZkLock ("name", "127.0.0.1");
+		ZkQueue zkl = new ZkQueue ("name", "127.0.0.1");
 		//ZkLock zkl2 = new ZkLock ("name2", "127.0.0.1");
 
 		for (int i = 0 ; i < 10 ; i++ ) {

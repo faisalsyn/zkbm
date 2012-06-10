@@ -122,8 +122,8 @@ public class ZkAsyncQueue implements Watcher, Lock,
 		AsyncCallback.ChildrenCallback outer;
 		volatile boolean running = true;
 
-		
-		
+		public static final long POLL_INTERVAL = 5;
+
 		public GetChildrenRunnable(ChildrenCallback outer) {
 			super();
 			this.outer = outer;
@@ -133,7 +133,11 @@ public class ZkAsyncQueue implements Watcher, Lock,
 		public void run() {
 			while (running) {
 				zk.getChildren("/lock", false, outer, null);
-				Thread.yield();
+				try {
+					Thread.sleep(POLL_INTERVAL);
+				} catch(InterruptedException e) {
+					// ignore
+				}
 			}
 		}
 

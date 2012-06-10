@@ -47,7 +47,7 @@ class LockThread implements Runnable {
 		int whicho = r.nextInt(servers.length);
 		Lock zkl;
 		if (lockType==LockType.QUEUE) {
-			zkl = new ZkLock(name, servers[whicho]);
+			zkl = new ZkQueue(name, servers[whicho]);
 		}else if (lockType==LockType.TESTANDSET){
 			zkl = new ZkTestAndSet(name, servers[whicho]);
 		}else {
