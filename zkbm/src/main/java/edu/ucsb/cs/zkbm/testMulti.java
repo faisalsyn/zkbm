@@ -1,4 +1,4 @@
-package Test;
+package edu.ucsb.cs.zkbm;
 
 import java.util.Random;
 import java.util.logging.Level;
@@ -10,11 +10,6 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
 import org.apache.commons.math3.distribution.ExponentialDistribution;
-
-import Primitives.Lock;
-import Primitives.ZkAsyncQueue;
-import Primitives.ZkLock;
-import Primitives.ZkTestAndSet;
 
 enum LockType{
 	QUEUE , TESTANDSET , ASYNCQUEUE

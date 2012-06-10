@@ -1,6 +1,4 @@
-package Test;
-
-import Primitives.ZkTestAndSet;
+package edu.ucsb.cs.zkbm;
 
 public class testTestAndSet {
 

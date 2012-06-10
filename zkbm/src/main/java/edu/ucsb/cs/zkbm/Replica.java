@@ -1,4 +1,4 @@
-package Test;
+package edu.ucsb.cs.zkbm;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -17,8 +17,6 @@ import org.apache.commons.math3.distribution.ExponentialDistribution;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
-
-import Primitives.ZkLock;
 
 class CreateThread implements Runnable, Watcher {
 	

@@ -1,6 +1,4 @@
-package Test;
-
-import Primitives.ZkLock;
+package edu.ucsb.cs.zkbm;
 
 public class testLock {
 

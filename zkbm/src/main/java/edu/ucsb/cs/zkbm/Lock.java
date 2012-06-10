@@ -1,4 +1,4 @@
-package Primitives;
+package edu.ucsb.cs.zkbm;
 
 public interface Lock {
 
