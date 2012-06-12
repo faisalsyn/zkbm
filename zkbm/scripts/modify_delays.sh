@@ -19,6 +19,17 @@ then
 	pssh -t 0 sudo ip link set dev ifb0 up
 	pssh -t 0 sudo tc qdisc add dev eth0 ingress
 	pssh -t 0 sudo tc filter add dev eth0 parent ffff: protocol ip u32 match u32 0 0 flowid 1:1 action mirred egress redirect dev ifb0
+
+elif [ $1 == "del" ]
+then
+
+        pssh -t 0 sudo tc qdisc $1 dev eth0 root handle 1: prio
+        #pssh -t 0 sudo tc qdisc $1 dev eth0 parent 1:3 handle 30: netem delay ${outdelay}ms
+
+        sudo tc qdisc $1 dev eth0 root handle 1: prio
+        #sudo tc qdisc $1 dev eth0 parent 1:3 handle 30: netem delay ${outdelay}ms
+
+
 else
 
 	p_outdelay=$(($outdelay / 10))
