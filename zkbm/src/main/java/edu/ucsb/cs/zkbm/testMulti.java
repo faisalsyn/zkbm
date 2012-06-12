@@ -12,7 +12,7 @@ import org.apache.commons.cli.PosixParser;
 import org.apache.commons.math3.distribution.ExponentialDistribution;
 
 enum LockType{
-	QUEUE , TESTANDSET , ASYNCQUEUE
+	QUEUE , TESTANDSET , ASYNCQUEUE , ASYNCTESTANDSET
 }
 
 class LockThread implements Runnable {
@@ -50,6 +50,8 @@ class LockThread implements Runnable {
 			zkl = new ZkQueue(name, servers[whicho]);
 		}else if (lockType==LockType.TESTANDSET){
 			zkl = new ZkTestAndSet(name, servers[whicho]);
+		}else if (lockType==LockType.ASYNCTESTANDSET){
+			zkl = new ZkAsyncTestAndSet(name, servers[whicho]);
 		}else {
 			zkl = new ZkAsyncQueue(name, servers[whicho]);
 		}
@@ -133,6 +135,7 @@ public class testMulti implements Runnable {
 		ops.addOption("q", "queue", false, "Use queue locks");
 		ops.addOption("a", "asyncqueue", false, "Use async queue locks");
 		ops.addOption("t", "testandset", false, "Use test-and-set");
+		ops.addOption("l", "asynctestandset", false, "Use async test-and-set");
 		
 		
 		CommandLineParser parser = new PosixParser();

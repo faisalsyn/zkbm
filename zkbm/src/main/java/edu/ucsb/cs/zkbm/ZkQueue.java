@@ -61,8 +61,10 @@ public class ZkQueue implements Watcher, Lock {
 	
 	@Override
 	public void release () {
-		zk.delete(myPath, -1, null, null);
-		myPath = null;
+		if (myPath != null) {
+			zk.delete(myPath, -1, null, null);
+			myPath = null;
+		}
 	}
 	
 	@Override
@@ -79,6 +81,8 @@ public class ZkQueue implements Watcher, Lock {
 			if (myPath == null) {
 				myPath = zk.create("/lock/"+name+"-", new byte[0], Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
 			}
+			
+			System.err.println(myPath);
 			
 			children = zk.getChildren("/lock", false);
 

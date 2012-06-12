@@ -1,6 +1,6 @@
 package edu.ucsb.cs.zkbm;
 
-public class testTestAndSet {
+public class testAsyncTestAndSet {
 
 	/**
 	 * @param args
