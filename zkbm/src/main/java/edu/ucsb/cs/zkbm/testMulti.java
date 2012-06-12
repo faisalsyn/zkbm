@@ -182,8 +182,10 @@ public class testMulti implements Runnable {
 			lockType = LockType.TESTANDSET;
 		} else if (cmd.hasOption('a')) {
 			lockType = LockType.ASYNCQUEUE;
-		} else {
+		} else if (cmd.hasOption('q')) {
 			lockType = LockType.QUEUE;
+		} else {
+			lockType = lockType.ASYNCTESTANDSET;
 		}
 
 		System.out.println (name);		

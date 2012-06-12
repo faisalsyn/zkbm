@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.2.29)  11 JUN 2012 20:59
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.2.29)  11 JUN 2012 23:19
 entering extended mode
  %&-line parsing enabled.
 **CostOfConsensus.tex
@@ -339,40 +339,14 @@ LaTeX Font Info:    Font shape `U/lasy/b/n' in size <7> not available
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <5> not available
 (Font)              Font shape `U/lasy/m/n' tried instead on input line 29.
 ) (./experiments.tex
-File: img/1_machine_1_server.eps Graphic file (type eps)
-
-<img/1_machine_1_server.eps>
-Overfull \hbox (19.01248pt too wide) in paragraph at lines 25--26
- [][] 
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 [2]
-LaTeX Font Info:    Font shape `U/lasy/b/n' in size <8> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 33.
-LaTeX Font Info:    Font shape `U/lasy/b/n' in size <6> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 33.
-File: img/1_machine_diff_cpu.eps Graphic file (type eps)
- <img/1_machine_diff_cpu.eps>
-Overfull \hbox (19.01248pt too wide) in paragraph at lines 37--38
+File: img/ops_latencies.eps Graphic file (type eps)
+ <img/ops_latencies.eps>
+Overfull \hbox (19.01248pt too wide) in paragraph at lines 54--55
  [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-File: img/1_machine_diff_machines.eps Graphic file (type eps)
-<img/1_machine_diff_machines.eps>
-Overfull \hbox (19.01248pt too wide) in paragraph at lines 44--45
- [][] 
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-) (./conclusion.tex) (./CostOfConsensus.bbl [3]
+) (./conclusion.tex) (./CostOfConsensus.bbl
 Missing character: There is no Ô in font ptmr7t!
 Missing character: There is no ¨ in font ptmr7t!
 Missing character: There is no Å in font ptmr7t!
@@ -388,20 +362,18 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[4
-
-] (./CostOfConsensus.aux)
+[3] (./CostOfConsensus.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3752 strings out of 495062
- 56406 string characters out of 1182644
+ 3707 strings out of 495062
+ 55831 string characters out of 1182644
  122767 words of memory out of 3000000
- 6860 multiletter control sequences out of 15000+50000
- 35904 words of font info for 97 fonts, out of 3000000 for 9000
+ 6832 multiletter control sequences out of 15000+50000
+ 30236 words of font info for 76 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 44i,9n,42p,1214b,299s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,9n,42p,1187b,299s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on CostOfConsensus.dvi (4 pages, 22676 bytes).
+Output written on CostOfConsensus.dvi (3 pages, 19604 bytes).

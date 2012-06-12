@@ -20,34 +20,43 @@ The testbed consists of 5 quad-core Xeon \note{type and clock} machines with com
 \note{Average RTT for pings is (ping lat)
 Average network throughput is (throughput=). this for inter-cluster and cluster to hamilton.}
 
-\begin{figure}[h]
-\centering
-\includegraphics[scale=0.75]{img/1_machine_1_server.eps}
-\caption{}
-\label{fig:1machine_1server_latency}
-\end{figure}
+%\begin{figure}[h]
+%\centering
+%\includegraphics[scale=0.75]{img/1_machine_1_server.eps}
+%\caption{}
+%\label{fig:1machine_1server_latency}
+%\end{figure}
 
 \subsection{Baseline performance}
 \note{smoketest, zk-latencies and baseline} In this section we will perform experiments to establish a baseline for later experiments. We would like to establish limits on the system. These limits represent workloads and environment conditions that will saturate the system. Workload is represented by the number of clients, number of requests per second, and the type of requests. Environment conditions are the number of zookeeper servers and condition of links connecting them.
 
-We begin by measuring the latencies of basic Zookeeper operations. Our first experiment is performed on one machine having one zookeeper server. This means that there are no communication overhead for consensus. One client issues 10000 calls of each tested operations and we report the total time required to complete them. The results as shown in Figure~\ref{fig:1machine_1server_latency}\footnote{These results are obtained from a different server than those in next figures. It will be changed in the final draft for consistency} for asynchronous versions of operations. We report detailed results of three trials to show the variability of zookeeper behavior. In the figure we report latencies of adding and deleting in both cases, permanent and ephemeral. Creating a permanent node incur more bandwidth than creating a ephemeral node. On the other hand, deleting an ephemeral node incur more bandwidth than deleting permanent nodes (except for first trial that is due variability of behavior). Other observations are that set operations are more expensive than get operations, as expected. Also, the implementation of watches is efficient.
+%We begin by measuring the latencies of basic Zookeeper operations. Our first experiment is performed on one machine having one zookeeper server. This means that there are no communication overhead for consensus. One client issues 10000 calls of each tested operations and we report the total time required to complete them. The results as shown in Figure~\ref{fig:1machine_1server_latency}\footnote{These results are obtained from a different server than those in next figures. It will be changed in the final draft for consistency} for asynchronous versions of operations. We report detailed results of three trials to show the variability of zookeeper behavior. In the figure we report latencies of adding and deleting in both cases, permanent and ephemeral. Creating a permanent node incur more bandwidth than creating a ephemeral node. On the other hand, deleting an ephemeral node incur more bandwidth than deleting permanent nodes (except for first trial that is due variability of behavior). Other observations are that set operations are more expensive than get operations, as expected. Also, the implementation of watches is efficient.
+
+%\begin{figure}[h]
+%\centering
+%\includegraphics[scale=0.75]{img/1_machine_diff_cpu.eps}
+%\caption{Latencies of 10000 operations on various number of zookeeper servers with asynchronous operations on one machines}
+%\label{fig:1machine_diffcpu_latency}
+%\end{figure}
+
+%\begin{figure}[h]
+%\centering
+%\includegraphics[scale=0.75]{img/1_machine_diff_machines.eps}
+%\caption{Latencies of 10000 operations on three zookeeper server with asynchronous operations while changing number of machines}
+%\label{fig:1machine_diffservers}
+%\end{figure}
+
+%Our next set of results are done to test the effect of increasing the number of Zookeeper servers. Results are shown in Figure~\ref{fig:1machine_diffcpu_latency}. These results are collected when running all servers in one machine. Thus, communication overhead between servers is minimal. As shown in the figure, increasing the number of servers to five servers have a dramatic effect on latency.
+%In Figure~\ref{fig:1machine_diffservers} we show results of fanning out Zookeeper servers. We test the performance of three Zookeeper servers running on different number of machines, namely 1, 2, and 3 servers\footnote{results for five servers are not ready yet}. \ldots
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.75]{img/1_machine_diff_cpu.eps}
-\caption{Latencies of 10000 operations on various number of zookeeper servers with asynchronous operations on one machines}
-\label{fig:1machine_diffcpu_latency}
+\includegraphics[scale=0.75]{img/ops_latencies.eps}
+\caption{Zookeeper basic operations latencies for a cluster of five servers}
+\label{fig:ops_latencies}
 \end{figure}
 
-\begin{figure}[h]
-\centering
-\includegraphics[scale=0.75]{img/1_machine_diff_machines.eps}
-\caption{Latencies of 10000 operations on three zookeeper server with asynchronous operations while changing number of machines}
-\label{fig:1machine_diffservers}
-\end{figure}
-
-Our next set of results are done to test the effect of increasing the number of Zookeeper servers. Results are shown in Figure~\ref{fig:1machine_diffcpu_latency}. These results are collected when running all servers in one machine. Thus, communication overhead between servers is minimal. As shown in the figure, increasing the number of servers to five servers have a dramatic effect on latency.
-In Figure~\ref{fig:1machine_diffservers} we show results of fanning out Zookeeper servers. We test the performance of three Zookeeper servers running on different number of machines, namely 1, 2, and 3 servers\footnote{results for five servers are not ready yet}. \ldots
+Our first experiment test basic Zookeeper operations' latencies. We test both synchronous and asynchronous versions of these operations. Results are shown in Figure~\ref{fig:ops_latencies}.
 
 \subsection{synchronization primitives}
 \note{test test-and-set and queues (as in paper: reactive synchronization}
