@@ -13,10 +13,9 @@ public class testQueue {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		ZkQueue zkl = new ZkQueue ("name", "127.0.0.1");
-		//ZkLock zkl2 = new ZkLock ("name2", "127.0.0.1");
-
 		for (int i = 0 ; i < 10 ; i++ ) {
+
+			ZkQueue zkl = new ZkQueue ("aa", "rubicon.cs.ucsb.edu");
 
 			long startt = System.currentTimeMillis();
 			
@@ -30,6 +29,8 @@ public class testQueue {
 			zkl.release();
 			
 			System.out.println ((System.currentTimeMillis() - startt));
+			
+			zkl.close();
 		}
 	}
 

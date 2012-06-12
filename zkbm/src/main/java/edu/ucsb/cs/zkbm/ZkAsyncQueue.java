@@ -6,36 +6,26 @@ import java.util.List;
 import org.apache.zookeeper.AsyncCallback;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.KeeperException;
-import org.apache.zookeeper.WatchedEvent;
-import org.apache.zookeeper.Watcher;
-import org.apache.zookeeper.ZooKeeper;
-import org.apache.zookeeper.AsyncCallback.ChildrenCallback;
 import org.apache.zookeeper.ZooDefs.Ids;
+import org.apache.zookeeper.ZooKeeper;
 
-public class ZkAsyncQueue implements Watcher, Lock,
-		AsyncCallback.ChildrenCallback {
+public class ZkAsyncQueue implements Lock, AsyncCallback.ChildrenCallback {
 
 	String name;
 	volatile String myPath;
 	volatile boolean gotLock = false;
 	volatile boolean released = false;
-	
+
 	ZooKeeper zk;
 
 	Object gotLockMonitor = new Object();
-
-	@Override
-	public void process(WatchedEvent event) {
-		// TODO Auto-generated method stub
-
-	}
 
 	public ZkAsyncQueue(String name, String zkhost) {
 
 		this.name = name;
 		this.myPath = null;
 		try {
-			zk = new ZooKeeper(zkhost, 3000, this);
+			zk = new ZooKeeper(zkhost, 3000, null);
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -75,8 +65,7 @@ public class ZkAsyncQueue implements Watcher, Lock,
 			new Thread(runnable).start();
 
 			if (myPath == null) {
-				myPath = zk.create("/lock/" + name + "-", new byte[0],
-						Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
+				myPath = zk.create("/lock/" + name + "-", new byte[0], Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
 			}
 
 			synchronized (gotLockMonitor) {
@@ -101,13 +90,12 @@ public class ZkAsyncQueue implements Watcher, Lock,
 	}
 
 	@Override
-	public void processResult(int rc, String path, Object ctx,
-			List<String> children) {
+	public void processResult(int rc, String path, Object ctx, List<String> children) {
 		if (released)
 			return;
-		
+
 		if (myPath != null) {
-			//System.err.println (children + " - " + myPath);
+			// System.err.println (children + " - " + myPath);
 			if (children.indexOf(myPath.split("/")[2]) == 0) {
 				synchronized (gotLockMonitor) {
 					gotLock = true;
@@ -135,7 +123,7 @@ public class ZkAsyncQueue implements Watcher, Lock,
 				zk.getChildren("/lock", false, outer, null);
 				try {
 					Thread.sleep(POLL_INTERVAL);
-				} catch(InterruptedException e) {
+				} catch (InterruptedException e) {
 					// ignore
 				}
 			}
