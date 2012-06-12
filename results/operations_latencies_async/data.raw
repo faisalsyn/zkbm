@@ -1,0 +1,8 @@
+"Operation"	"Asynchronous (ms)"	"Synchronous (ms)"
+"create (permanent)"	0.64	9.82
+"set"	0.62	9.86
+"get"	0.21	0.54
+"delete (permanent)"	0.61	9.41
+"create (ephemeral)"	0.60	9.98
+"watch"	0.19	0.58
+"delete (ephemeral)"	0.58	9.24
