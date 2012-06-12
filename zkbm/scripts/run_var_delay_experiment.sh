@@ -9,7 +9,7 @@ fi
 num_trials=$1
 shift
 
-delays=( 0ms 10ms 30ms 50ms 70ms 100ms 150ms 200ms 500ms )
+delays=( 0 10 30 50 70 100 150 200 500 )
 
 for (( i=1 ; i<=$num_trials ; i++ ))
 do
