@@ -19,6 +19,8 @@ public class ZkAsyncQueue implements Lock, AsyncCallback.ChildrenCallback {
 	ZooKeeper zk;
 
 	Object gotLockMonitor = new Object();
+	
+	GetChildrenThread myThread;
 
 	public ZkAsyncQueue(String name, String zkhost) {
 
@@ -26,6 +28,7 @@ public class ZkAsyncQueue implements Lock, AsyncCallback.ChildrenCallback {
 		this.myPath = null;
 		try {
 			zk = new ZooKeeper(zkhost, 3000, null);
+			myThread = new GetChildrenThread(zk, this);
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -61,8 +64,7 @@ public class ZkAsyncQueue implements Lock, AsyncCallback.ChildrenCallback {
 
 		try {
 
-			GetChildrenRunnable runnable = new GetChildrenRunnable(this);
-			new Thread(runnable).start();
+			myThread.start();
 
 			if (myPath == null) {
 				myPath = zk.create("/lock/" + name + "-", new byte[0], Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
@@ -74,7 +76,7 @@ public class ZkAsyncQueue implements Lock, AsyncCallback.ChildrenCallback {
 				}
 			}
 
-			runnable.cancel();
+			myThread.cancel();
 
 			return true;
 
@@ -103,36 +105,6 @@ public class ZkAsyncQueue implements Lock, AsyncCallback.ChildrenCallback {
 				}
 			}
 		}
-	}
-
-	class GetChildrenRunnable implements Runnable {
-
-		AsyncCallback.ChildrenCallback outer;
-		volatile boolean running = true;
-
-		public static final long POLL_INTERVAL = 5;
-
-		public GetChildrenRunnable(ChildrenCallback outer) {
-			super();
-			this.outer = outer;
-		}
-
-		@Override
-		public void run() {
-			while (running) {
-				zk.getChildren("/lock", false, outer, null);
-				try {
-					Thread.sleep(POLL_INTERVAL);
-				} catch (InterruptedException e) {
-					// ignore
-				}
-			}
-		}
-
-		public void cancel() {
-			running = false;
-		}
-
 	}
 
 }
