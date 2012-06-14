@@ -51,12 +51,12 @@ Average network throughput is (throughput=). this for inter-cluster and cluster 
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.75]{img/ops_latencies.eps}
+\includegraphics[scale=0.75]{img/ops_latencies_logscale.eps}
 \caption{Zookeeper basic operations latencies for a cluster of five servers}
 \label{fig:ops_latencies}
 \end{figure}
 
-Our first experiment test basic Zookeeper operations' latencies. We test both synchronous and asynchronous versions of these operations. Results are shown in Figure~\ref{fig:ops_latencies}.
+Our first experiment test basic Zookeeper operations' latencies. We test both synchronous and asynchronous versions of these operations. For testing we use zk-smoketest\footnote{https://github.com/phunt/zk-smoketest}. Each operation is run for a thousand time and we report average latency. Results are shown in Figure~\ref{fig:ops_latencies}. Synchronous operations block until the operation is performed, thus giving an indication on the total time taken to perform the actual operation. Asynchronous operations on the other hand do not block. The figure shown that synchronous operations takes more than ten times the latency of asynchronous operations for \emph{put} operations, and around double the latency for \emph{get} operations. \note{define put and get operation classes either here or before (section II)}. 
 
 \subsection{synchronization primitives}
 \note{test test-and-set and queues (as in paper: reactive synchronization}

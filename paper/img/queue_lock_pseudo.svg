@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.0 r9654"
+   sodipodi:docname="queue_lock_pseudo.eps">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.2626907"
+     inkscape:cx="404.69875"
+     inkscape:cy="850"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1680"
+     inkscape:window-height="973"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2985"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Sans;font-style:normal;font-weight:normal;font-size:24px;line-height:125%;letter-spacing:0px;word-spacing:0px"><flowRegion
+         id="flowRegion2987"><rect
+           id="rect2989"
+           width="318.07999"
+           height="296.23999"
+           x="48.720001"
+           y="43.802181"
+           style="font-size:24px" /></flowRegion><flowPara
+         id="flowPara2991"></flowPara></flowRoot>    <text
+       xml:space="preserve"
+       style="font-size:24px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="39.759998"
+       y="37.082184"
+       id="text2993"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan2995"
+         x="39.759998"
+         y="37.082184" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.5842979px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="18.778677"
+       y="23.828537"
+       id="text2997"
+       sodipodi:linespacing="125%"
+       transform="scale(0.90026244,1.1107872)"><tspan
+         sodipodi:role="line"
+         id="tspan2999"
+         x="18.778677"
+         y="23.828537"
+         style="font-size:12px">method acquire_queue_lock ()</tspan><tspan
+         sodipodi:role="line"
+         x="18.778677"
+         y="38.828537"
+         style="font-size:12px"
+         id="tspan3003">(1) pathname = synchronous create sequenced file &quot;/lock/name-&quot;</tspan><tspan
+         sodipodi:role="line"
+         x="18.778677"
+         y="53.828537"
+         style="font-size:12px"
+         id="tspan3001">(2) children = getChildren of folder &quot;/lock&quot;</tspan><tspan
+         sodipodi:role="line"
+         x="18.778677"
+         y="68.828537"
+         style="font-size:12px"
+         id="tspan3005">(3) if ( pathname is the file with least sequence number)</tspan><tspan
+         sodipodi:role="line"
+         x="18.778677"
+         y="83.828537"
+         style="font-size:12px"
+         id="tspan3007">(4)      lock acquired; return;</tspan><tspan
+         sodipodi:role="line"
+         x="18.778677"
+         y="98.828537"
+         style="font-size:12px"
+         id="tspan3009">     else</tspan><tspan
+         sodipodi:role="line"
+         x="18.778677"
+         y="113.82854"
+         style="font-size:12px"
+         id="tspan3011">(5)      call exist on file with maximum number smaller than me</tspan><tspan
+         sodipodi:role="line"
+         x="18.778677"
+         y="128.82854"
+         style="font-size:12px"
+         id="tspan3013">           and set a watch on this exist</tspan><tspan
+         sodipodi:role="line"
+         x="18.778677"
+         y="143.82854"
+         style="font-size:12px"
+         id="tspan3015" /><tspan
+         sodipodi:role="line"
+         x="18.778677"
+         y="158.82854"
+         style="font-size:12px"
+         id="tspan3017">method process_exist_watch ()</tspan><tspan
+         sodipodi:role="line"
+         x="18.778677"
+         y="173.82854"
+         style="font-size:12px"
+         id="tspan3019">(6) lock acquired; return;</tspan><tspan
+         sodipodi:role="line"
+         x="18.778677"
+         y="188.82854"
+         style="font-size:12px"
+         id="tspan3059" /><tspan
+         sodipodi:role="line"
+         x="18.778677"
+         y="203.82854"
+         style="font-size:12px"
+         id="tspan3061">method release_queue_lock ()</tspan><tspan
+         sodipodi:role="line"
+         x="18.778677"
+         y="218.82854"
+         style="font-size:12px"
+         id="tspan3063">(7) delete &quot;pathname&quot;</tspan></text>
+  </g>
+</svg>
