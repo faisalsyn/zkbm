@@ -5,21 +5,24 @@
 \newlabel{sec:framework}{{II}{1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-A}}testbed}{1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-B}}consensus protocol}{1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-C}}synchronization primitives}{1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-D}}Zookeeper}{1}}
-\@writefile{toc}{\contentsline {section}{\numberline {III}Analysis of consensus cost}{1}}
-\newlabel{sec:analysis}{{III}{1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-A}}Round-trip time latency}{1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces probability density function of two machines i nthe same cluster. X-axis is RTT and y-axis is number of ocurrences\relax }}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-C}}Zookeeper}{1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Pseudo code of acquiring and releasing queue locks\relax }}{1}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:rttpdf}{{1}{2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Markov chain to model latency for one master and two slave servers\relax }}{2}}
-\newlabel{fig:markovgeneral}{{2}{2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-B}}Consensus latency}{2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-C}}Synchronization primitives latency}{2}}
-\@writefile{toc}{\contentsline {section}{\numberline {IV}Experimental evaluation}{2}}
-\newlabel{sec:eval}{{IV}{2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-A}}Test bed}{2}}
+\newlabel{fig:queue_lock_pseudo}{{1}{1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces A time diagram showing time required to acquire a queue lock if no other user is holding it\relax }}{2}}
+\newlabel{fig:queue_lock_time}{{2}{2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces A time diagram showing time required to acquire a queue lock if no other user is holding it using asynchronous calls. Dashed arrows from user to server are getChildren operations. Dashed arrows from server to user represent getChildren replies before the lock is acquired. Solid arrow from server to user is getChildren reply with user having the smallest sequenced file. The callback for asynchronous create is not shown.\relax }}{2}}
+\newlabel{fig:async_queue_lock_time}{{3}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-D}}synchronization primitives}{2}}
+\@writefile{toc}{\contentsline {section}{\numberline {III}Analysis of consensus cost}{3}}
+\newlabel{sec:analysis}{{III}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-A}}Round-trip time latency}{3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces probability density function of two machines i nthe same cluster. X-axis is RTT and y-axis is number of ocurrences\relax }}{3}}
+\newlabel{fig:rttpdf}{{4}{3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Markov chain to model latency for one master and two slave servers\relax }}{3}}
+\newlabel{fig:markovgeneral}{{5}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-B}}Consensus latency}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-C}}Synchronization primitives latency}{3}}
 \citation{Zookeeper,YCSB,ZAB,Rao:2011:UPB:1938545.1938549,activemessages,reactive,cloudsuite,chubby,93948,paxos,Herlihy:1991:WS:114005.102808}
 \bibstyle{plain}
 \bibdata{concurrency}
@@ -34,11 +37,14 @@
 \bibcite{YCSB}{9}
 \bibcite{Rao:2011:UPB:1938545.1938549}{10}
 \bibcite{activemessages}{11}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}}Baseline performance}{3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Zookeeper basic operations latencies for a cluster of five servers\relax }}{3}}
-\newlabel{fig:ops_latencies}{{3}{3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}}synchronization primitives}{3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-D}}application performance}{3}}
-\@writefile{toc}{\contentsline {section}{\numberline {V}Conclusions and Future Work}{3}}
-\newlabel{sec:conclusions}{{V}{3}}
-\@writefile{toc}{\contentsline {section}{References}{3}}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Experimental evaluation}{4}}
+\newlabel{sec:eval}{{IV}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-A}}Test bed}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}}Baseline performance}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Zookeeper basic operations latencies for a cluster of five servers\relax }}{4}}
+\newlabel{fig:ops_latencies}{{6}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}}synchronization primitives}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-D}}application performance}{4}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Conclusions and Future Work}{4}}
+\newlabel{sec:conclusions}{{V}{4}}
+\@writefile{toc}{\contentsline {section}{References}{4}}

@@ -1,5 +1,6 @@
 #!/bin/bash
-SMOKE_PATH="../../..//zk-smoketest"
+#SMOKE_PATH="../../..//zk-smoketest"
+SMOKE_PATH=/home/alex/project/zk-smoketest/
 
 if [ $# -lt 1 ]
 then
