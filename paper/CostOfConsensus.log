@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.2.29)  14 JUN 2012 00:55
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.2.29)  14 JUN 2012 02:19
 entering extended mode
  %&-line parsing enabled.
 **CostOfConsensus.tex
@@ -309,41 +309,57 @@ LaTeX Warning: No \author given.
 (./introduction.tex) (./framework.tex
 File: img/queue_lock_pseudo.eps Graphic file (type eps)
  <img/queue_lock_pseudo.eps>
-LaTeX Font Info:    Try loading font information for U+lasy on input line 23.
+Overfull \hbox (3.10489pt too wide) in paragraph at lines 14--15
+ [][] 
+ []
 
+File: img/queue_lock_time.eps Graphic file (type eps)
+<img/queue_lock_time.eps>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+File: img/async_queue_lock_time.eps Graphic file (type eps)
+<img/async_queue_lock_time.eps>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+LaTeX Font Info:    Try loading font information for U+lasy on input line 37.
 (/usr/share/texmf-texlive/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 23.
+LaTeX Font Info:    Try loading font information for U+msa on input line 37.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 23.
+LaTeX Font Info:    Try loading font information for U+msb on input line 37.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <7> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 23.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 37.
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <5> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 23.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 37.
  [1
 
 
 ]) (./analysis.tex
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [2]
 File: img/rttpdf2.eps Graphic file (type eps)
 
 <img/rttpdf2.eps>
 
-LaTeX Warning: Reference `fig:rttpdf2' on page 2 undefined on input line 16.
+LaTeX Warning: Reference `fig:rttpdf2' on page 3 undefined on input line 16.
 
 File: img/markov_general.eps Graphic file (type eps)
 <img/markov_general.eps>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[2]) (./experiments.tex
+) (./experiments.tex [3]
 File: img/ops_latencies_logscale.eps Graphic file (type eps)
  <img/ops_latencies_logscale.eps>
 Overfull \hbox (19.01248pt too wide) in paragraph at lines 54--55
@@ -354,7 +370,7 @@ LaTeX Font Info:    Font shape `U/lasy/b/n' in size <8> not available
 (Font)              Font shape `U/lasy/m/n' tried instead on input line 59.
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <6> not available
 (Font)              Font shape `U/lasy/m/n' tried instead on input line 59.
-[3]) (./conclusion.tex) (./CostOfConsensus.bbl
+) (./conclusion.tex) (./CostOfConsensus.bbl
 Missing character: There is no Ô in font ptmr7t!
 Missing character: There is no ¨ in font ptmr7t!
 Missing character: There is no Å in font ptmr7t!
@@ -370,20 +386,18 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[4
-
-] (./CostOfConsensus.aux)
+[4] (./CostOfConsensus.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3748 strings out of 495062
- 56294 string characters out of 1182644
+ 3754 strings out of 495062
+ 56438 string characters out of 1182644
  122767 words of memory out of 3000000
- 6857 multiletter control sequences out of 15000+50000
+ 6861 multiletter control sequences out of 15000+50000
  35904 words of font info for 97 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  44i,9n,42p,1343b,299s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on CostOfConsensus.dvi (4 pages, 25124 bytes).
+Output written on CostOfConsensus.dvi (4 pages, 27480 bytes).
