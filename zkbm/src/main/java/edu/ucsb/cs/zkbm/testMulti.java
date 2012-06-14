@@ -69,10 +69,12 @@ class LockThread implements Runnable {
 		long toSleep = 0;
 		
 		try {
-			ExponentialDistribution exd = new ExponentialDistribution(this.serviceTime);
-			// toSleep: time sampled to be slept
-			toSleep = (long) exd.sample();
-			Thread.sleep(toSleep);
+			if(this.serviceTime > 0) {
+				ExponentialDistribution exd = new ExponentialDistribution(this.serviceTime);
+				// toSleep: time sampled to be slept
+				toSleep = (long) exd.sample();
+				Thread.sleep(toSleep);
+			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
