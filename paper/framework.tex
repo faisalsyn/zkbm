@@ -22,8 +22,14 @@ OUr testbed consists of a cluster of five machines connected by a switch. These 
 \item{\emph{Reliability}: updates are persistent. }
 \item{\emph{Timeliness}: updates will be reflected on all servers within a specified time bound. }
 \end{itemize}
-
-It offers a set of operations enabling more complex services such as coordination, synchronization, configuration management, and naming. These operations operate on a filesystem-like tree architecture. 
+These guarantees will aid us in reasoning on the way we use Zookeeper operations. The set of offered operations enable more complex services such as coordination, synchronization, configuration management, and naming. These operations operate on a Unix-like filesystem tree architecture. Each file has a path and could be either \emph{permanent} or \emph{ephemeral}. Permenant files persist a client's disconnection whereas ephemeral files are deleted when a client disconnects. Those "files" are called \emph{znodes}. A useful zookeeper primitive is \emph{watch}. A user can set a watch on a znode. When a change on the state of that znode occur, the watch is triggered and the user is informed on the new state of the znode. We now summarize Zookeeper operations of our interest:
+\begin{itemize}
+\item{\emph{create}: create a znode by specifying a path. A \emph{sequenced} flag can be used to tell Zookeeper to append the znode name with a monotonically increasing identifier. Pathname is returned if create is successful. Otherwise, an exception is returned.}
+\item{\emph{delete}: deletes a znode.}
+\item{\emph{exists}: checks if a znode exists on a supplied location.}
+\item{\emph{getChildren}: return a list of children of a znode, hence files in a folder.}
+\end{itemize}
+Each one of those operations have two implementations, a synchronous and an asynchronous ones. Synchronous operations block until a reply is received from the server. On the other hand, asynchronous operations returns immediately and a callback is set on the client side to receive from the server when operation is complete.
 
 \begin{figure}[h]
 \centering

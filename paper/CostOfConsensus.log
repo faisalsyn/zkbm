@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.2.29)  14 JUN 2012 13:57
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.2.29)  14 JUN 2012 14:52
 entering extended mode
  %&-line parsing enabled.
 **CostOfConsensus.tex
@@ -335,9 +335,12 @@ LaTeX Font Info:    Font shape `U/lasy/b/n' in size <5> not available
 File: img/queue_lock_pseudo.eps Graphic file (type eps)
 
 <img/queue_lock_pseudo.eps>
-Overfull \hbox (3.10489pt too wide) in paragraph at lines 30--31
+Overfull \hbox (3.10489pt too wide) in paragraph at lines 36--37
  [][] 
  []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 File: img/queue_lock_time.eps Graphic file (type eps)
 <img/queue_lock_time.eps>
@@ -355,30 +358,25 @@ File: img/rttpdf2.eps Graphic file (type eps)
 
 LaTeX Warning: Reference `fig:rttpdf2' on page 3 undefined on input line 16.
 
+[3]
 File: img/markov_general.eps Graphic file (type eps)
-<img/markov_general.eps>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[3]) (./experiments.tex
+ <img/markov_general.eps>) (./experiments.tex
 File: img/ops_latencies_logscale.eps Graphic file (type eps)
- <img/ops_latencies_logscale.eps>
+
+<img/ops_latencies_logscale.eps>
 Overfull \hbox (19.01248pt too wide) in paragraph at lines 54--55
  [][] 
  []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <8> not available
 (Font)              Font shape `U/lasy/m/n' tried instead on input line 59.
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <6> not available
 (Font)              Font shape `U/lasy/m/n' tried instead on input line 59.
-) (./conclusion.tex) (./CostOfConsensus.bbl
+[4]) (./conclusion.tex) (./CostOfConsensus.bbl
 Missing character: There is no Ô in font ptmr7t!
 Missing character: There is no ¨ in font ptmr7t!
 Missing character: There is no Å in font ptmr7t!
- [4])
+)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -406,4 +404,4 @@ Here is how much of TeX's memory you used:
  28 hyphenation exceptions out of 8191
  44i,9n,42p,1229b,299s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on CostOfConsensus.dvi (5 pages, 29280 bytes).
+Output written on CostOfConsensus.dvi (5 pages, 31208 bytes).
