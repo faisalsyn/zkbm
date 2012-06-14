@@ -1,13 +1,35 @@
 \section{Framework and overview}\label{sec:framework}
 
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.85]{img/framework.eps}
+\caption{Testbed setting used for evaluation}
+\label{fig:framework}
+\end{figure}
+
 \subsection{testbed}
-\note{describe machines and topology}
+OUr testbed consists of a cluster of five machines connected by a switch. These nodes will be the servers hosting Zookepper instances. Another machine, we will call it the client machine, will act as the user of Zookeeper. The Round-Trip Time~(RTT) between machines in the cluster is around 0.1ms and around 0.2ms for client to cluster communication. Each cluster machine has a 5 quad-core Xeon \note{type and clock} with commodity 500GB 7.2k rpm disks. They are interconnected with a single 1Gbps Ethernet switch.
 
 \subsection{consensus protocol}
 \note{talk about consensus}
 
 \subsection{Zookeeper}
-\note{talk about basic operations here because they are mentioned in next subsection, talk also about modes of znode creation}.
+\note{talk about basic operations here because they are mentioned in next subsection, talk also about modes of znode creation}. Zookeeper is an open-source coordination service for distributed systems. It runs as a set of replicated distributed servers. A leader election mechanism is used. Clients can connect to any of those replicas and issue operations. Zookeeper maintains an order of operations. Each update is stamped. This stamp can then be levaraged in higher level abstractions. Guarantees made by Zookeeper to clients' operations include the following:
+\begin{itemize}
+\item{\emph{Sequential consistency}: operations are executed in the order they were received. }
+\item{\emph{Atomicity}: operations are either completely executed or aborted. }
+\item{\emph{Single system image}: all servers maintain the same view. }
+\item{\emph{Reliability}: updates are persistent. }
+\item{\emph{Timeliness}: updates will be reflected on all servers within a specified time bound. }
+\end{itemize}
+These guarantees will aid us in reasoning on the way we use Zookeeper operations. The set of offered operations enable more complex services such as coordination, synchronization, configuration management, and naming. These operations operate on a Unix-like filesystem tree architecture. Each file has a path and could be either \emph{permanent} or \emph{ephemeral}. Permenant files persist a client's disconnection whereas ephemeral files are deleted when a client disconnects. Those "files" are called \emph{znodes}. A useful zookeeper primitive is \emph{watch}. A user can set a watch on a znode. When a change on the state of that znode occur, the watch is triggered and the user is informed on the new state of the znode. We now summarize Zookeeper operations of our interest:
+\begin{itemize}
+\item{\emph{create}: create a znode by specifying a path. A \emph{sequenced} flag can be used to tell Zookeeper to append the znode name with a monotonically increasing identifier. Pathname is returned if create is successful. Otherwise, an exception is returned.}
+\item{\emph{delete}: deletes a znode.}
+\item{\emph{exists}: checks if a znode exists on a supplied location.}
+\item{\emph{getChildren}: return a list of children of a znode, hence files in a folder.}
+\end{itemize}
+Each one of those operations have two implementations, a synchronous and an asynchronous ones. Synchronous operations block until a reply is received from the server. On the other hand, asynchronous operations returns immediately and a callback is set on the client side to receive from the server when operation is complete.
 
 \begin{figure}[h]
 \centering
