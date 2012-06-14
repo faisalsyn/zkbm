@@ -18,10 +18,13 @@ public class ZkAsyncTestAndSet implements Lock, AsyncCallback.StringCallback {
 	volatile boolean created;
 	Object createdMonitor = new Object();
 
+	CreateNodeThread myThread;
+
 	public ZkAsyncTestAndSet(String name, String zkhost) {
 		this.name = name;
 		try {
 			zk = new ZooKeeper(zkhost, 3000, null);
+			myThread = new CreateNodeThread(this);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -36,18 +39,16 @@ public class ZkAsyncTestAndSet implements Lock, AsyncCallback.StringCallback {
 	@Override
 	public boolean acquire() {
 		if (myPath != null) {
-			System.err.println ("Already have the lock on "+name);
+			System.err.println("Already have the lock on " + name);
 			return false;
 		}
-		
+
 		myPath = "/lock/" + name;
 		msg = new byte[] { (byte) 0x40 };
-		CreatNodeRunnable runnable = null;
 		created = false;
 
 		try {
-			runnable = new CreatNodeRunnable(this);
-			new Thread(runnable).start();
+			myThread.start();
 
 			synchronized (createdMonitor) {
 				while (!created) {
@@ -55,14 +56,12 @@ public class ZkAsyncTestAndSet implements Lock, AsyncCallback.StringCallback {
 				}
 			}
 
-			runnable.cancel();
+			myThread.cancel();
 
 			return true;
 
 		} catch (InterruptedException e) {
-			if (runnable != null) {
-				runnable.cancel();
-			}
+			myThread.cancel();
 			e.printStackTrace();
 		}
 
@@ -95,14 +94,14 @@ public class ZkAsyncTestAndSet implements Lock, AsyncCallback.StringCallback {
 		}
 	}
 
-	class CreatNodeRunnable implements Runnable {
+	class CreateNodeThread extends Thread {
 
 		AsyncCallback.StringCallback outer;
 		volatile boolean running = true;
 
 		public static final long POLL_INTERVAL = 5;
 
-		public CreatNodeRunnable(StringCallback outer) {
+		public CreateNodeThread(StringCallback outer) {
 			super();
 			this.outer = outer;
 		}
