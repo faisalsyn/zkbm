@@ -5,24 +5,28 @@ import java.util.List;
 
 import org.apache.zookeeper.AsyncCallback;
 import org.apache.zookeeper.CreateMode;
-import org.apache.zookeeper.KeeperException;
+import org.apache.zookeeper.WatchedEvent;
+import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooDefs.Ids;
 import org.apache.zookeeper.ZooKeeper;
+import org.apache.zookeeper.data.Stat;
 
-public class ZkAsyncQueue implements Lock, AsyncCallback.ChildrenCallback {
+public class ZkAsyncQueueEx implements Lock, Watcher, AsyncCallback.ChildrenCallback, AsyncCallback.StatCallback {
 
 	String name;
 	volatile String myPath;
-	volatile boolean gotLock = false;
-	volatile boolean released = false;
+
+	volatile boolean hasLock = false;
+	volatile boolean watching = false;
 
 	ZooKeeper zk;
 
-	Object gotLockMonitor = new Object();
-	
+	Object lockMonitor = new Object();
+	Object watchMonitor = new Object();
+
 	GetChildrenThread myThread;
 
-	public ZkAsyncQueue(String name, String zkhost) {
+	public ZkAsyncQueueEx(String name, String zkhost) {
 
 		this.name = name;
 		this.myPath = null;
@@ -49,7 +53,6 @@ public class ZkAsyncQueue implements Lock, AsyncCallback.ChildrenCallback {
 
 	@Override
 	public void release() {
-		released = false;
 		zk.delete(myPath, -1, null, null);
 		myPath = null;
 	}
@@ -70,9 +73,9 @@ public class ZkAsyncQueue implements Lock, AsyncCallback.ChildrenCallback {
 				myPath = zk.create("/lock/" + name + "-", new byte[0], Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
 			}
 
-			synchronized (gotLockMonitor) {
-				while (!gotLock) {
-					gotLockMonitor.wait(1000);
+			synchronized (lockMonitor) {
+				while (!hasLock) {
+					lockMonitor.wait(1000);
 				}
 			}
 
@@ -80,11 +83,7 @@ public class ZkAsyncQueue implements Lock, AsyncCallback.ChildrenCallback {
 
 			return true;
 
-		} catch (KeeperException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
@@ -93,17 +92,48 @@ public class ZkAsyncQueue implements Lock, AsyncCallback.ChildrenCallback {
 
 	@Override
 	public void processResult(int rc, String path, Object ctx, List<String> children) {
-		if (released)
+		if (myPath == null)
 			return;
 
-		if (myPath != null) {
-			// System.err.println (children + " - " + myPath);
-			if (children.indexOf(myPath.split("/")[2]) == 0) {
-				synchronized (gotLockMonitor) {
-					gotLock = true;
-					gotLockMonitor.notify();
-				}
-			}
+		int myIndex = children.indexOf(myPath.split("/", 0)[2]);
+
+		if (myIndex < 0)
+			return;
+
+		if (myIndex == 0) {
+			setLocked();
+			return;
+		}
+
+		synchronized (watchMonitor) {
+			if (watching)
+				return;
+
+			zk.exists("/lock/" + children.get(myIndex - 1), true, this, null);
+			watching = true;
+
+			myThread.cancel();
+		}
+
+	}
+
+	@Override
+	public void processResult(int rc, String path, Object ctx, Stat stat) {
+		if (stat == null)
+			setLocked();
+	}
+
+	@Override
+	public void process(WatchedEvent event) {
+		if (event.getType().toString() == "NodeDeleted") {
+			setLocked();
+		}
+	}
+
+	private void setLocked() {
+		synchronized (lockMonitor) {
+			hasLock = true;
+			lockMonitor.notify();
 		}
 	}
 

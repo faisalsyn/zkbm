@@ -11,174 +11,183 @@ import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
 import org.apache.commons.math3.distribution.ExponentialDistribution;
 
-enum LockType{
-	QUEUE , TESTANDSET , ASYNCQUEUE , ASYNCTESTANDSET
+enum LockType {
+	QUEUE, TESTANDSET, ASYNCQUEUE, ASYNCTESTANDSET, ASYNCQUEUEEX
 }
 
 class LockThread implements Runnable {
 
-	
 	String name;
 	String[] servers;
 	double serviceTime;
 	Logger logger;
 	LockType lockType;
-	
+
 	public LockThread(String name, String[] servers, double serviceTime, LockType lockType) {
 		this.name = name;
 		this.servers = servers;
 		this.serviceTime = serviceTime;
 		this.lockType = lockType;
-		
-		String loggerName = name+"-"+Thread.currentThread();
+
+		String loggerName = name + "-" + Thread.currentThread();
 		logger = Logger.getLogger(loggerName);
-		
+
 		logger.setLevel(Level.ALL);
 
 	}
-	
+
 	@Override
 	public void run() {
-		
+
 		// t0: absolute beginning
 		long t0 = System.currentTimeMillis();
 
 		Random r = new Random();
 		int whicho = r.nextInt(servers.length);
 		Lock zkl;
-		if (lockType==LockType.QUEUE) {
+
+		switch (lockType) {
+		case QUEUE:
 			zkl = new ZkQueue(name, servers[whicho]);
-		}else if (lockType==LockType.TESTANDSET){
+			break;
+		case TESTANDSET:
 			zkl = new ZkTestAndSet(name, servers[whicho]);
-		}else if (lockType==LockType.ASYNCTESTANDSET){
-			zkl = new ZkAsyncTestAndSet(name, servers[whicho]);
-		}else {
+			break;
+		case ASYNCQUEUE:
 			zkl = new ZkAsyncQueue(name, servers[whicho]);
+			break;
+		case ASYNCQUEUEEX:
+			zkl = new ZkAsyncQueueEx(name, servers[whicho]);
+			break;
+		case ASYNCTESTANDSET:
+			zkl = new ZkAsyncTestAndSet(name, servers[whicho]);
+			break;
+		default:
+			System.err.println("unknown lock type");
+			return;
 		}
 
 		long t1 = System.currentTimeMillis();
 
-		while (!zkl.acquire());
+		while (!zkl.acquire())
+			;
 
 		// t2: after the lock was acquired
 		// t2-t1: latency of waiting for the lock
 		long t2 = System.currentTimeMillis();
-		
-		logger.info("waiting latency: "+(t2-t1));
+
+		logger.info("waiting latency: " + (t2 - t1));
 
 		long toSleep = 0;
-		
+
 		try {
-			ExponentialDistribution exd = new ExponentialDistribution(this.serviceTime);
-			// toSleep: time sampled to be slept
-			toSleep = (long) exd.sample();
-			Thread.sleep(toSleep);
+			if (this.serviceTime > 0) {
+				ExponentialDistribution exd = new ExponentialDistribution(this.serviceTime);
+				// toSleep: time sampled to be slept
+				toSleep = (long) exd.sample();
+				Thread.sleep(toSleep);
+			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		
+
 		// t3: time after spending time in mutual exclusion block
 		// t3-t2: time spent inside mutual exclusion block
 		long t3 = System.currentTimeMillis();
 
-		logger.info("time in mutual exclusion: "+(t3-t2));
+		logger.info("time in mutual exclusion: " + (t3 - t2));
 
 		zkl.release();
-		
+
 		// t4: time after releasing the lock and before closing the connection
 		// t4-t3: time required to release the lock
 		long t4 = System.currentTimeMillis();
-		
+
 		zkl.close();
 
 		// t5: time after closing connection
 		// t5-t4: time required to close connection
 		long t5 = System.currentTimeMillis();
-		
-		// add the 
+
+		// add the
 		synchronized (testMulti.x) {
 			testMulti.sum = testMulti.sum + (System.currentTimeMillis() - t0);
 			testMulti.sumWaitTimes = testMulti.sumWaitTimes + (t2 - t1);
 		}
 
-			
-		
-
 	}
-	
+
 }
 
 public class testMulti implements Runnable {
 
-
-	
 	static long sum;
 	static long sumWaitTimes;
 	static String x;
+
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
+
 		sum = 0;
 		sumWaitTimes = 0;
 		x = "";
-		
+
 		Options ops = new Options();
-		
+
 		ops.addOption("name", true, "name of lock");
 		ops.addOption("servers", true, "a comma separated list of servers");
-		ops.addOption("i","interarrivaltime", true, "interarrival time");
+		ops.addOption("i", "interarrivaltime", true, "interarrival time");
 		ops.addOption("s", "servicetime", true, "service time");
 		ops.addOption("n", "number", true, "number of customers (trying to acquire the lock)");
 		ops.addOption("q", "queue", false, "Use queue locks");
 		ops.addOption("a", "asyncqueue", false, "Use async queue locks");
 		ops.addOption("t", "testandset", false, "Use test-and-set");
 		ops.addOption("l", "asynctestandset", false, "Use async test-and-set");
-		
-		
+
 		CommandLineParser parser = new PosixParser();
 		CommandLine cmd = null;
 		try {
-			cmd = parser.parse( ops, args);
+			cmd = parser.parse(ops, args);
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
 		String name = "default";
-		if (cmd.hasOption("name")){
-			name = cmd.getOptionValue("name"); 
+		if (cmd.hasOption("name")) {
+			name = cmd.getOptionValue("name");
 		}
 
-		String[] servers  = {"127.0.0.1"};
-		if (cmd.hasOption("servers")){
+		String[] servers = { "127.0.0.1" };
+		if (cmd.hasOption("servers")) {
 			String allServers = cmd.getOptionValue("servers");
 			servers = allServers.split(",");
-			System.out.print ("Servers: ");
-			for (String server : servers )
-				System.out.print (server+", ");
+			System.out.print("Servers: ");
+			for (String server : servers)
+				System.out.print(server + ", ");
 			System.out.println("");
 		}
 
 		double interarrivalTime = 250;
-		if (cmd.hasOption('i')){
-			interarrivalTime = Double.parseDouble( cmd.getOptionValue('i') ); 
+		if (cmd.hasOption('i')) {
+			interarrivalTime = Double.parseDouble(cmd.getOptionValue('i'));
 		}
 
 		double serviceTime = 200;
-		if (cmd.hasOption('s')){
-			serviceTime = Double.parseDouble(cmd.getOptionValue('s')); 
+		if (cmd.hasOption('s')) {
+			serviceTime = Double.parseDouble(cmd.getOptionValue('s'));
 		}
 
 		int num = 100;
-		if (cmd.hasOption('n')){
-			num = Integer.parseInt(cmd.getOptionValue('n')); 
+		if (cmd.hasOption('n')) {
+			num = Integer.parseInt(cmd.getOptionValue('n'));
 		}
-		
-		LockType lockType = LockType.ASYNCQUEUE; 
-		if (cmd.hasOption('t')){
+
+		LockType lockType = LockType.ASYNCQUEUE;
+		if (cmd.hasOption('t')) {
 			lockType = LockType.TESTANDSET;
 		} else if (cmd.hasOption('a')) {
 			lockType = LockType.ASYNCQUEUE;
@@ -188,15 +197,15 @@ public class testMulti implements Runnable {
 			lockType = lockType.ASYNCTESTANDSET;
 		}
 
-		System.out.println (name);		
-		
+		System.out.println(name);
+
 		long startt = System.currentTimeMillis();
 
 		testMulti tm = new testMulti();
 		Thread[] threads = new Thread[num];
-		for (int i =0 ; i < threads.length ; i++ ){
-			threads[i] = new Thread(new LockThread(name, servers, serviceTime, lockType ));
-		
+		for (int i = 0; i < threads.length; i++) {
+			threads[i] = new Thread(new LockThread(name, servers, serviceTime, lockType));
+
 			threads[i].start();
 			try {
 				ExponentialDistribution exd = new ExponentialDistribution(interarrivalTime);
@@ -207,7 +216,7 @@ public class testMulti implements Runnable {
 				e.printStackTrace();
 			}
 		}
-		for (int i = 0 ; i < threads.length ; i++){
+		for (int i = 0; i < threads.length; i++) {
 			try {
 				threads[i].join();
 			} catch (InterruptedException e) {
@@ -216,8 +225,8 @@ public class testMulti implements Runnable {
 			}
 		}
 
-		System.out.println ("Average Execution: "+(sum/threads.length));
-		System.out.println ("Average WaitTime: "+(sumWaitTimes/threads.length));
+		System.out.println("Average Execution: " + (sum / threads.length));
+		System.out.println("Average WaitTime: " + (sumWaitTimes / threads.length));
 
 	}
 
