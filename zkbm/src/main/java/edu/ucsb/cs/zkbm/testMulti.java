@@ -146,6 +146,7 @@ public class testMulti implements Runnable {
 		ops.addOption("a", "asyncqueue", false, "Use async queue locks");
 		ops.addOption("t", "testandset", false, "Use test-and-set");
 		ops.addOption("l", "asynctestandset", false, "Use async test-and-set");
+		ops.addOption("e", "asyncqueueex", false, "Use async queue locks extended version");
 
 		CommandLineParser parser = new PosixParser();
 		CommandLine cmd = null;
@@ -193,8 +194,10 @@ public class testMulti implements Runnable {
 			lockType = LockType.ASYNCQUEUE;
 		} else if (cmd.hasOption('q')) {
 			lockType = LockType.QUEUE;
+		} else if (cmd.hasOption('e')) {
+			lockType = LockType.ASYNCQUEUEEX;
 		} else {
-			lockType = lockType.ASYNCTESTANDSET;
+			lockType = LockType.ASYNCTESTANDSET;
 		}
 
 		System.out.println(name);
