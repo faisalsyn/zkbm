@@ -15,8 +15,8 @@ BEGIN {}
   match(FILENAME, /=[0-9]+\]/)
   server_rtt = int(substr(FILENAME, RSTART+1, RLENGTH-2))
 
-  match($6, /[0-9\.]+/)
-  time = int(substr($6, RSTART, RLENGTH))
+  match($8, /[0-9\.]+/)
+  time = substr($8, RSTART, RLENGTH)
 
   times[server_rtt, client_rtt] = time
 
@@ -40,7 +40,7 @@ END {
 
     for(j=0;j<length(server_rtts);j++) {
       srv = int(server_rtts[j])
-      printf("\t%d", times[srv, cli])
+      printf("\t%0.2f", times[srv, cli])
     }
     printf("\n")
   }

@@ -16,6 +16,7 @@ do
 	#for rtt in 200 225 250
 	do
 		echo "	rtt: ${rtt}"
+		./modify_delays.sh del 0
 		./modify_delays.sh add ${rtt} &>/dev/null
 
 		./client_rtt_experiment.sh $num_trials "server_rtt=$rtt"
