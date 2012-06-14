@@ -11,12 +11,16 @@ shift
 for (( i=1 ; i<=$num_trials ; i++ ))
 do
 	echo "Server trial: $i"
-	for rtt in 0 1 2 3 4 5 10 15 20 25 30 40 50 75 100 125 150 200 250 300
+	#for rtt in 0 1 2 3 4 5 10 15 20 25 30 40 50 75 100 125 150 200 250 300
+	for rtt in 0 25 50 75 100 125 150 175 200 225 250
+	#for rtt in 200 225 250
 	do
 		echo "	rtt: ${rtt}"
 		./modify_delays.sh add ${rtt} &>/dev/null
 
 		./client_rtt_experiment.sh $num_trials "server_rtt=$rtt"
+
+		sleep 3
 	done
 done
 

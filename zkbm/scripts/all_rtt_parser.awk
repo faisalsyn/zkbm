@@ -29,10 +29,6 @@ END {
   asorti(client_rtts)
 
   for(i=0;i<length(server_rtts);i++) {
-    print i, server_rtts[i]
-  }
-
-  for(i=0;i<length(server_rtts);i++) {
     srv = int(server_rtts[i])
     printf("\t%d", srv)
   }
