@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.2.29)  14 JUN 2012 19:45
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.2.29)  15 JUN 2012 02:14
 entering extended mode
  %&-line parsing enabled.
 **CostOfConsensus.tex
@@ -360,7 +360,7 @@ File: img/markov_general.eps Graphic file (type eps)
 File: img/ops_latencies_logscale.eps Graphic file (type eps)
 
 <img/ops_latencies_logscale.eps>
-Overfull \hbox (19.01248pt too wide) in paragraph at lines 54--55
+Overfull \hbox (19.01248pt too wide) in paragraph at lines 44--45
  [][] 
  []
 
@@ -369,7 +369,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 File: img/async_ops_latencies_heatmap.eps Graphic file (type eps)
 <img/async_ops_latencies_heatmap.eps>
-Overfull \hbox (19.01248pt too wide) in paragraph at lines 61--62
+Overfull \hbox (19.01248pt too wide) in paragraph at lines 51--52
  [][] 
  []
 
@@ -378,7 +378,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 File: img/sync_ops_latencies_heatmap.eps Graphic file (type eps)
 <img/sync_ops_latencies_heatmap.eps>
-Overfull \hbox (19.01248pt too wide) in paragraph at lines 68--69
+Overfull \hbox (19.01248pt too wide) in paragraph at lines 58--59
  [][] 
  []
 
@@ -390,7 +390,7 @@ File: img/primitives_latencies_varDelay_syncqueue.eps Graphic file (type eps)
 File: img/primitives_latencies_varDelay_syncTAS.eps Graphic file (type eps)
 
 <img/primitives_latencies_varDelay_syncTAS.eps>
-Overfull \hbox (14.00024pt too wide) in paragraph at lines 78--82
+Overfull \hbox (14.00024pt too wide) in paragraph at lines 68--72
  [][] 
  []
 
@@ -399,19 +399,15 @@ File: img/primitives_latencies_varDelay_asyncqueue.eps Graphic file (type eps)
 File: img/primitives_latencies_varDelay_asyncTAS.eps Graphic file (type eps)
 
 <img/primitives_latencies_varDelay_asyncTAS.eps>
-Overfull \hbox (14.00024pt too wide) in paragraph at lines 86--91
+Overfull \hbox (14.00024pt too wide) in paragraph at lines 76--81
  [][][] 
  []
 
-LaTeX Font Info:    Font shape `U/lasy/b/n' in size <8> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 99.
-LaTeX Font Info:    Font shape `U/lasy/b/n' in size <6> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 99.
-[4]) (./conclusion.tex) (./CostOfConsensus.bbl
+) (./conclusion.tex) (./CostOfConsensus.bbl [4]
 Missing character: There is no Ô in font ptmr7t!
 Missing character: There is no ¨ in font ptmr7t!
 Missing character: There is no Å in font ptmr7t!
- [5])
+)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -423,18 +419,18 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[6] (./CostOfConsensus.aux)
+[5] [6] (./CostOfConsensus.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3781 strings out of 495062
- 57176 string characters out of 1182644
+ 3743 strings out of 495062
+ 56800 string characters out of 1182644
  123767 words of memory out of 3000000
- 6882 multiletter control sequences out of 15000+50000
- 35904 words of font info for 97 fonts, out of 3000000 for 9000
+ 6859 multiletter control sequences out of 15000+50000
+ 30236 words of font info for 76 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  44i,10n,45p,1229b,390s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on CostOfConsensus.dvi (6 pages, 34672 bytes).
+Output written on CostOfConsensus.dvi (6 pages, 33628 bytes).
