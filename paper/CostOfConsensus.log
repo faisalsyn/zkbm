@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.2.29)  15 JUN 2012 15:52
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.2.29)  15 JUN 2012 15:57
 entering extended mode
  %&-line parsing enabled.
 **CostOfConsensus.tex
@@ -278,11 +278,7 @@ Package: bm 2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
 LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 138.
 LaTeX Info: Redefining \bm on input line 204.
 ) (./commands.tex)
-(./CostOfConsensus.aux
-
-LaTeX Warning: Label `fig:primitives_vary_delay' multiply defined.
-
-)
+(./CostOfConsensus.aux)
 \openout1 = `CostOfConsensus.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
@@ -465,17 +461,14 @@ Before submitting the final camera ready copy, remember to:
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
  ) 
 Here is how much of TeX's memory you used:
- 3798 strings out of 495062
- 57713 string characters out of 1182644
+ 3799 strings out of 495062
+ 57769 string characters out of 1182644
  122767 words of memory out of 3000000
- 6893 multiletter control sequences out of 15000+50000
+ 6894 multiletter control sequences out of 15000+50000
  35904 words of font info for 97 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  44i,10n,45p,1399b,390s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on CostOfConsensus.dvi (8 pages, 48740 bytes).
+Output written on CostOfConsensus.dvi (8 pages, 49024 bytes).

@@ -121,14 +121,14 @@ Now we test synchronous create while varying user-to-server and inter-cluster la
 \centering
 \includegraphics[scale=0.68]{img/primitives_fixClusterLatency-0.eps}
 \caption{Synchronization primitives latency while varying user-cluster RTT, with no additional inter-cluster delay, and fixing service time to 1ms and interarrival time to 500ms (low contention with varying latency)}
-\label{fig:primitives_vary_delay}
+\label{fig:primitives_vary_delay_lowcontention}
 \end{figure}
 
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.68]{img/fixService-150_varyLatency.eps}
 \caption{Synchronization primitives latency while varying user-cluster RTT, with no additional inter-cluster delay, and fixing service time to 150ms and interarrival time to 200ms (high contention with varying latency)}
-\label{fig:primitives_vary_delay}
+\label{fig:primitives_vary_delay_highcontention}
 \end{figure}
 
 \subsection{synchronization primitives}
@@ -144,7 +144,7 @@ In the following we study the two-dimensional spectrum of RTT and contention eff
 \begin{itemize}
 \item{\emph{High RTT and varied contention}: Figure~\ref{fig:primitives_vary_contention_rtt100} shows the result of the effect of contention with high RTT. We fix user-to-server RTT to 100ms. Interarrival times between lock requests are fixed to 200ms. Until a critical point (100ms service time in this case) all primitives perform similarly. When service time is above 100ms Asyncronous queue and synchronous TAS performs poorly. Thus, for high RTT and high contention synchronous queue is better than synchronous TAS.}
 \item{\emph{Low RTT and varied contention}: Figure~\ref{fig:primitives_vary_contention_rtt0} display results for the effect of contention with low RTT. We keep the original user-to-cluster latency as it is (\emph{i.e.}, 0.2ms). Interarrival times between lock requests are fixed to 200ms. Here we notice that the effect is not as visible as the high RTT case. However, all primitives perform closely except for asynchronous queues.}
-\item{\emph{ }: }
+\item{\emph{Low contention and varied RTT}: this experiments show the effect of varying RTT while having low contention (\emph{i.e.}, service time is 1ms and interarrival of requests is 500ms). Figure~\ref{fig:primitives_vary_delay_lowcontention} shows these results.  }
 \item{\emph{ }: }
 \end{itemize}
 
