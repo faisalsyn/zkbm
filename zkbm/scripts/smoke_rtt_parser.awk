@@ -40,7 +40,7 @@ END {
 
     for(j=0;j<length(server_rtts);j++) {
       srv = int(server_rtts[j])
-      printf("\t%0.2f", times[srv, cli])
+      printf("\t%d", times[srv, cli])
     }
     printf("\n")
   }
