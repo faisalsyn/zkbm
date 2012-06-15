@@ -60,7 +60,9 @@ Our first experiments test basic Zookeeper operations' latencies. We test both s
 \label{fig:sync_heatmap}
 \end{figure}
 
-We would like to test the effect of latency on Zookeeper operations. Therefore, we introduce latency in two ways. First, we vary the RTT between the client machine and the cluster and call it \emph{user-to-server} RTT. Second, we vary RTT between Zookeeper servers and we will call it \emph{inter-cluster} RTT. Reported numbers are not the final RTT, but the addition to the original RTT. Since the original RTT is very low compared to our introduced values, reported values act as a good approximation. The first set of results are of asynchronous create operation while varying user-to-server and inter-cluster RTTs and is shown in Figure~\ref{fig:async_heatmap}. Asynchronous creates average values do not exceed 4.5ms in our experiment, although RTTs go up to 250. This is because asynchronous operations are allowed to start immediately after invokation of the previous operation. Thus, these results act as an indicator of the level of parallelism that can be supported by Zookeeper. Assuming worst case, we can calculate a lower bound on the average number of concurrent asynchronous creates by dividing RTT by maximum reported latency, hence $\frac{250}{4.5} = 55.56$ operations.
+We would like to test the effect of latency on Zookeeper operations. Therefore, we introduce latency in two ways. First, we vary the RTT between the client machine and the cluster and call it \emph{user-to-server} RTT. Second, we vary RTT between Zookeeper servers and we will call it \emph{inter-cluster} RTT. Reported numbers are not the final RTT, but the addition to the original RTT. Since the original RTT is very low compared to our introduced values, reported values act as a good approximation. The first set of results are of asynchronous create operation while varying user-to-server and inter-cluster RTTs and is shown in Figure~\ref{fig:async_heatmap}. Asynchronous creates average values do not exceed 4.5ms in our experiment, although RTTs go up to 250. This is because asynchronous operations are allowed to start immediately after invokation of the previous operation. Thus, these results act as an indicator of the level of parallelism that can be supported by Zookeeper. Assuming worst case, we can calculate a lower bound on the average number of concurrent asynchronous creates by dividing RTT by maximum reported latency, hence $\frac{250}{4.5} = 55.56$ operations. An interesting finding is that though asynchronous requests are used, both user-to-server and inter-cluster RTTs have an effect on operation latency.
+
+Now we test synchronous create while varying user-to-server and inter-cluster latencies. Results are shown in Figure~\ref{fig:sync_heatmap}. Since synchronous creates are used, reported results are the sum of user-to-server RTT and time it takes for Zookeeper servers to process the operation. From the linear relation observed with user-to-server latency, it is apparent that two RTTs are involved in the exchange. Those RTTs corresponds to starting the connection and issuing the create operation. Another observation is that at least one (inter-cluster) RTT is involved in the cluster-side processing of the operation. However, as the inter-cluster RTT increase the latency increase faster than the rate of RTT change. 
 
 \begin{figure*}[ht!]
      \begin{center}
@@ -89,31 +91,47 @@ We would like to test the effect of latency on Zookeeper operations. Therefore, 
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.75]{img/primitives_vary-contention_rtt-100.eps}
+\includegraphics[scale=0.72]{img/primitives_vary-contention_rtt-100.eps}
 \caption{Synchronization primitives latency while varying contention and fixing RTT to 100ms}
 \label{fig:primitives_vary_contention_rtt100}
 \end{figure}
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.75]{img/primitives_vary-contention_rtt-0.eps}
+\includegraphics[scale=0.72]{img/primitives_vary-contention_rtt-0.eps}
 \caption{Synchronization primitives latency while varying contention and no additional delay to RTT}
 \label{fig:primitives_vary_contention_rtt0}
 \end{figure}
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.75]{img/primitives_fixClusterLatency-0.eps}
+\includegraphics[scale=0.72]{img/primitives_fixClusterLatency-0.eps}
 \caption{Synchronization primitives latency while varying user-cluster RTT, with no additional inter-cluster delay, and fixing service time to 1ms and interarrival time to 500ms}
 \label{fig:primitives_vary_delay}
 \end{figure}
 
 \subsection{synchronization primitives}
-\note{test test-and-set and queues (as in paper: reactive synchronization}
 The experiments in this section focus on two fundamental synchonization primites, locks and queues, which are commonly found as builind blocks of larger coordination schemes. The implementation of synchronous primitives follows the Zookeeper recipies with minor improvements, while the asynchronous implementation is described in detail in the following.
 Locks follow a test-and-set approach by repeatedly issuing create requests and upon successful response from the server assuming mutual exclusion. The lock is then released by deleting the node. The synchonous lock issues a single create request for a fixed node path and blocks until a response arrives. On a positive response mutual exclusion is guaranteed. A negative respose is directly followed up by another create request. This lock has at most a single request or response in transit at a given time. The asynchonous lock issues create requests on a timer basis until a positive response is recorded. This implementation has multiple requests and responses in transit at a time and effectively "polls" the availability of the lock. This puts higher load on the network and server, but may reduce the time taken to aquire a lock by avoiding an additional notify-request roundtrip.
 Queues are built using server-side sequentially increasing ids for creating the node. After the node is created the nodes predecessors are obtained and upon their deletion mutual exclusion is guaranteed. As for locks release is performed by deleting the node. The synchonous implementation creates a sub-node, and upon sucess notification requests the list of all siblings from the server using "getChildren". If the created node holds the lowest Id mutual exclusion is guaranteed, otherwise a watch on deletion of its predecessor is installed. The asynchonous queue issues the create request in parallel with polling children at a fixed interval. When the create request returns the obtained Id and the most recent list of children contains the Id in first place mutual exclusion is guaranteed. This approach follows the same trade-offs as asynchonous locks, but can be extended to install a watch on the predecessor and stop polling after a round trip interval.
 
-\subsection{application performance}
-\note{map reduce. effect of adding machines, effect of adding zookeeper servers.}
+In this section we will study our primitives while we vary to important metrics. The first metric is traditionally important for synchronization primitives, namely contention. We vary contention by fixing interarrival time of requests to enter the critical section while varying the service time (\emph{e.g.}, time spent inside the critical section). The second metric is latency. Specifically we are interested in large delays that characterize multi-datacenter communication. The goal of this study is to come out with conclusions on which primitives to use giving different contention and network conditions.
+
+We test all our synchronization primitives while we vary user-to-server and inter-cluster RTTs. These experiments will give us hints on how these primitives act with different RTTs, what is the difference between inter-cluster and user-to-server effects, and what primitives are better when large RTTs are experienced. We show these results in Figure~\ref{fig:subfigures}. In them, interarrival time between lock requests is exponentially distributed with a mean of 500ms and time spent in the critical section is exponentially distributed with a mean of 1ms. Asynchronous TAS are the most efficient and stable amongst studied primitives. On the other hand, synchronous TAS perform poorly when RTT is high. Queue implementations are better than synchronous TAS for large delays, though are comparable and slightly worse with low RTTs. We will examine relashionship between primitives in specific cases later in this section. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
