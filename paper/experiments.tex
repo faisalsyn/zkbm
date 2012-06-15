@@ -70,6 +70,32 @@ In this section, we will display results of our experiments. First, we will esta
 \label{fig:sync_heatmap}
 \end{figure}
 
+\begin{figure*}[ht!]
+     \begin{center}
+        \subfloat[Latency of synchronous queue locks]{
+            \label{fig:first}
+            \includegraphics[width=0.25\textwidth]{img/primitives_latencies_varDelay_syncqueue.eps}
+        }
+        \subfloat[Latency of synchronous TAS]{
+           \label{fig:second}
+           \includegraphics[width=0.25\textwidth]{img/primitives_latencies_varDelay_syncTAS.eps}
+        } %  ------- End of the first row ----------------------%
+        \subfloat[Latency of asynchronous queue locks]{
+            \label{fig:third}
+            \includegraphics[width=0.25\textwidth]{img/primitives_latencies_varDelay_asyncqueue.eps}
+        }
+        \subfloat[Latency of asynchronous TAS]{
+            \label{fig:fourth}
+            \includegraphics[width=0.25\textwidth]{img/primitives_latencies_varDelay_asyncTAS.eps}
+        }
+    \end{center}
+    \caption{
+        The l-o-n-g caption for all the subfigures
+        (FirstFigure through FourthFigure) goes here.
+     }
+   \label{fig:subfigures}
+\end{figure*}
+
 Our first experiment test basic Zookeeper operations' latencies. We test both synchronous and asynchronous versions of these operations. For testing we use zk-smoketest\footnote{https://github.com/phunt/zk-smoketest}. Each operation is run for a thousand time and we report average latency. Results are shown in Figure~\ref{fig:ops_latencies}. Synchronous operations block until the operation is performed, thus giving an indication on the total time taken to perform the actual operation. Asynchronous operations on the other hand do not block. The figure shown that synchronous operations takes more than ten times the latency of asynchronous operations for \emph{put} operations, and around double the latency for \emph{get} operations. \note{define put and get operation classes either here or before (section II)}. 
 
 \subsection{synchronization primitives}

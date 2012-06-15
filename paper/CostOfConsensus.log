@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.2.29)  14 JUN 2012 17:48
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.2.29)  14 JUN 2012 18:46
 entering extended mode
  %&-line parsing enabled.
 **CostOfConsensus.tex
@@ -281,21 +281,21 @@ LaTeX Info: Redefining \bm on input line 204.
 (./CostOfConsensus.aux)
 \openout1 = `CostOfConsensus.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption3 Info: subfig package 1.2 or 1.3 is loaded.
-LaTeX Info: Redefining \subref on input line 30.
+LaTeX Info: Redefining \subref on input line 31.
 Package caption Info: End \AtBeginDocument code.
 
 
@@ -305,7 +305,7 @@ LaTeX Warning: No \author given.
 LaTeX Warning: No \author given.
 
 (./abstract.tex)
-** ATTENTION: \keywords is deprecated (line 38). Use \IEEEkeywords instead.
+** ATTENTION: \keywords is deprecated (line 39). Use \IEEEkeywords instead.
 (./introduction.tex) (./framework.tex
 File: img/framework.eps Graphic file (type eps)
  <img/framework.eps> [1
@@ -385,15 +385,34 @@ Overfull \hbox (19.01248pt too wide) in paragraph at lines 68--69
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
+File: img/primitives_latencies_varDelay_syncqueue.eps Graphic file (type eps)
+<img/primitives_latencies_varDelay_syncqueue.eps>
+File: img/primitives_latencies_varDelay_syncTAS.eps Graphic file (type eps)
+
+<img/primitives_latencies_varDelay_syncTAS.eps>
+File: img/primitives_latencies_varDelay_asyncqueue.eps Graphic file (type eps)
+
+<img/primitives_latencies_varDelay_asyncqueue.eps>
+File: img/primitives_latencies_varDelay_asyncTAS.eps Graphic file (type eps)
+
+<img/primitives_latencies_varDelay_asyncTAS.eps>
+Overfull \hbox (28.00049pt too wide) in paragraph at lines 78--91
+ [][][][] 
+ []
+
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <8> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 73.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 99.
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <6> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 73.
-[4]) (./conclusion.tex) (./CostOfConsensus.bbl
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 99.
+[4]
+Underfull \vbox (badness 7203) has occurred while \output is active []
+
+)
+(./conclusion.tex) (./CostOfConsensus.bbl
 Missing character: There is no Ô in font ptmr7t!
 Missing character: There is no ¨ in font ptmr7t!
 Missing character: There is no Å in font ptmr7t!
-)
+ [5])
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -405,18 +424,20 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[5] (./CostOfConsensus.aux)
+[6
+
+] (./CostOfConsensus.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3762 strings out of 495062
- 56641 string characters out of 1182644
- 122767 words of memory out of 3000000
- 6867 multiletter control sequences out of 15000+50000
+ 3781 strings out of 495062
+ 57176 string characters out of 1182644
+ 123767 words of memory out of 3000000
+ 6882 multiletter control sequences out of 15000+50000
  35904 words of font info for 97 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 44i,9n,42p,1229b,299s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,10n,45p,1229b,388s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on CostOfConsensus.dvi (5 pages, 33484 bytes).
+Output written on CostOfConsensus.dvi (6 pages, 34644 bytes).
