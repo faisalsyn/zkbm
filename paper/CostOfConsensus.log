@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.2.29)  14 JUN 2012 16:20
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.2.29)  14 JUN 2012 17:48
 entering extended mode
  %&-line parsing enabled.
 **CostOfConsensus.tex
@@ -367,10 +367,28 @@ Overfull \hbox (19.01248pt too wide) in paragraph at lines 54--55
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
+File: img/async_ops_latencies_heatmap.eps Graphic file (type eps)
+<img/async_ops_latencies_heatmap.eps>
+Overfull \hbox (19.01248pt too wide) in paragraph at lines 61--62
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+File: img/sync_ops_latencies_heatmap.eps Graphic file (type eps)
+<img/sync_ops_latencies_heatmap.eps>
+Overfull \hbox (19.01248pt too wide) in paragraph at lines 68--69
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <8> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 59.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 73.
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <6> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 59.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 73.
 [4]) (./conclusion.tex) (./CostOfConsensus.bbl
 Missing character: There is no ï in font ptmr7t!
 Missing character: There is no ¬ in font ptmr7t!
@@ -393,12 +411,12 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3756 strings out of 495062
- 56474 string characters out of 1182644
+ 3762 strings out of 495062
+ 56641 string characters out of 1182644
  122767 words of memory out of 3000000
- 6863 multiletter control sequences out of 15000+50000
+ 6867 multiletter control sequences out of 15000+50000
  35904 words of font info for 97 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  44i,9n,42p,1229b,299s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on CostOfConsensus.dvi (5 pages, 32832 bytes).
+Output written on CostOfConsensus.dvi (5 pages, 33484 bytes).
