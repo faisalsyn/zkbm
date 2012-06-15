@@ -1,0 +1,12 @@
+Connecting to rubicon:2181
+Connected in 966 ms, handle is 0
+Testing latencies on server rubicon:2181 using asynchronous calls
+created    1000 permanent znodes  in   2687 ms (2.687434 ms/op 372.102167/sec)
+set        1000           znodes  in   2018 ms (2.018778 ms/op 495.349146/sec)
+get        1000           znodes  in   1023 ms (1.023709 ms/op 976.840042/sec)
+deleted    1000 permanent znodes  in   2309 ms (2.309862 ms/op 432.926315/sec)
+created    1000 ephemeral znodes  in   2359 ms (2.359611 ms/op 423.798662/sec)
+watched    1000           znodes  in    833 ms (0.833717 ms/op 1199.447619/sec)
+deleted    1000 ephemeral znodes  in   2337 ms (2.337223 ms/op 427.858179/sec)
+notif      1000           watches in      0 ms (included in prior)
+Latency test complete
