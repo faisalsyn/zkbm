@@ -1,4 +1,4 @@
-"service time"	"Sync. queue"	"Sync. TAS"	"Async. queue"	"Async. TAS"
+"service time"	"Sync. queue"	"Async. queue"	"Sync. TAS"	"Async. TAS"
 1	55	43	46	43
 25	81	84	79	72
 50	112	94	187	83

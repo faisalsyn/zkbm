@@ -18,8 +18,8 @@ set pointsize 2
 set key left
 
 plot "data_syncQueue.raw" using 1 title "Sync. Queue" with linespoints lt -1,\
-"data_syncTAS.raw" using 1 title "Sync. TAS" with linespoints lt -1,\
 "data_asyncQueue.raw" using 1 title "Async. Queue" with linespoints lt -1,\
+"data_syncTAS.raw" using 1 title "Sync. TAS" with linespoints lt -1,\
 "data_asyncTAS.raw" using 1 title "Async. TAS" with linespoints lt -1
 
 

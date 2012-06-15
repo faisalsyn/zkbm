@@ -91,22 +91,43 @@ Now we test synchronous create while varying user-to-server and inter-cluster la
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.72]{img/primitives_vary-contention_rtt-100.eps}
-\caption{Synchronization primitives latency while varying contention and fixing RTT to 100ms}
+\includegraphics[scale=0.68]{img/primitives_fixUserLatency-0.eps}
+\caption{Synchronization primitives latency while varying inter-cluster latency and not changing user-to-server latency}
+\label{fig:primitives_vary_intercluster}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=1.55]{img/spectrum.eps}
+\caption{The spectrum of RTT and contention used for our experiments. Ovals represent a span of a performed experiment}
+\label{fig:spectrum}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.68]{img/primitives_vary-contention_rtt-100.eps}
+\caption{Synchronization primitives latency while varying contention and fixing RTT to 100ms (varying contention with high RTT)}
 \label{fig:primitives_vary_contention_rtt100}
 \end{figure}
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.72]{img/primitives_vary-contention_rtt-0.eps}
-\caption{Synchronization primitives latency while varying contention and no additional delay to RTT}
+\includegraphics[scale=0.68]{img/primitives_vary-contention_rtt-0.eps}
+\caption{Synchronization primitives latency while varying contention and no additional delay to RTT (varying contention with low RTT)}
 \label{fig:primitives_vary_contention_rtt0}
 \end{figure}
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.72]{img/primitives_fixClusterLatency-0.eps}
-\caption{Synchronization primitives latency while varying user-cluster RTT, with no additional inter-cluster delay, and fixing service time to 1ms and interarrival time to 500ms}
+\includegraphics[scale=0.68]{img/primitives_fixClusterLatency-0.eps}
+\caption{Synchronization primitives latency while varying user-cluster RTT, with no additional inter-cluster delay, and fixing service time to 1ms and interarrival time to 500ms (low contention with varying latency)}
+\label{fig:primitives_vary_delay}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.68]{img/fixService-150_varyLatency.eps}
+\caption{Synchronization primitives latency while varying user-cluster RTT, with no additional inter-cluster delay, and fixing service time to 150ms and interarrival time to 200ms (high contention with varying latency)}
 \label{fig:primitives_vary_delay}
 \end{figure}
 
@@ -119,7 +140,13 @@ In this section we will study our primitives while we vary to important metrics.
 
 We test all our synchronization primitives while we vary user-to-server and inter-cluster RTTs. These experiments will give us hints on how these primitives act with different RTTs, what is the difference between inter-cluster and user-to-server effects, and what primitives are better when large RTTs are experienced. We show these results in Figure~\ref{fig:subfigures}. In them, interarrival time between lock requests is exponentially distributed with a mean of 500ms and time spent in the critical section is exponentially distributed with a mean of 1ms. Asynchronous TAS are the most efficient and stable amongst studied primitives. On the other hand, synchronous TAS perform poorly when RTT is high. Queue implementations are better than synchronous TAS for large delays, though are comparable and slightly worse with low RTTs. We will examine relashionship between primitives in specific cases later in this section. 
 
-
+In the following we study the two-dimensional spectrum of RTT and contention effect on synchronization primitives' latency. We only vary user-to-server RTT. Inter-cluster latency affect the throughput of all synchronization primitives with the same magnitude. This is because synchronization primitives on top of Zookeeper control the exchange of messages between the user and the server and does not affect the exchange of inter-cluster controls. This is apparent in Figure~\ref{fig:primitives_vary_intercluster}, where we vary inter-cluster latency while fixing user-to-server latency and contention. In the figure it is observed that increasing inter-cluster latency have a fixed additive effect on all primitives. We performed four experiments to examine the possible spectrum of values while varying RTT and contention. The span of each experiment is represented as an oval in Figure~\ref{fig:spectrum}. The following are description of our results:
+\begin{itemize}
+\item{\emph{High RTT and varied contention}: Figure~\ref{fig:primitives_vary_contention_rtt100} shows the result of the effect of contention with high RTT. We fix user-to-server RTT to 100ms. Interarrival times between lock requests are fixed to 200ms. Until a critical point (100ms service time in this case) all primitives perform similarly. When service time is above 100ms Asyncronous queue and synchronous TAS performs poorly. Thus, for high RTT and high contention synchronous queue is better than synchronous TAS.}
+\item{\emph{Low RTT and varied contention}: Figure~\ref{fig:primitives_vary_contention_rtt0} display results for the effect of contention with low RTT. We keep the original user-to-cluster latency as it is (\emph{i.e.}, 0.2ms). Interarrival times between lock requests are fixed to 200ms. Here we notice that the effect is not as visible as the high RTT case. However, all primitives perform closely except for asynchronous queues.}
+\item{\emph{ }: }
+\item{\emph{ }: }
+\end{itemize}
 
 
 

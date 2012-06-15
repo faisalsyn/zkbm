@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.2.29)  15 JUN 2012 05:04
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.2.29)  15 JUN 2012 15:52
 entering extended mode
  %&-line parsing enabled.
 **CostOfConsensus.tex
@@ -278,7 +278,11 @@ Package: bm 2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
 LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 138.
 LaTeX Info: Redefining \bm on input line 204.
 ) (./commands.tex)
-(./CostOfConsensus.aux)
+(./CostOfConsensus.aux
+
+LaTeX Warning: Label `fig:primitives_vary_delay' multiply defined.
+
+)
 \openout1 = `CostOfConsensus.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
@@ -409,32 +413,43 @@ Overfull \hbox (14.00024pt too wide) in paragraph at lines 80--85
  [][][] 
  []
 
+File: img/primitives_fixUserLatency-0.eps Graphic file (type eps)
+<img/primitives_fixUserLatency-0.eps>
+File: img/spectrum.eps Graphic file (type eps)
+ <img/spectrum.eps>
 File: img/primitives_vary-contention_rtt-100.eps Graphic file (type eps)
+
 <img/primitives_vary-contention_rtt-100.eps>
-Overfull \hbox (8.17242pt too wide) in paragraph at lines 94--95
- [][] 
- []
-
-File: img/primitives_vary-contention_rtt-0.eps Graphic file (type eps)
-<img/primitives_vary-contention_rtt-0.eps>
-Overfull \hbox (8.17242pt too wide) in paragraph at lines 101--102
- [][] 
- []
-
-File: img/primitives_fixClusterLatency-0.eps Graphic file (type eps)
-<img/primitives_fixClusterLatency-0.eps>
-Overfull \hbox (8.17242pt too wide) in paragraph at lines 108--109
- [][] 
- []
-
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[6]) (./conclusion.tex) (./CostOfConsensus.bbl
+File: img/primitives_vary-contention_rtt-0.eps Graphic file (type eps)
+<img/primitives_vary-contention_rtt-0.eps>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+File: img/primitives_fixClusterLatency-0.eps Graphic file (type eps)
+<img/primitives_fixClusterLatency-0.eps>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+File: img/fixService-150_varyLatency.eps Graphic file (type eps)
+<img/fixService-150_varyLatency.eps>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[6]
+Underfull \vbox (badness 1460) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [7])
+(./conclusion.tex) (./CostOfConsensus.bbl
 Missing character: There is no Ô in font ptmr7t!
 Missing character: There is no ¨ in font ptmr7t!
 Missing character: There is no Å in font ptmr7t!
- [7])
+)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -446,20 +461,21 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[8
-
-] (./CostOfConsensus.aux)
+[8] (./CostOfConsensus.aux)
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: There were multiply-defined labels.
+
  ) 
 Here is how much of TeX's memory you used:
- 3790 strings out of 495062
- 57507 string characters out of 1182644
+ 3798 strings out of 495062
+ 57713 string characters out of 1182644
  122767 words of memory out of 3000000
- 6888 multiletter control sequences out of 15000+50000
+ 6893 multiletter control sequences out of 15000+50000
  35904 words of font info for 97 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  44i,10n,45p,1399b,390s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on CostOfConsensus.dvi (8 pages, 44744 bytes).
+Output written on CostOfConsensus.dvi (8 pages, 48740 bytes).
