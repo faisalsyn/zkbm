@@ -8,7 +8,7 @@
 \end{figure}
 
 \subsection{testbed}
-OUr testbed consists of a cluster of five machines connected by a switch. These nodes will be the servers hosting Zookepper instances. Another machine, we will call it the client machine, will act as the user of Zookeeper. The Round-Trip Time~(RTT) between machines in the cluster is around 0.1ms and around 0.2ms for client to cluster communication. Each cluster machine has a 5 quad-core Xeon \note{type and clock} with commodity 500GB 7.2k rpm disks. They are interconnected with a single 1Gbps Ethernet switch.
+Our testbed consists of a cluster of five machines connected by a switch. These nodes will be the servers hosting Zookepper instances. Another machine, we will call it the client machine, will act as the user of Zookeeper. The Round-Trip Time~(RTT) between machines in the cluster is around 0.1ms and around 0.2ms for client to cluster communication. Each cluster machine has a 5 quad-core Xeon \note{type and clock} with commodity 500GB 7.2k rpm disks. They are interconnected with a single 1Gbps Ethernet switch.
 
 \subsection{consensus protocol}
 It is important for distributed systems to have a well-defined consensus protocol. High latency and possibility of failures make achieving consensus an intricate task. For this matter consensus protocols such as Two-Phase Commit~(2PC), Three-Phase Commit~(3PC), and paxos were proposed. In this section we will focus on paxos due its use in distributed consensus servres, such as Chubby and, to some degree, Zookeeper. The use of paxos over other alternatives is its resilience to node and network failures. In addition, paxos does not need a fail recovery model.

@@ -44,19 +44,23 @@ In order the measure the impact of client-server and server-server latency we co
 \label{fig:ops_latencies}
 \end{figure}
 
+Our first experiments test basic Zookeeper operations' latencies. We test both synchronous and asynchronous versions of these operations. For testing we use zk-smoketest\footnote{https://github.com/phunt/zk-smoketest}. Each operation is run for a thousand time and we report average latency. Results are shown in Figure~\ref{fig:ops_latencies}. Synchronous operations block until the operation is performed, thus giving an indication on the total time taken to perform the actual operation. Asynchronous operations on the other hand do not block. The figure shown that synchronous operations takes more than ten times the latency of asynchronous operations for \emph{put} operations (operations that update znodes), and around double the latency for \emph{get} operations (operations that does not update znodes). Another interesting observation is that for both synchronous and asynchronous operations set operations (and get operations) have a close latency. This will enable us to pick only a representative of those operations to collect more thorough results. In the next experiment we use create as a representative for set operations. We chose create as it is involved in all our synchronization primitives.
+
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.75]{img/async_ops_latencies_heatmap.eps}
-\caption{Zookeeper asynchronous create operation latency with different inter-cluster and user-server RTTs}
+\caption{Zookeeper asynchronous average create operation latency with different inter-cluster and user-server RTTs}
 \label{fig:async_heatmap}
 \end{figure}
 
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.75]{img/sync_ops_latencies_heatmap.eps}
-\caption{Zookeeper synchronous create operation latency with different inter-cluster and user-server RTTs}
+\caption{Zookeeper synchronous average create operation latency with different inter-cluster and user-server RTTs}
 \label{fig:sync_heatmap}
 \end{figure}
+
+We would like to test the effect of latency on Zookeeper operations. Therefore, we introduce latency in two ways. First, we vary the RTT between the client machine and the cluster and call it \emph{user-to-server} RTT. Second, we vary RTT between Zookeeper servers and we will call it \emph{inter-cluster} RTT. Reported numbers are not the final RTT, but the addition to the original RTT. Since the original RTT is very low compared to our introduced values, reported values act as a good approximation. The first set of results are of asynchronous create operation while varying user-to-server and inter-cluster RTTs and is shown in Figure~\ref{fig:async_heatmap}. Asynchronous creates average values do not exceed 4.5ms in our experiment, although RTTs go up to 250. This is because asynchronous operations are allowed to start immediately after invokation of the previous operation. Thus, these results act as an indicator of the level of parallelism that can be supported by Zookeeper. Assuming worst case, we can calculate a lower bound on the average number of concurrent asynchronous creates by dividing RTT by maximum reported latency, hence $\frac{250}{4.5} = 55.56$ operations.
 
 \begin{figure*}[ht!]
      \begin{center}
@@ -78,13 +82,10 @@ In order the measure the impact of client-server and server-server latency we co
         }
     \end{center}
     \caption{
-        The l-o-n-g caption for all the subfigures
-        (FirstFigure through FourthFigure) goes here.
+        Heatmaps of different synchronization primitives' latencies while varying inter-cluster RTT and user-to-server RTT.
      }
    \label{fig:subfigures}
 \end{figure*}
-
-Our first experiments test basic Zookeeper operations' latencies. We test both synchronous and asynchronous versions of these operations. For testing we use zk-smoketest\footnote{https://github.com/phunt/zk-smoketest}. Each operation is run for a thousand time and we report average latency. Results are shown in Figure~\ref{fig:ops_latencies}. Synchronous operations block until the operation is performed, thus giving an indication on the total time taken to perform the actual operation. Asynchronous operations on the other hand do not block. The figure shown that synchronous operations takes more than ten times the latency of asynchronous operations for \emph{put} operations, and around double the latency for \emph{get} operations. \note{define put and get operation classes either here or before (section II)}. 
 
 \begin{figure}[h]
 \centering
