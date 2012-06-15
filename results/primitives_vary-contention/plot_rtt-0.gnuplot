@@ -15,6 +15,8 @@ set ylabel "latency (ms)"
 
 set key left
 
+set pointsize 2
+
 plot "data_rtt-0.raw" using 1:2 title col with linespoints lt -1,\
 "" using 1:3 title col with linespoints lt -1,\
 "" using 1:4 title col with linespoints lt -1,\

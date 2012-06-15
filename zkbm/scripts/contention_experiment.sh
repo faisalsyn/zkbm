@@ -14,7 +14,7 @@ pwd=$(pwd)
 NUM_CYCLES=50
 INTERARRIVAL_TIME=200
 #SERVICE_TIME=0
-rtt=100
+rtt=10
 
 for (( i=1 ; i<=$num_trials ; i++ ))
 do

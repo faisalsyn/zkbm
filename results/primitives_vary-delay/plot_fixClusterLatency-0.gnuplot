@@ -13,6 +13,8 @@ set for [i=1:words(XTICS)] xtics ( word(XTICS,i) i-1 )
 set xlabel "user to cluster RTT (ms)"
 set ylabel "latency (ms)"
 
+set pointsize 2
+
 set key left
 
 plot "data_syncQueue.raw" using 1 title "Sync. Queue" with linespoints lt -1,\
