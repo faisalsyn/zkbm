@@ -1,9 +1,9 @@
 \section{Experimental evaluation}\label{sec:eval}
 This section provides results of our experiments and a discussion of relevant findings. We begin by establishing baseline performance for our Zookeeper testbed which support reasoning for follow-up experiments with synchronization primitves. The synchronization mechanisms benchmarked are Queues and Locks, each implemented with both, synchronous and asynchronous messaging. For this quantitative analysis we focus on average latency and graceful degradation.
 
-\subsection{Experimental setup}
-The testbed consists of 5 machine containing a quad-core Xeon 2135, 16GB RAM and commodity 500GB 7.2k rpm disks running stock Ubuntu 12.04. They are interconnected with 1Gbps Ethernet on a single switch. A separate machine acts as client without being a Zookeeper server. For our experiments these nodes for quorums out of 1, 3 or 5 nodes as indicated. The server-side uses Zookeeper version 3.3.5 whereas the client-side implementation of benchmarks uses Python bindings for the baseline "smoke test" and Java bindings for Locks and Queues.
-In order the measure the impact of client-server and server-server latency we control the transmission latency of packets transmitted between nodes using the Linux "Traffic Control" utility. We automate the process of enumerating client-server and server-server latency pairs and repeatedly run the experiments and average the results to reduce the impact of jitter.
+%\subsection{Experimental setup}
+%The testbed consists of 5 machine containing a quad-core Xeon 2135, 16GB RAM and commodity 500GB 7.2k rpm disks running stock Ubuntu 12.04. They are interconnected with 1Gbps Ethernet on a single switch. A separate machine acts as client without being a Zookeeper server. For our experiments these nodes for quorums out of 1, 3 or 5 nodes as indicated. The server-side uses Zookeeper version 3.3.5 whereas the client-side implementation of benchmarks uses Python bindings for the baseline "smoke test" and Java bindings for Locks and Queues.
+%In order the measure the impact of client-server and server-server latency we control the transmission latency of packets transmitted between nodes using the Linux "Traffic Control" utility. We automate the process of enumerating client-server and server-server latency pairs and repeatedly run the experiments and average the results to reduce the impact of jitter.
 
 %\note{Average RTT for pings is (ping lat)
 %Average network throughput is (throughput=). this for inter-cluster and cluster to hamilton.}
@@ -144,8 +144,16 @@ In the following we study the two-dimensional spectrum of RTT and contention eff
 \begin{itemize}
 \item{\emph{High RTT and varied contention}: Figure~\ref{fig:primitives_vary_contention_rtt100} shows the result of the effect of contention with high RTT. We fix user-to-server RTT to 100ms. Interarrival times between lock requests are fixed to 200ms. Until a critical point (100ms service time in this case) all primitives perform similarly. When service time is above 100ms Asyncronous queue and synchronous TAS performs poorly. Thus, for high RTT and high contention synchronous queue is better than synchronous TAS.}
 \item{\emph{Low RTT and varied contention}: Figure~\ref{fig:primitives_vary_contention_rtt0} display results for the effect of contention with low RTT. We keep the original user-to-cluster latency as it is (\emph{i.e.}, 0.2ms). Interarrival times between lock requests are fixed to 200ms. Here we notice that the effect is not as visible as the high RTT case. However, all primitives perform closely except for asynchronous queues.}
-\item{\emph{Low contention and varied RTT}: this experiments show the effect of varying RTT while having low contention (\emph{i.e.}, service time is 1ms and interarrival of requests is 500ms). Figure~\ref{fig:primitives_vary_delay_lowcontention} shows these results.  }
-\item{\emph{ }: }
+\item{\emph{Low contention and varied RTT}: this experiments show the effect of varying RTT while having low contention (\emph{i.e.}, service time is 1ms and interarrival of requests is 500ms). Figure~\ref{fig:primitives_vary_delay_lowcontention} shows obtained results. From these results it is shown that for low contention, TAS protocols perform better than queue ones. As RTT increases, the different in latency becomes more apparent. Asynchronous TAS is better than synchronous TAS which perform closely to asynchronous queues for low RTT. Thus, we conclude that for low contention, TAS protocols perform better, specially for large RTTs. }
+\item{\emph{High contention and varied RTT}: this experiments show the effect of varying RTT while having high contention (\emph{i.e.}, service time is 150ms and interarrival of requests is 200ms). Figure~\ref{fig:primitives_vary_delay_highcontention} shows obtained results. Confirming our results when we tested varying contention, asynchronous TAS and synchronous queues perform best, specially for high contention.}
+\end{itemize}
+
+Giving the results of our previous experiments, we are now able to infer the tradeoffs of using synchronization primitives with varying RTT and contention conditions. The following summarizes our findings relative to each part of the RTT and contention spectrum:
+\begin{itemize}
+\item{\emph{Low RTT/low contention}: }
+\item{\emph{Low RTT/high contention}: }
+\item{\emph{high RTT/low contention}: }
+\item{\emph{high RTT/high contention}: }
 \end{itemize}
 
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.2.29)  15 JUN 2012 15:57
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.2.29)  15 JUN 2012 16:32
 entering extended mode
  %&-line parsing enabled.
 **CostOfConsensus.tex
@@ -312,68 +312,73 @@ File: img/framework.eps Graphic file (type eps)
 
 
 ]
-LaTeX Font Info:    Try loading font information for U+lasy on input line 21.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 24.
 
 (/usr/share/texmf-texlive/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 21.
+LaTeX Font Info:    Try loading font information for U+msa on input line 24.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 21.
+LaTeX Font Info:    Try loading font information for U+msb on input line 24.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <7> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 21.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 24.
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <5> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 21.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 24.
 File: img/queue_lock_pseudo.eps Graphic file (type eps)
 
 <img/queue_lock_pseudo.eps>
-Overfull \hbox (3.10489pt too wide) in paragraph at lines 38--39
+Overfull \hbox (3.10489pt too wide) in paragraph at lines 41--42
  [][] 
  []
 
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 File: img/queue_lock_time.eps Graphic file (type eps)
 <img/queue_lock_time.eps>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 File: img/async_queue_lock_time.eps Graphic file (type eps)
- <img/async_queue_lock_time.eps>
+<img/async_queue_lock_time.eps>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [2]) (./analysis.tex
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [3]
 File: img/rttpdf2.eps Graphic file (type eps)
- <img/rttpdf2.eps>
+
+<img/rttpdf2.eps>
+
+LaTeX Warning: Reference `fig:rttpdf2' on page 4 undefined on input line 16.
+
+File: img/markov_general.eps Graphic file (type eps)
+<img/markov_general.eps>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-LaTeX Warning: Reference `fig:rttpdf2' on page 3 undefined on input line 16.
-
-[3]
-File: img/markov_general.eps Graphic file (type eps)
- <img/markov_general.eps>) (./experiments.tex
+) (./experiments.tex [4]
 File: img/ops_latencies_logscale.eps Graphic file (type eps)
-
-<img/ops_latencies_logscale.eps>
+ <img/ops_latencies_logscale.eps>
 Overfull \hbox (19.01248pt too wide) in paragraph at lines 42--43
  [][] 
  []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <8> not available
 (Font)              Font shape `U/lasy/m/n' tried instead on input line 47.
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <6> not available
 (Font)              Font shape `U/lasy/m/n' tried instead on input line 47.
-[4]
 File: img/async_ops_latencies_heatmap.eps Graphic file (type eps)
- <img/async_ops_latencies_heatmap.eps>
+<img/async_ops_latencies_heatmap.eps>
 Overfull \hbox (19.01248pt too wide) in paragraph at lines 51--52
  [][] 
  []
@@ -435,7 +440,7 @@ File: img/fixService-150_varyLatency.eps Graphic file (type eps)
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [6]
-Underfull \vbox (badness 1460) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -445,7 +450,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Missing character: There is no Ô in font ptmr7t!
 Missing character: There is no ¨ in font ptmr7t!
 Missing character: There is no Å in font ptmr7t!
-)
+ [8])
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -457,7 +462,9 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[8] (./CostOfConsensus.aux)
+[9
+
+] (./CostOfConsensus.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -465,10 +472,10 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  3799 strings out of 495062
  57769 string characters out of 1182644
- 122767 words of memory out of 3000000
+ 125767 words of memory out of 3000000
  6894 multiletter control sequences out of 15000+50000
  35904 words of font info for 97 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  44i,10n,45p,1399b,390s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on CostOfConsensus.dvi (8 pages, 49024 bytes).
+Output written on CostOfConsensus.dvi (9 pages, 52216 bytes).

@@ -7,30 +7,29 @@
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:framework}{{1}{1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-A}}testbed}{1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-B}}consensus protocol}{1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-B}}consensus protocol}{2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-C}}Zookeeper}{2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Pseudo code of acquiring and releasing queue locks\relax }}{2}}
-\newlabel{fig:queue_lock_pseudo}{{2}{2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces A time diagram showing time required to acquire a queue lock if no other user is holding it\relax }}{2}}
-\newlabel{fig:queue_lock_time}{{3}{2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-D}}synchronization primitives}{2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Pseudo code of acquiring and releasing queue locks\relax }}{3}}
+\newlabel{fig:queue_lock_pseudo}{{2}{3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces A time diagram showing time required to acquire a queue lock if no other user is holding it\relax }}{3}}
+\newlabel{fig:queue_lock_time}{{3}{3}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces A time diagram showing time required to acquire a queue lock if no other user is holding it using asynchronous calls. Dashed arrows from user to server are getChildren operations. Dashed arrows from server to user represent getChildren replies before the lock is acquired. Solid arrow from server to user is getChildren reply with user having the smallest sequenced file. The callback for asynchronous create is not shown.\relax }}{3}}
 \newlabel{fig:async_queue_lock_time}{{4}{3}}
-\@writefile{toc}{\contentsline {section}{\numberline {III}Analysis of consensus cost}{3}}
-\newlabel{sec:analysis}{{III}{3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-A}}Round-trip time latency}{3}}
+\@writefile{toc}{\contentsline {section}{\numberline {III}Analysis of consensus cost}{4}}
+\newlabel{sec:analysis}{{III}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-A}}Round-trip time latency}{4}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces probability density function of two machines i nthe same cluster. X-axis is RTT and y-axis is number of ocurrences\relax }}{4}}
 \newlabel{fig:rttpdf}{{5}{4}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Markov chain to model latency for one master and two slave servers\relax }}{4}}
 \newlabel{fig:markovgeneral}{{6}{4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-B}}Consensus latency}{4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-C}}Synchronization primitives latency}{4}}
-\@writefile{toc}{\contentsline {section}{\numberline {IV}Experimental evaluation}{4}}
-\newlabel{sec:eval}{{IV}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-A}}Experimental setup}{4}}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Experimental evaluation}{5}}
+\newlabel{sec:eval}{{IV}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-A}}Baseline performance}{5}}
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Zookeeper basic operations latencies for a cluster of five servers\relax }}{5}}
 \newlabel{fig:ops_latencies}{{7}{5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}}Baseline performance}{5}}
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Zookeeper asynchronous average create operation latency with different inter-cluster and user-server RTTs\relax }}{5}}
 \newlabel{fig:async_heatmap}{{8}{5}}
 \@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Zookeeper synchronous average create operation latency with different inter-cluster and user-server RTTs\relax }}{5}}
@@ -39,7 +38,7 @@
 \newlabel{fig:primitives_vary_intercluster}{{11}{6}}
 \@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces The spectrum of RTT and contention used for our experiments. Ovals represent a span of a performed experiment\relax }}{6}}
 \newlabel{fig:spectrum}{{12}{6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}}synchronization primitives}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}}synchronization primitives}{6}}
 \@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Synchronization primitives latency while varying contention and fixing RTT to 100ms (varying contention with high RTT)\relax }}{6}}
 \newlabel{fig:primitives_vary_contention_rtt100}{{13}{6}}
 \@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Synchronization primitives latency while varying contention and no additional delay to RTT (varying contention with low RTT)\relax }}{6}}
@@ -63,6 +62,13 @@
 \bibdata{concurrency}
 \bibcite{chubby}{1}
 \bibcite{cloudsuite}{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Synchronization primitives latency while varying user-cluster RTT, with no additional inter-cluster delay, and fixing service time to 1ms and interarrival time to 500ms (low contention with varying latency)\relax }}{8}}
+\newlabel{fig:primitives_vary_delay_lowcontention}{{15}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Synchronization primitives latency while varying user-cluster RTT, with no additional inter-cluster delay, and fixing service time to 150ms and interarrival time to 200ms (high contention with varying latency)\relax }}{8}}
+\newlabel{fig:primitives_vary_delay_highcontention}{{16}{8}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Conclusions and Future Work}{8}}
+\newlabel{sec:conclusions}{{V}{8}}
+\@writefile{toc}{\contentsline {section}{References}{8}}
 \bibcite{93948}{3}
 \bibcite{Herlihy:1991:WS:114005.102808}{4}
 \bibcite{Zookeeper}{5}
@@ -72,10 +78,3 @@
 \bibcite{YCSB}{9}
 \bibcite{Rao:2011:UPB:1938545.1938549}{10}
 \bibcite{activemessages}{11}
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Synchronization primitives latency while varying user-cluster RTT, with no additional inter-cluster delay, and fixing service time to 1ms and interarrival time to 500ms (low contention with varying latency)\relax }}{8}}
-\newlabel{fig:primitives_vary_delay_lowcontention}{{15}{8}}
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Synchronization primitives latency while varying user-cluster RTT, with no additional inter-cluster delay, and fixing service time to 150ms and interarrival time to 200ms (high contention with varying latency)\relax }}{8}}
-\newlabel{fig:primitives_vary_delay_highcontention}{{16}{8}}
-\@writefile{toc}{\contentsline {section}{\numberline {V}Conclusions and Future Work}{8}}
-\newlabel{sec:conclusions}{{V}{8}}
-\@writefile{toc}{\contentsline {section}{References}{8}}
