@@ -13,6 +13,10 @@ shift
 
 pwd=$(pwd)
 
+NUM_CYCLES=50
+INTERARRIVAL_TIME=500
+SERVICE_TIME=0
+
 for (( i=1 ; i<=$num_trials ; i++ ))
 do
 	echo "Trial: $i"
@@ -23,14 +27,28 @@ do
 		./modify_delays_local.sh del ${rtt} &> /dev/null
 		./modify_delays_local.sh add ${rtt}
 
-		cd "$SMOKE_PATH"
-		./latency.sh > /dev/null
-		lat=$( ./latency.sh )
+		#cd "$SMOKE_PATH"
+		#./latency.sh > /dev/null
+		#lat=$( ./latency.sh )
 
-		cd "$pwd"
-		echo "$lat" > "../results/client_rtt_${rtt}.$i.[$*]"
+		latQ=$( ./run_multiTest.sh -servers gediz,rubicon,pacific,euphrates,lochness -n $NUM_CYCLES -i $INTERARRIVAL_TIME -s $SERVICE_TIME -q 2>/dev/null )
+		sleep 2
+		latA=$( ./run_multiTest.sh -servers gediz,rubicon,pacific,euphrates,lochness -n $NUM_CYCLES -i $INTERARRIVAL_TIME -s $SERVICE_TIME -a 2>/dev/null )
+		sleep 2
+		latL=$( ./run_multiTest.sh -servers gediz,rubicon,pacific,euphrates,lochness -n $NUM_CYCLES -i $INTERARRIVAL_TIME -s $SERVICE_TIME -l 2>/dev/null )
+		sleep 2
+		latT=$( ./run_multiTest.sh -servers gediz,rubicon,pacific,euphrates,lochness -n $NUM_CYCLES -i $INTERARRIVAL_TIME -s $SERVICE_TIME -t 2>/dev/null )
+		sleep 2
+		latE=$( ./run_multiTest.sh -servers gediz,rubicon,pacific,euphrates,lochness -n $NUM_CYCLES -i $INTERARRIVAL_TIME -s $SERVICE_TIME -e 2>/dev/null )
 
-		sleep 3
+		#cd "$pwd"
+		echo "$latQ" > "../results/client_rtt_${rtt}.$i.[$*].Q"
+		echo "$latA" > "../results/client_rtt_${rtt}.$i.[$*].A"
+		echo "$latL" > "../results/client_rtt_${rtt}.$i.[$*].L"
+		echo "$latT" > "../results/client_rtt_${rtt}.$i.[$*].T"
+		echo "$latE" > "../results/client_rtt_${rtt}.$i.[$*].E"
+
+		sleep 2
 	done
 done
 
