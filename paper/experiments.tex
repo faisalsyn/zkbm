@@ -1,22 +1,12 @@
 \section{Experimental evaluation}\label{sec:eval}
-In this section, we will display results of our experiments. First, we will establish baseline performance results for Zookeeper. These results will aid us in reasoning for following experiments. Next, we implemented previously discussed synchronization primitives, namely Test-and-set, queues, and their asynchronous counterparts. We perform several experiments with them to test their performance on various conditions. \note{if we did application subsection then add here}.
-%In this section we establish a baseline performance for zookeeper on our
-%testbed and then provide latency and throughput numbers for the selected
-%synchronization primitives.
+%This section provides results of our experiments and a discussion of relevant findings. We begin by establishing baseline performance for our Zookeeper testbed which support reasoning for follow-up experiments with synchronization primitves. The synchronization mechanisms benchmarked are Queues and Locks, each implemented with both, synchronous and asynchronous messaging. For this quantitative analysis we focus on average latency and graceful degradation.
 
-%Baseline numbers for zookeeper are obtained using smoketest [ref]. We explore
-%the performance of test-and-set and queue locks implemented in Java.
+\subsection{Experimental setup}
+\note{multiple physical machines}
+%The testbed consists of 5 machine containing a quad-core Xeon 2135, 16GB RAM and commodity 500GB 7.2k rpm disks running stock Ubuntu 12.04. They are interconnected with 1Gbps Ethernet on a single switch. A separate machine acts as client without being a ZNode itself. For our experiments these nodes for quorums out of 1, 3 or 5 ZNodes as indicated. The server-side uses Zookeeper version 3.3.5 whereas the client-side implementation of benchmarks uses Python bindings for the baseline "smoke test" and Java bindings for Locks and Queues.
+In order the measure the impact of client-server and server-server latency we control the transmission latency of packets transmitted between nodes using the Linux "Traffic Control" utility. We automate the process of enumerating client-server and server-server latency pairs and repeatedly run the experiments and average the results to reduce the impact of jitter.
+\note{should we move this and expand it to section 2? I think a figure showing connections and showing that hamilton is connected to them would be a nice display.}
 
-%We first set up zookeeper with 1, 3 and 5 processes on a single machine and
-%observe the experiments. Then, we fan out the processes to distict machines and
-%measure the impact of added network latency on basic operations and the
-%synchronization primitives. \note{Finally, we repeat the experiments on
-%geographically distributed nodes in EC2}
-
-
-%\subsection{Test bed}
-%\note{multiple physical machines}
-%The testbed consists of 5 quad-core Xeon \note{type and clock} machines with commodity 500GB 7.2k rpm disks. They are interconnected with 1Gbps Ethernet on a single switch. \note{should we move this and expand it to section 2? I think a figure showing connections and showing that hamilton is connected to them would be a nice display.}
 %\note{Average RTT for pings is (ping lat)
 %Average network throughput is (throughput=). this for inter-cluster and cluster to hamilton.}
 
@@ -28,9 +18,9 @@ In this section, we will display results of our experiments. First, we will esta
 %\end{figure}
 
 \subsection{Baseline performance}
-\note{smoketest, zk-latencies and baseline} In this section we will perform experiments to establish a baseline for later experiments. We would like to establish limits on the system. These limits represent workloads and environment conditions that will saturate the system. Workload is represented by the number of clients, number of requests per second, and the type of requests. Environment conditions are the number of zookeeper servers and condition of links connecting them.
+\note{smoketest, zk-latencies and baseline} In this section we will perform experiments to establish a baseline for later experiments using the Zookeeper smoke test package. We would like to establish limits on the system. These limits represent workloads and environment conditions that will saturate the system. Workload is represented by the number of requests per second and the type of requests. Environment conditions are the number of zookeeper servers and condition of links connecting them.
 
-%We begin by measuring the latencies of basic Zookeeper operations. Our first experiment is performed on one machine having one zookeeper server. This means that there are no communication overhead for consensus. One client issues 10000 calls of each tested operations and we report the total time required to complete them. The results as shown in Figure~\ref{fig:1machine_1server_latency}\footnote{These results are obtained from a different server than those in next figures. It will be changed in the final draft for consistency} for asynchronous versions of operations. We report detailed results of three trials to show the variability of zookeeper behavior. In the figure we report latencies of adding and deleting in both cases, permanent and ephemeral. Creating a permanent node incur more bandwidth than creating a ephemeral node. On the other hand, deleting an ephemeral node incur more bandwidth than deleting permanent nodes (except for first trial that is due variability of behavior). Other observations are that set operations are more expensive than get operations, as expected. Also, the implementation of watches is efficient.
+%We begin by measuring the latencies of basic Zookeeper operations. Our first experiment is performed on one machine holding a single zookeeper instance and the client. This means that there is no network communication overhead for consensus. One client issues 10000 calls of each tested operations and we report the total time required to complete them. The results as shown in Figure~\ref{fig:1machine_1server_latency}\footnote{These results are obtained from a different server than those in next figures. It will be changed in the final draft for consistency} for asynchronous versions of operations. We report detailed results of three trials to show the variability of zookeeper behavior. In the figure we report latencies of adding and deleting in both cases, permanent and ephemeral. Creating a permanent node incur more bandwidth than creating a ephemeral node. On the other hand, deleting an ephemeral node incur more bandwidth than deleting permanent nodes (except for first trial that is due variability of behavior). Other observations are that set operations are more expensive than get operations, as expected. Also, the implementation of watches is efficient.
 
 %\begin{figure}[h]
 %\centering
@@ -96,10 +86,13 @@ In this section, we will display results of our experiments. First, we will esta
    \label{fig:subfigures}
 \end{figure*}
 
-Our first experiment test basic Zookeeper operations' latencies. We test both synchronous and asynchronous versions of these operations. For testing we use zk-smoketest\footnote{https://github.com/phunt/zk-smoketest}. Each operation is run for a thousand time and we report average latency. Results are shown in Figure~\ref{fig:ops_latencies}. Synchronous operations block until the operation is performed, thus giving an indication on the total time taken to perform the actual operation. Asynchronous operations on the other hand do not block. The figure shown that synchronous operations takes more than ten times the latency of asynchronous operations for \emph{put} operations, and around double the latency for \emph{get} operations. \note{define put and get operation classes either here or before (section II)}. 
+%Our first experiments test basic Zookeeper operations' latencies. We test both synchronous and asynchronous versions of these operations. For testing we use zk-smoketest\footnote{https://github.com/phunt/zk-smoketest}. Each operation is run for a thousand time and we report average latency. Results are shown in Figure~\ref{fig:ops_latencies}. Synchronous operations block until the operation is performed, thus giving an indication on the total time taken to perform the actual operation. Asynchronous operations on the other hand do not block. The figure shown that synchronous operations takes more than ten times the latency of asynchronous operations for \emph{put} operations, and around double the latency for \emph{get} operations. \note{define put and get operation classes either here or before (section II)}. 
 
 \subsection{synchronization primitives}
 \note{test test-and-set and queues (as in paper: reactive synchronization}
+%The experiments in this section focus on two fundamental synchonization primites, locks and queues, which are commonly found as builind blocks of larger coordination schemes. The implementation of synchronous primitives follows the Zookeeper recipies with minor improvements, while the asynchronous implementation is described in detail in the following.
+%Locks follow a test-and-set approach by repeatedly issuing create requests and upon successful response from the server assuming mutual exclusion. The lock is then released by deleting the node. The synchonous lock issues a single create request for a fixed node path and blocks until a response arrives. On a positive response mutual exclusion is guaranteed. A negative respose is directly followed up by another create request. This lock has at most a single request or response in transit at a given time. The asynchonous lock issues create requests on a timer basis until a positive response is recorded. This implementation has multiple requests and responses in transit at a time and effectively "polls" the availability of the lock. This puts higher load on the network and server, but may reduce the time taken to aquire a lock by avoiding an additional notify-request roundtrip.
+%Queues are built using server-side sequentially increasing ids for creating the node. After the node is created the nodes predecessors are obtained and upon their deletion mutual exclusion is guaranteed. As for locks release is performed by deleting the node. The synchonous implementation creates a sub-node, and upon sucess notification requests the list of all siblings from the server using "getChildren". If the created node holds the lowest Id mutual exclusion is guaranteed, otherwise a watch on deletion of its predecessor is installed. The asynchonous queue issues the create request in parallel with polling children at a fixed interval. When the create request returns the obtained Id and the most recent list of children contains the Id in first place mutual exclusion is guaranteed. This approach follows the same trade-offs as asynchonous locks, but can be extended to install a watch on the predecessor and stop polling after a round trip interval.
 
 \subsection{application performance}
 \note{map reduce. effect of adding machines, effect of adding zookeeper servers.}
