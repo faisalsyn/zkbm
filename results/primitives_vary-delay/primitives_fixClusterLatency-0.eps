@@ -1,7 +1,7 @@
 %!PS-Adobe-2.0 EPSF-2.0
-%%Title: primitives_latencies_varDelay_syncqueue.eps
+%%Title: primitives_fixClusterLatency-0.eps
 %%Creator: gnuplot 4.4 patchlevel 0
-%%CreationDate: Thu Jun 14 19:45:20 2012
+%%CreationDate: Thu Jun 14 20:16:10 2012
 %%DocumentFonts: (atend)
 %%BoundingBox: 50 50 410 302
 %%EndComments
@@ -44,13 +44,13 @@ systemdict /pdfmark known not {
   userdict /pdfmark systemdict /cleartomark get put
 } if
 SDict begin [
-  /Title (primitives_latencies_varDelay_syncqueue.eps)
+  /Title (primitives_fixClusterLatency-0.eps)
   /Subject (gnuplot plot)
   /Creator (gnuplot 4.4 patchlevel 0)
   /Author (nawab)
 %  /Producer (gnuplot)
 %  /Keywords ()
-  /CreationDate (Thu Jun 14 19:45:20 2012)
+  /CreationDate (Thu Jun 14 20:16:10 2012)
   /DOCINFO pdfmark
 end
 } ifelse
@@ -469,551 +469,402 @@ doclip
 0 setgray
 newpath
 (Helvetica) findfont 200 scalefont setfont
-gsave % colour palette begin
-/maxcolors 0 def
-/HSV2RGB {  exch dup 0.0 eq {pop exch pop dup dup} % achromatic gray
-  { /HSVs exch def /HSVv exch def 6.0 mul dup floor dup 3 1 roll sub
-     /HSVf exch def /HSVi exch cvi def /HSVp HSVv 1.0 HSVs sub mul def
-	 /HSVq HSVv 1.0 HSVs HSVf mul sub mul def 
-	 /HSVt HSVv 1.0 HSVs 1.0 HSVf sub mul sub mul def
-	 /HSVi HSVi 6 mod def 0 HSVi eq {HSVv HSVt HSVp}
-	 {1 HSVi eq {HSVq HSVv HSVp}{2 HSVi eq {HSVp HSVv HSVt}
-	 {3 HSVi eq {HSVp HSVq HSVv}{4 HSVi eq {HSVt HSVp HSVv}
-	 {HSVv HSVp HSVq} ifelse} ifelse} ifelse} ifelse} ifelse
-  } ifelse} def
-/Constrain {
-  dup 0 lt {0 exch pop}{dup 1 gt {1 exch pop} if} ifelse} def
-/YIQ2RGB {
-  3 copy -1.702 mul exch -1.105 mul add add Constrain 4 1 roll
-  3 copy -0.647 mul exch -0.272 mul add add Constrain 5 1 roll
-  0.621 mul exch -0.956 mul add add Constrain 3 1 roll } def
-/CMY2RGB {  1 exch sub exch 1 exch sub 3 2 roll 1 exch sub 3 1 roll exch } def
-/XYZ2RGB {  3 copy -0.9017 mul exch -0.1187 mul add exch 0.0585 mul exch add
-  Constrain 4 1 roll 3 copy -0.0279 mul exch 1.999 mul add exch
-  -0.9844 mul add Constrain 5 1 roll -0.2891 mul exch -0.5338 mul add
-  exch 1.91 mul exch add Constrain 3 1 roll} def
-/SelectSpace {ColorSpace (HSV) eq {HSV2RGB}{ColorSpace (XYZ) eq {
-  XYZ2RGB}{ColorSpace (CMY) eq {CMY2RGB}{ColorSpace (YIQ) eq {YIQ2RGB}
-  if} ifelse} ifelse} ifelse} def
-/InterpolatedColor false def
-/cF7 {sqrt} bind def	% sqrt(x)
-/cF5 {dup dup mul mul} bind def	% x^3
-/cF15 {360 mul sin} bind def	% sin(360x)
-/pm3dround {maxcolors 0 gt {dup 1 ge
-	{pop 1} {maxcolors mul floor maxcolors 1 sub div} ifelse} if} def
-/pm3dGamma 1.0 1.5 Gamma mul div def
-/ColorSpace (RGB) def
-Color InterpolatedColor or { % COLOUR vs. GRAY map
-  InterpolatedColor { %% Interpolation vs. RGB-Formula
-    /g {stroke pm3dround /grayv exch def interpolate
-        SelectSpace setrgbcolor} bind def
-  }{
-  /g {stroke pm3dround dup cF7 Constrain exch dup cF5 Constrain exch cF15 Constrain 
-       SelectSpace setrgbcolor} bind def
-  } ifelse
-}{
-  /g {stroke pm3dround pm3dGamma exp setgray} bind def
-} ifelse
 1.000 UL
 LTb
-1.000 UP
-% Begin plot #1
-/Helvetica findfont 200 scalefont setfont
-5266 3830 M
-('data_syncQueue.raw' matrix) Rshow
-1.000 UL
-LT0
-LTb
-%%%%BeginImage
-gsave 1150 4193 N 1150 1046 L 6049 1046 L 6049 4193 L Z clip
-InterpretLevel1 {
-  %% Construct a box instead of image
-  LTb
-  905 4351 M
-  5389 0 V
-  0 -3463 V
-  -5389 0 V
-  905 4351 L
-  40 -110 R
-  (PS level 2 image) Lshow
-  % Read data but ignore it
-  /imagebuf 155 string def
-  currentfile imagebuf readstring
-} {
-gsave
-905 4351 translate
-5389 -3463 scale
-%%%%BeginPalette
-[ /Indexed
-  /DeviceRGB 255
-  <
-   000000 100006 17000d 1c0013 200019 24001f 270026 2a002c
-   2d0032 300038 32003e 350044 37004a 3a0050 3c0056 3e005c
-   400062 420068 44006d 460073 470079 49007e 4b0084 4d0089
-   4e008e 500093 510098 53009d 5400a2 5600a7 5700ac 5900b0
-   5a01b5 5c01b9 5d01be 5e01c2 6001c6 6101ca 6201cd 6401d1
-   6501d5 6601d8 6701db 6901de 6a01e1 6b01e4 6c01e7 6d02ea
-   6f02ec 7002ee 7102f1 7202f3 7302f4 7402f6 7502f8 7603f9
-   7703fa 7903fb 7a03fc 7b03fd 7c03fe 7d03fe 7e04ff 7f04ff
-   8004ff 8104ff 8204ff 8305fe 8405fe 8505fd 8605fc 8706fb
-   8706fa 8806f8 8906f7 8a06f5 8b07f3 8c07f2 8d07ef 8e08ed
-   8f08eb 9008e8 9108e6 9109e3 9209e0 9309dd 940ada 950ad6
-   960ad3 970bcf 970bcb 980cc8 990cc4 9a0cc0 9b0dbb 9c0db7
-   9c0eb3 9d0eae 9e0ea9 9f0fa5 a00fa0 a0109b a11096 a21191
-   a3118c a41286 a41281 a5137b a61376 a71470 a7146b a81565
-   a9165f aa1659 aa1753 ab174d ac1847 ad1941 ad193b ae1a35
-   af1b2f b01b29 b01c22 b11d1c b21d16 b31e10 b31f09 b42003
-   b52000 b52100 b62200 b72300 b72300 b82400 b92500 ba2600
-   ba2700 bb2800 bc2800 bc2900 bd2a00 be2b00 be2c00 bf2d00
-   c02e00 c02f00 c13000 c23100 c23200 c33300 c43400 c43500
-   c53600 c63700 c63800 c73900 c73a00 c83c00 c93d00 c93e00
-   ca3f00 cb4000 cb4100 cc4300 cc4400 cd4500 ce4600 ce4800
-   cf4900 d04a00 d04c00 d14d00 d14e00 d25000 d35100 d35200
-   d45400 d45500 d55700 d65800 d65a00 d75b00 d75d00 d85e00
-   d96000 d96100 da6300 da6500 db6600 dc6800 dc6900 dd6b00
-   dd6d00 de6f00 de7000 df7200 e07400 e07600 e17700 e17900
-   e27b00 e27d00 e37f00 e48100 e48300 e58400 e58600 e68800
-   e68a00 e78c00 e78e00 e89000 e99300 e99500 ea9700 ea9900
-   eb9b00 eb9d00 ec9f00 eca200 eda400 eda600 eea800 eeab00
-   efad00 f0af00 f0b200 f1b400 f1b600 f2b900 f2bb00 f3be00
-   f3c000 f4c300 f4c500 f5c800 f5ca00 f6cd00 f6cf00 f7d200
-   f7d500 f8d700 f8da00 f9dd00 f9df00 fae200 fae500 fbe800
-   fbeb00 fced00 fcf000 fdf300 fdf600 fef900 fefc00 ffff00
-  >
-] setcolorspace
-%%%%EndPalette
-<<
-  /ImageType 1
-  /Width 11
-  /Height 11
-  /BitsPerComponent 8
-  /ImageMatrix [ 11 0 0 11 0 0 ]
-  /Decode [ 0 255 ]
-  /DataSource currentfile /ASCII85Decode filter
-  /MultipleDataSources false
-  /Interpolate false
->>
-image
-} ifelse
-2FL5?A7]@hJt\,W3Bp>6?#57HGD\:74%r@BFC9o`Te%]V4%`=O=)`\:,:5!!6:FCCVgsdG+"T!)5s8
-LIBPA5&+Yk]32euVuGnCc3,:GB/7SZa!$4msq+tPK+7T<In$kX<u.4Hr5;ap`k%MTX%-8@PV?i~>
-InterpretLevel1 not {
-  grestore
-} if
-grestore
-%%%%EndImage
-% End plot #1
-1.000 UL
-LTb
-1150 4193 N
-0 -3147 V
-4899 0 V
-0 3147 V
--4899 0 V
-Z stroke
-1.000 UL
-LTb
-1151 1047 M
-0 82 V
-stroke
-1151 787 M
-[ [(Helvetica) 200.0 0.0 true true 0 (0)]
-] -66.7 MCshow
-1.000 UL
-LTb
-1.000 UL
-LTb
-1151 4193 M
-0 -82 V
-1641 1047 M
-0 82 V
-stroke
-1641 787 M
-[ [(Helvetica) 200.0 0.0 true true 0 (25)]
-] -66.7 MCshow
-1.000 UL
-LTb
-1.000 UL
-LTb
-1641 4193 M
-0 -82 V
-2131 1047 M
-0 82 V
-stroke
-2131 787 M
-[ [(Helvetica) 200.0 0.0 true true 0 (50)]
-] -66.7 MCshow
-1.000 UL
-LTb
-1.000 UL
-LTb
-2131 4193 M
-0 -82 V
-2621 1047 M
-0 82 V
-stroke
-2621 787 M
-[ [(Helvetica) 200.0 0.0 true true 0 (75)]
-] -66.7 MCshow
-1.000 UL
-LTb
-1.000 UL
-LTb
-2621 4193 M
-0 -82 V
-3111 1047 M
-0 82 V
-stroke
-3111 787 M
-[ [(Helvetica) 200.0 0.0 true true 0 (100)]
-] -66.7 MCshow
-1.000 UL
-LTb
-1.000 UL
-LTb
-3111 4193 M
-0 -82 V
-3600 1047 M
-0 82 V
-stroke
-3600 787 M
-[ [(Helvetica) 200.0 0.0 true true 0 (125)]
-] -66.7 MCshow
-1.000 UL
-LTb
-1.000 UL
-LTb
-3600 4193 M
-0 -82 V
-4089 1047 M
-0 82 V
-stroke
-4089 787 M
-[ [(Helvetica) 200.0 0.0 true true 0 (150)]
-] -66.7 MCshow
-1.000 UL
-LTb
-1.000 UL
-LTb
-4089 4193 M
-0 -82 V
-4579 1047 M
-0 82 V
-stroke
-4579 787 M
-[ [(Helvetica) 200.0 0.0 true true 0 (175)]
-] -66.7 MCshow
-1.000 UL
-LTb
-1.000 UL
-LTb
-4579 4193 M
-0 -82 V
-5069 1047 M
-0 82 V
-stroke
-5069 787 M
-[ [(Helvetica) 200.0 0.0 true true 0 (200)]
-] -66.7 MCshow
-1.000 UL
-LTb
-1.000 UL
-LTb
-5069 4193 M
-0 -82 V
-5559 1047 M
-0 82 V
-stroke
-5559 787 M
-[ [(Helvetica) 200.0 0.0 true true 0 (225)]
-] -66.7 MCshow
-1.000 UL
-LTb
-1.000 UL
-LTb
-5559 4193 M
-0 -82 V
-6049 1047 M
-0 82 V
-stroke
-6049 787 M
-[ [(Helvetica) 200.0 0.0 true true 0 (250)]
-] -66.7 MCshow
-1.000 UL
-LTb
-1.000 UL
-LTb
-6049 4193 M
-0 -82 V
-stroke
-LCb setrgbcolor
-3600 487 M
-[ [(Helvetica) 200.0 0.0 true true 0 (inter-cluster latency \(ms\))]
-] -66.7 MCshow
-LTb
-1.000 UL
-LTb
-1151 1047 M
-82 0 V
-stroke
-995 1047 M
-[ [(Helvetica) 200.0 0.0 true true 0 (0)]
-] -66.7 MRshow
-1.000 UL
-LTb
-1.000 UL
-LTb
-6049 1047 M
--82 0 V
-1151 1362 M
-82 0 V
-stroke
-995 1362 M
-[ [(Helvetica) 200.0 0.0 true true 0 (25)]
-] -66.7 MRshow
-1.000 UL
-LTb
-1.000 UL
-LTb
-6049 1362 M
--82 0 V
-1151 1676 M
-82 0 V
-stroke
-995 1676 M
-[ [(Helvetica) 200.0 0.0 true true 0 (50)]
-] -66.7 MRshow
-1.000 UL
-LTb
-1.000 UL
-LTb
-6049 1676 M
--82 0 V
-1151 1991 M
-82 0 V
-stroke
-995 1991 M
-[ [(Helvetica) 200.0 0.0 true true 0 (75)]
-] -66.7 MRshow
-1.000 UL
-LTb
-1.000 UL
-LTb
-6049 1991 M
--82 0 V
-1151 2306 M
-82 0 V
-stroke
-995 2306 M
-[ [(Helvetica) 200.0 0.0 true true 0 (100)]
-] -66.7 MRshow
-1.000 UL
-LTb
-1.000 UL
-LTb
-6049 2306 M
--82 0 V
-1151 2620 M
-82 0 V
-stroke
-995 2620 M
-[ [(Helvetica) 200.0 0.0 true true 0 (125)]
-] -66.7 MRshow
-1.000 UL
-LTb
-1.000 UL
-LTb
-6049 2620 M
--82 0 V
-1151 2934 M
-82 0 V
-stroke
-995 2934 M
-[ [(Helvetica) 200.0 0.0 true true 0 (150)]
-] -66.7 MRshow
-1.000 UL
-LTb
-1.000 UL
-LTb
-6049 2934 M
--82 0 V
-1151 3249 M
-82 0 V
-stroke
-995 3249 M
-[ [(Helvetica) 200.0 0.0 true true 0 (175)]
-] -66.7 MRshow
-1.000 UL
-LTb
-1.000 UL
-LTb
-6049 3249 M
--82 0 V
-1151 3564 M
-82 0 V
-stroke
-995 3564 M
-[ [(Helvetica) 200.0 0.0 true true 0 (200)]
-] -66.7 MRshow
-1.000 UL
-LTb
-1.000 UL
-LTb
-6049 3564 M
--82 0 V
-1151 3878 M
-82 0 V
-stroke
-995 3878 M
-[ [(Helvetica) 200.0 0.0 true true 0 (225)]
-] -66.7 MRshow
-1.000 UL
-LTb
-1.000 UL
-LTb
-6049 3878 M
--82 0 V
-1151 4193 M
-82 0 V
-stroke
-995 4193 M
-[ [(Helvetica) 200.0 0.0 true true 0 (250)]
-] -66.7 MRshow
-1.000 UL
-LTb
-1.000 UL
-LTb
-6049 4193 M
--82 0 V
-stroke
-LCb setrgbcolor
-575 2620 M
-currentpoint gsave translate -270 rotate 0 0 moveto
-[ [(Helvetica) 200.0 0.0 true true 0 (client-server latency \(ms\))]
-] -66.7 MCshow
-grestore
-LTb
-1.000 UL
-LTb
-1150 4193 N
-0 -3147 V
-4899 0 V
-0 3147 V
--4899 0 V
-Z stroke
-stroke gsave	%% draw gray scale smooth box
-maxcolors 0 gt {/imax maxcolors def} {/imax 1024 def} ifelse
-6171 1046 translate 245 3147 scale 0 setlinewidth
-/ystep 1 imax div def /y0 0 def /ii 0 def
-{ y0 g 0 y0 N 1 0 V 0 ystep V -1 0 f
-/y0 y0 ystep add def /ii ii 1 add def
-ii imax ge {exit} if } loop
-grestore 0 setgray
-1.000 UL
-LTb
-6171 1046 N
-245 0 V
-0 3147 V
--245 0 V
-0 -3147 V
-Z stroke
-1.000 UL
-LTb
-1.000 UL
-LTb
-6416 1046 M
+1220 640 M
+63 0 V
+5616 0 R
 -63 0 V
 stroke
-6536 1046 M
+1100 640 M
 [ [(Helvetica) 200.0 0.0 true true 0 ( 0)]
-] -66.7 MLshow
+] -66.7 MRshow
 1.000 UL
 LTb
-6171 1046 M
+1220 1056 M
 63 0 V
-182 393 R
+5616 0 R
 -63 0 V
 stroke
-6536 1439 M
+1100 1056 M
+[ [(Helvetica) 200.0 0.0 true true 0 ( 100)]
+] -66.7 MRshow
+1.000 UL
+LTb
+1220 1472 M
+63 0 V
+5616 0 R
+-63 0 V
+stroke
+1100 1472 M
+[ [(Helvetica) 200.0 0.0 true true 0 ( 200)]
+] -66.7 MRshow
+1.000 UL
+LTb
+1220 1888 M
+63 0 V
+5616 0 R
+-63 0 V
+stroke
+1100 1888 M
+[ [(Helvetica) 200.0 0.0 true true 0 ( 300)]
+] -66.7 MRshow
+1.000 UL
+LTb
+1220 2304 M
+63 0 V
+5616 0 R
+-63 0 V
+stroke
+1100 2304 M
+[ [(Helvetica) 200.0 0.0 true true 0 ( 400)]
+] -66.7 MRshow
+1.000 UL
+LTb
+1220 2720 M
+63 0 V
+5616 0 R
+-63 0 V
+stroke
+1100 2720 M
 [ [(Helvetica) 200.0 0.0 true true 0 ( 500)]
-] -66.7 MLshow
+] -66.7 MRshow
 1.000 UL
 LTb
-6171 1439 M
+1220 3135 M
 63 0 V
-182 393 R
+5616 0 R
 -63 0 V
 stroke
-6536 1832 M
+1100 3135 M
+[ [(Helvetica) 200.0 0.0 true true 0 ( 600)]
+] -66.7 MRshow
+1.000 UL
+LTb
+1220 3551 M
+63 0 V
+5616 0 R
+-63 0 V
+stroke
+1100 3551 M
+[ [(Helvetica) 200.0 0.0 true true 0 ( 700)]
+] -66.7 MRshow
+1.000 UL
+LTb
+1220 3967 M
+63 0 V
+5616 0 R
+-63 0 V
+stroke
+1100 3967 M
+[ [(Helvetica) 200.0 0.0 true true 0 ( 800)]
+] -66.7 MRshow
+1.000 UL
+LTb
+1220 4383 M
+63 0 V
+5616 0 R
+-63 0 V
+stroke
+1100 4383 M
+[ [(Helvetica) 200.0 0.0 true true 0 ( 900)]
+] -66.7 MRshow
+1.000 UL
+LTb
+1220 4799 M
+63 0 V
+5616 0 R
+-63 0 V
+stroke
+1100 4799 M
 [ [(Helvetica) 200.0 0.0 true true 0 ( 1000)]
-] -66.7 MLshow
+] -66.7 MRshow
 1.000 UL
 LTb
-6171 1832 M
-63 0 V
-182 394 R
--63 0 V
+1220 640 M
+0 63 V
+0 4096 R
+0 -63 V
 stroke
-6536 2226 M
-[ [(Helvetica) 200.0 0.0 true true 0 ( 1500)]
-] -66.7 MLshow
+1220 440 M
+[ [(Helvetica) 200.0 0.0 true true 0 (0)]
+] -66.7 MCshow
 1.000 UL
 LTb
-6171 2226 M
-63 0 V
-182 393 R
--63 0 V
+1788 640 M
+0 63 V
+0 4096 R
+0 -63 V
 stroke
-6536 2619 M
-[ [(Helvetica) 200.0 0.0 true true 0 ( 2000)]
-] -66.7 MLshow
+1788 440 M
+[ [(Helvetica) 200.0 0.0 true true 0 (25)]
+] -66.7 MCshow
 1.000 UL
 LTb
-6171 2619 M
-63 0 V
-182 393 R
--63 0 V
+2356 640 M
+0 63 V
+0 4096 R
+0 -63 V
 stroke
-6536 3012 M
-[ [(Helvetica) 200.0 0.0 true true 0 ( 2500)]
-] -66.7 MLshow
+2356 440 M
+[ [(Helvetica) 200.0 0.0 true true 0 (50)]
+] -66.7 MCshow
 1.000 UL
 LTb
-6171 3012 M
-63 0 V
-182 394 R
--63 0 V
+2924 640 M
+0 63 V
+0 4096 R
+0 -63 V
 stroke
-6536 3406 M
-[ [(Helvetica) 200.0 0.0 true true 0 ( 3000)]
-] -66.7 MLshow
+2924 440 M
+[ [(Helvetica) 200.0 0.0 true true 0 (75)]
+] -66.7 MCshow
 1.000 UL
 LTb
-6171 3406 M
-63 0 V
-182 393 R
--63 0 V
+3492 640 M
+0 63 V
+0 4096 R
+0 -63 V
 stroke
-6536 3799 M
-[ [(Helvetica) 200.0 0.0 true true 0 ( 3500)]
-] -66.7 MLshow
+3492 440 M
+[ [(Helvetica) 200.0 0.0 true true 0 (100)]
+] -66.7 MCshow
 1.000 UL
 LTb
-6171 3799 M
-63 0 V
-182 394 R
--63 0 V
+4060 640 M
+0 63 V
+0 4096 R
+0 -63 V
 stroke
-6536 4193 M
-[ [(Helvetica) 200.0 0.0 true true 0 ( 4000)]
-] -66.7 MLshow
+4060 440 M
+[ [(Helvetica) 200.0 0.0 true true 0 (125)]
+] -66.7 MCshow
 1.000 UL
 LTb
-6171 4193 M
-63 0 V
+4627 640 M
+0 63 V
+0 4096 R
+0 -63 V
+stroke
+4627 440 M
+[ [(Helvetica) 200.0 0.0 true true 0 (150)]
+] -66.7 MCshow
+1.000 UL
+LTb
+5195 640 M
+0 63 V
+0 4096 R
+0 -63 V
+stroke
+5195 440 M
+[ [(Helvetica) 200.0 0.0 true true 0 (175)]
+] -66.7 MCshow
+1.000 UL
+LTb
+5763 640 M
+0 63 V
+0 4096 R
+0 -63 V
+stroke
+5763 440 M
+[ [(Helvetica) 200.0 0.0 true true 0 (200)]
+] -66.7 MCshow
+1.000 UL
+LTb
+6331 640 M
+0 63 V
+0 4096 R
+0 -63 V
+stroke
+6331 440 M
+[ [(Helvetica) 200.0 0.0 true true 0 (225)]
+] -66.7 MCshow
+1.000 UL
+LTb
+6899 640 M
+0 63 V
+0 4096 R
+0 -63 V
+stroke
+6899 440 M
+[ [(Helvetica) 200.0 0.0 true true 0 (250)]
+] -66.7 MCshow
+1.000 UL
+LTb
+1.000 UL
+LTb
+1220 4799 N
+0 -4159 V
+5679 0 V
+0 4159 V
+-5679 0 V
+Z stroke
+LCb setrgbcolor
+280 2719 M
+currentpoint gsave translate -270 rotate 0 0 moveto
+[ [(Helvetica) 200.0 0.0 true true 0 (latency \(ms\))]
+] -66.7 MCshow
+grestore
+LTb
+LCb setrgbcolor
+4059 140 M
+[ [(Helvetica) 200.0 0.0 true true 0 (user to cluster RTT \(ms\))]
+] -66.7 MCshow
+LTb
 1.000 UP
-stroke
-grestore % colour palette end
+1.000 UL
+LTb
+% Begin plot #1
+1.000 UP
+1.000 UL
+LTb
+LCb setrgbcolor
+2780 4636 M
+[ [(Helvetica) 200.0 0.0 true true 0 (Sync. Queue)]
+] -66.7 MRshow
+LTb
+2900 4636 M
+543 0 V
+1220 669 M
+568 325 V
+568 324 V
+568 428 V
+568 341 V
+568 262 V
+567 570 V
+568 636 V
+568 604 V
+568 -342 V
+568 379 V
+1220 669 Pls
+1788 994 Pls
+2356 1318 Pls
+2924 1746 Pls
+3492 2087 Pls
+4060 2349 Pls
+4627 2919 Pls
+5195 3555 Pls
+5763 4159 Pls
+6331 3817 Pls
+6899 4196 Pls
+3171 4636 Pls
+% End plot #1
+% Begin plot #2
+1.000 UP
+1.000 UL
+LTb
+LCb setrgbcolor
+2780 4436 M
+[ [(Helvetica) 200.0 0.0 true true 0 (Sync. TAS)]
+] -66.7 MRshow
+LTb
+2900 4436 M
+543 0 V
+1220 665 M
+568 208 V
+568 204 V
+568 212 V
+568 208 V
+568 208 V
+567 203 V
+568 208 V
+568 208 V
+568 208 V
+568 212 V
+1220 665 Crs
+1788 873 Crs
+2356 1077 Crs
+2924 1289 Crs
+3492 1497 Crs
+4060 1705 Crs
+4627 1908 Crs
+5195 2116 Crs
+5763 2324 Crs
+6331 2532 Crs
+6899 2744 Crs
+3171 4436 Crs
+% End plot #2
+% Begin plot #3
+1.000 UP
+1.000 UL
+LTb
+LCb setrgbcolor
+2780 4236 M
+[ [(Helvetica) 200.0 0.0 true true 0 (Async. Queue)]
+] -66.7 MRshow
+LTb
+2900 4236 M
+543 0 V
+1220 669 M
+568 229 V
+568 208 V
+568 245 V
+568 366 V
+568 137 V
+567 304 V
+568 886 V
+568 1643 V
+6331 3406 L
+568 -34 V
+1220 669 Star
+1788 898 Star
+2356 1106 Star
+2924 1351 Star
+3492 1717 Star
+4060 1854 Star
+4627 2158 Star
+5195 3044 Star
+5763 4687 Star
+6331 3406 Star
+6899 3372 Star
+3171 4236 Star
+% End plot #3
+% Begin plot #4
+1.000 UP
+1.000 UL
+LTb
+LCb setrgbcolor
+2780 4036 M
+[ [(Helvetica) 200.0 0.0 true true 0 (Async. TAS)]
+] -66.7 MRshow
+LTb
+2900 4036 M
+543 0 V
+1220 661 M
+568 216 V
+568 229 V
+568 258 V
+568 341 V
+568 124 V
+567 262 V
+568 354 V
+568 387 V
+568 125 V
+568 420 V
+1220 661 Box
+1788 877 Box
+2356 1106 Box
+2924 1364 Box
+3492 1705 Box
+4060 1829 Box
+4627 2091 Box
+5195 2445 Box
+5763 2832 Box
+6331 2957 Box
+6899 3377 Box
+3171 4036 Box
+% End plot #4
+1.000 UL
+LTb
+1220 4799 N
+0 -4159 V
+5679 0 V
+0 4159 V
+-5679 0 V
+Z stroke
+1.000 UP
+1.000 UL
+LTb
 stroke
 grestore
 end

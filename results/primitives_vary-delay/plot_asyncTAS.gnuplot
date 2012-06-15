@@ -8,6 +8,8 @@ set output 'primitives_latencies_varDelay_asyncTAS.eps'
 set xlabel "inter-cluster latency (ms)"
 set ylabel "client-server latency (ms)"
 
+set cbrange [0:4000]
+
 XTICS="0 25 50 75 100 125 150 175 200 225 250"
 YTICS="0 25 50 75 100 125 150 175 200 225 250"
 
