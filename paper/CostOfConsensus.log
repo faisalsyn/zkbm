@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.2.29)  15 JUN 2012 16:32
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.2.29)  15 JUN 2012 16:34
 entering extended mode
  %&-line parsing enabled.
 **CostOfConsensus.tex
@@ -351,27 +351,26 @@ File: img/async_queue_lock_time.eps Graphic file (type eps)
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[2]) (./analysis.tex
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [3]
+[2] [3]) (./analysis.tex
 File: img/rttpdf2.eps Graphic file (type eps)
+ <img/rttpdf2.eps>
 
-<img/rttpdf2.eps>
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 
 LaTeX Warning: Reference `fig:rttpdf2' on page 4 undefined on input line 16.
 
 File: img/markov_general.eps Graphic file (type eps)
-<img/markov_general.eps>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-) (./experiments.tex [4]
+<img/markov_general.eps> [4]) (./experiments.tex
 File: img/ops_latencies_logscale.eps Graphic file (type eps)
- <img/ops_latencies_logscale.eps>
+
+<img/ops_latencies_logscale.eps>
 Overfull \hbox (19.01248pt too wide) in paragraph at lines 42--43
  [][] 
  []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <8> not available
 (Font)              Font shape `U/lasy/m/n' tried instead on input line 47.
@@ -382,9 +381,6 @@ File: img/async_ops_latencies_heatmap.eps Graphic file (type eps)
 Overfull \hbox (19.01248pt too wide) in paragraph at lines 51--52
  [][] 
  []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
 
 File: img/sync_ops_latencies_heatmap.eps Graphic file (type eps)
 <img/sync_ops_latencies_heatmap.eps>
@@ -416,10 +412,15 @@ Overfull \hbox (14.00024pt too wide) in paragraph at lines 80--85
 
 File: img/primitives_fixUserLatency-0.eps Graphic file (type eps)
 <img/primitives_fixUserLatency-0.eps>
-File: img/spectrum.eps Graphic file (type eps)
- <img/spectrum.eps>
-File: img/primitives_vary-contention_rtt-100.eps Graphic file (type eps)
 
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+File: img/spectrum.eps Graphic file (type eps)
+<img/spectrum.eps>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+File: img/primitives_vary-contention_rtt-100.eps Graphic file (type eps)
 <img/primitives_vary-contention_rtt-100.eps>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -440,9 +441,6 @@ File: img/fixService-150_varyLatency.eps Graphic file (type eps)
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [6]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [7])
@@ -478,4 +476,4 @@ Here is how much of TeX's memory you used:
  28 hyphenation exceptions out of 8191
  44i,10n,45p,1399b,390s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on CostOfConsensus.dvi (9 pages, 52216 bytes).
+Output written on CostOfConsensus.dvi (9 pages, 52252 bytes).

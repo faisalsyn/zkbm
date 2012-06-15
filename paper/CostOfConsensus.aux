@@ -23,8 +23,8 @@
 \newlabel{fig:rttpdf}{{5}{4}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Markov chain to model latency for one master and two slave servers\relax }}{4}}
 \newlabel{fig:markovgeneral}{{6}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-B}}Consensus latency}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-C}}Synchronization primitives latency}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-B}}Consensus latency}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-C}}Synchronization primitives latency}{5}}
 \@writefile{toc}{\contentsline {section}{\numberline {IV}Experimental evaluation}{5}}
 \newlabel{sec:eval}{{IV}{5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-A}}Baseline performance}{5}}
@@ -32,17 +32,13 @@
 \newlabel{fig:ops_latencies}{{7}{5}}
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Zookeeper asynchronous average create operation latency with different inter-cluster and user-server RTTs\relax }}{5}}
 \newlabel{fig:async_heatmap}{{8}{5}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Zookeeper synchronous average create operation latency with different inter-cluster and user-server RTTs\relax }}{5}}
-\newlabel{fig:sync_heatmap}{{9}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Zookeeper synchronous average create operation latency with different inter-cluster and user-server RTTs\relax }}{6}}
+\newlabel{fig:sync_heatmap}{{9}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}}synchronization primitives}{6}}
 \@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Synchronization primitives latency while varying inter-cluster latency and not changing user-to-server latency\relax }}{6}}
 \newlabel{fig:primitives_vary_intercluster}{{11}{6}}
 \@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces The spectrum of RTT and contention used for our experiments. Ovals represent a span of a performed experiment\relax }}{6}}
 \newlabel{fig:spectrum}{{12}{6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}}synchronization primitives}{6}}
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Synchronization primitives latency while varying contention and fixing RTT to 100ms (varying contention with high RTT)\relax }}{6}}
-\newlabel{fig:primitives_vary_contention_rtt100}{{13}{6}}
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Synchronization primitives latency while varying contention and no additional delay to RTT (varying contention with low RTT)\relax }}{6}}
-\newlabel{fig:primitives_vary_contention_rtt0}{{14}{6}}
 \newlabel{fig:first}{{10a}{7}}
 \newlabel{sub@fig:first}{{(a)}{a}}
 \newlabel{fig:second}{{10b}{7}}
@@ -62,6 +58,14 @@
 \bibdata{concurrency}
 \bibcite{chubby}{1}
 \bibcite{cloudsuite}{2}
+\bibcite{93948}{3}
+\bibcite{Herlihy:1991:WS:114005.102808}{4}
+\bibcite{Zookeeper}{5}
+\bibcite{ZAB}{6}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Synchronization primitives latency while varying contention and fixing RTT to 100ms (varying contention with high RTT)\relax }}{8}}
+\newlabel{fig:primitives_vary_contention_rtt100}{{13}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Synchronization primitives latency while varying contention and no additional delay to RTT (varying contention with low RTT)\relax }}{8}}
+\newlabel{fig:primitives_vary_contention_rtt0}{{14}{8}}
 \@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Synchronization primitives latency while varying user-cluster RTT, with no additional inter-cluster delay, and fixing service time to 1ms and interarrival time to 500ms (low contention with varying latency)\relax }}{8}}
 \newlabel{fig:primitives_vary_delay_lowcontention}{{15}{8}}
 \@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Synchronization primitives latency while varying user-cluster RTT, with no additional inter-cluster delay, and fixing service time to 150ms and interarrival time to 200ms (high contention with varying latency)\relax }}{8}}
@@ -69,10 +73,6 @@
 \@writefile{toc}{\contentsline {section}{\numberline {V}Conclusions and Future Work}{8}}
 \newlabel{sec:conclusions}{{V}{8}}
 \@writefile{toc}{\contentsline {section}{References}{8}}
-\bibcite{93948}{3}
-\bibcite{Herlihy:1991:WS:114005.102808}{4}
-\bibcite{Zookeeper}{5}
-\bibcite{ZAB}{6}
 \bibcite{paxos}{7}
 \bibcite{reactive}{8}
 \bibcite{YCSB}{9}
