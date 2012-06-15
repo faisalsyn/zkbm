@@ -150,10 +150,10 @@ In the following we study the two-dimensional spectrum of RTT and contention eff
 
 Giving the results of our previous experiments, we are now able to infer the tradeoffs of using synchronization primitives with varying RTT and contention conditions. The following summarizes our findings relative to each part of the RTT and contention spectrum:
 \begin{itemize}
-\item{\emph{Low RTT/low contention}: }
-\item{\emph{Low RTT/high contention}: }
-\item{\emph{high RTT/low contention}: }
-\item{\emph{high RTT/high contention}: }
+\item{\emph{Low RTT/low contention}: Different primitives do not have much difference in latency. Thus other factors can come in to decide which one to be used. Synchronous queues are better here for their fairness and resources (\emph{i.e.}, computation and network) conservation characteristics.}
+\item{\emph{Low RTT/high contention}: Asynchronous TAS performs better. However, if a synchronous primitive is preferred, then queue locks are better than TAS.}
+\item{\emph{high RTT/low contention}: TAS protocols perform better than queue locks. }
+\item{\emph{high RTT/high contention}: Asynchronous TAS performs better. However, if a synchronous primitive is preferred, then queue locks are better than TAS.}
 \end{itemize}
 
 
