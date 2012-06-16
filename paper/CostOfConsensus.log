@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.2.29)  15 JUN 2012 18:58
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.2.29)  15 JUN 2012 20:00
 entering extended mode
  %&-line parsing enabled.
 **CostOfConsensus.tex
@@ -318,15 +318,7 @@ LaTeX Warning: No \author given.
 
 (./abstract.tex)
 ** ATTENTION: \keywords is deprecated (line 42). Use \IEEEkeywords instead.
-(./introduction.tex
-
-LaTeX Warning: Citation `lock_elison' on page 1 undefined on input line 5.
-
-
-LaTeX Warning: Citation `zookeeper_recipes' on page 1 undefined on input line 7
-.
-
-) (./framework.tex
+(./introduction.tex) (./framework.tex
 File: img/framework.eps Graphic file (type eps)
  <img/framework.eps> [1
 
@@ -360,15 +352,9 @@ Overfull \hbox (3.10489pt too wide) in paragraph at lines 39--40
 
 File: img/queue_lock_time.eps Graphic file (type eps)
 <img/queue_lock_time.eps>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 File: img/async_queue_lock_time.eps Graphic file (type eps)
-<img/async_queue_lock_time.eps>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[2] [3]) (./analysis.tex
+ <img/async_queue_lock_time.eps> [2] [3])
+(./analysis.tex
 File: img/rttpdf2.eps Graphic file (type eps)
  <img/rttpdf2.eps>
 File: img/markov_general.eps Graphic file (type eps)
@@ -391,9 +377,6 @@ Overfull \hbox (19.01248pt too wide) in paragraph at lines 42--43
  [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <8> not available
 (Font)              Font shape `U/lasy/m/n' tried instead on input line 47.
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <6> not available
@@ -405,21 +388,14 @@ Overfull \hbox (19.01248pt too wide) in paragraph at lines 51--52
  [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 File: img/sync_ops_latencies_heatmap.eps Graphic file (type eps)
 <img/sync_ops_latencies_heatmap.eps>
 Overfull \hbox (19.01248pt too wide) in paragraph at lines 58--59
  [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[6]
 File: img/primitives_latencies_varDelay_syncqueue.eps Graphic file (type eps)
- <img/primitives_latencies_varDelay_syncqueue.eps>
+<img/primitives_latencies_varDelay_syncqueue.eps>
 File: img/primitives_latencies_varDelay_syncTAS.eps Graphic file (type eps)
 
 <img/primitives_latencies_varDelay_syncTAS.eps>
@@ -432,4 +408,61 @@ File: img/primitives_latencies_varDelay_asyncqueue.eps Graphic file (type eps)
 File: img/primitives_latencies_varDelay_asyncTAS.eps Graphic file (type eps)
 
 <img/primitives_latencies_varDelay_asyncTAS.eps>
-Overfull \hbox (14.00024pt too wide) in par
+Overfull \hbox (14.00024pt too wide) in paragraph at lines 80--85
+ [][][] 
+ []
+
+File: img/primitives_fixUserLatency-0.eps Graphic file (type eps)
+<img/primitives_fixUserLatency-0.eps>
+File: img/spectrum.eps Graphic file (type eps)
+ <img/spectrum.eps>
+File: img/primitives_vary-contention_rtt-100.eps Graphic file (type eps)
+
+<img/primitives_vary-contention_rtt-100.eps>
+File: img/primitives_vary-contention_rtt-0.eps Graphic file (type eps)
+
+<img/primitives_vary-contention_rtt-0.eps>
+File: img/primitives_fixClusterLatency-0.eps Graphic file (type eps)
+
+<img/primitives_fixClusterLatency-0.eps>
+File: img/fixService-150_varyLatency.eps Graphic file (type eps)
+ <img/fixService-150_varyLatency.eps>
+[6]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [7]
+[8]) (./conclusion.tex) (./CostOfConsensus.bbl
+Missing character: There is no Ã in font ptmr7t!
+Missing character: There is no ¼ in font ptmr7t!
+ [9]
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no € in font ptmr7t!
+Missing character: There is no ™ in font ptmr7t!
+)
+
+** Conference Paper **
+Before submitting the final camera ready copy, remember to:
+
+ 1. Manually equalize the lengths of two columns on the last page
+ of your paper;
+
+ 2. Ensure that any PostScript and/or PDF output post-processing
+ uses only Type 1 fonts and that every step in the generation
+ process uses the appropriate paper size.
+
+[10
+
+] (./CostOfConsensus.aux) ) 
+Here is how much of TeX's memory you used:
+ 3865 strings out of 495062
+ 58573 string characters out of 1182644
+ 125767 words of memory out of 3000000
+ 6956 multiletter control sequences out of 15000+50000
+ 35904 words of font info for 97 fonts, out of 3000000 for 9000
+ 28 hyphenation exceptions out of 8191
+ 44i,10n,45p,1440b,390s stack positions out of 5000i,500n,10000p,200000b,50000s
+
+Output written on CostOfConsensus.dvi (10 pages, 59832 bytes).
