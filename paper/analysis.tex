@@ -46,11 +46,27 @@ latency^p_i = max \{ RTT_{fastest majority} \}
 where $latency^p_i$ is latency of each broadcast of paxos, and $RTT_{fastest majority}$ is the set of $\lceil\frac{n + 1}{2}\rceil $ fastest nodes RTTs for iteration $i$.
 
 \subsection{Synchronization primitives latency}
-\note{ barriers, test-and-set, queues}
+We will consider the latency of queue locks and TAS. For queue locks, a simple M/M/1 queue model can be used to characterize the system. Having $\lambda$ as the interarrival rate of requests to enter the critical section and $\mu$ as the service rate, hence inverse of the time spent inside the critical section. We assume that both interarrival and service times are exponentially distributed. In that case the average number of concurrent lock requests, $\bar{N}$ is:
+\begin{equation}
+\bar{N} = \frac{\rho}{1 - \rho}
+\end{equation}
+where $\rho$ is the ratio of interarrival to service time. Using Little's theorem we can find an expression of average time spent in the system (time from acquiring until releasing the lock)
+\begin{equation}
+\label{eq:wait}
+W = \frac{\bar{N}}{\lambda} = \frac{1}{\mu - \lambda}
+\end{equation}
+where $W$ is the total wait time in the system.
 
+TAS can be modeled as a M/M/1/$\infty$/$\infty$/SIRO queue. This is identical to M/M/1 queue with one difference; queueing discipline is SIRO~(Service In Random Order) rather FIFO~(First In First Out). The calculations that lead to Equation~\ref{eq:wait} is not affected by the queueing discipline. Thus, $W_{FIFO} = W_{SIRO}$.
 
 \subsection{Overall system}
+We laid the building blocks of modeling the whole synchronization system above. Now, we will put them together to see the big picture and model the latency of the system. Each client go through the following stages for each lock request:
+\begin{itemize}
+\item{\emph{Connection establishment}: this is described by the RTT process between the user and cluster, \emph{i.e.}, $RTT_{user-to-server}$.}
+\item{\emph{Acquiring the lock}: this includes the time for executing necessary operations to try acquiring the lock (before actually acquiring it) and to establish the acquirement of the lock (before entering the critical section). We will denote those two as $T_{pre-acquire}$, and $T_{post_acquire}$. Note that both are functions of $RTT_{user-to-server}$ and $latency^p$.}
+\item{\emph{Waiting for the lock}: The time spent waiting for the lock to be available, including the current user holding the lock and other users that will hold the lock while you are waiting. This period is usually between trying acquiring the lock and establishing the acquirement of the lock. The wait time is described in Equation~\ref{eq:wait} as $W$.}
 
+\end{itemize}
 
 
 
