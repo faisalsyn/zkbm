@@ -65,7 +65,7 @@ We laid the building blocks of modeling the whole synchronization system above. 
 \item{\emph{Connection establishment}: this is described by the RTT process between the user and cluster, \emph{i.e.}, $RTT_{user-to-server}$.}
 \item{\emph{Acquiring the lock}: this includes the time for executing necessary operations to try acquiring the lock (before actually acquiring it) and to establish the acquirement of the lock (before entering the critical section). We will denote those two as $T_{pre-acquire}$, and $T_{post_acquire}$. Note that both are functions of $RTT_{user-to-server}$ and $latency^p$.}
 \item{\emph{Waiting for the lock}: The time spent waiting for the lock to be available, including the current user holding the lock and other users that will hold the lock while you are waiting. This period is usually between trying acquiring the lock and establishing the acquirement of the lock. The wait time is described in Equation~\ref{eq:wait} as $W$.}
-
+\item{aaa}
 \end{itemize}
 
 
