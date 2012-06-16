@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.2.29)  15 JUN 2012 18:09
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.2.29)  15 JUN 2012 18:14
 entering extended mode
  %&-line parsing enabled.
 **CostOfConsensus.tex
@@ -400,6 +400,9 @@ Overfull \hbox (19.01248pt too wide) in paragraph at lines 51--52
  [][] 
  []
 
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 File: img/sync_ops_latencies_heatmap.eps Graphic file (type eps)
 <img/sync_ops_latencies_heatmap.eps>
 Overfull \hbox (19.01248pt too wide) in paragraph at lines 58--59
@@ -409,8 +412,9 @@ Overfull \hbox (19.01248pt too wide) in paragraph at lines 58--59
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
+[6]
 File: img/primitives_latencies_varDelay_syncqueue.eps Graphic file (type eps)
-<img/primitives_latencies_varDelay_syncqueue.eps>
+ <img/primitives_latencies_varDelay_syncqueue.eps>
 File: img/primitives_latencies_varDelay_syncTAS.eps Graphic file (type eps)
 
 <img/primitives_latencies_varDelay_syncTAS.eps>
@@ -429,15 +433,10 @@ Overfull \hbox (14.00024pt too wide) in paragraph at lines 80--85
 
 File: img/primitives_fixUserLatency-0.eps Graphic file (type eps)
 <img/primitives_fixUserLatency-0.eps>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 File: img/spectrum.eps Graphic file (type eps)
-<img/spectrum.eps>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
+ <img/spectrum.eps>
 File: img/primitives_vary-contention_rtt-100.eps Graphic file (type eps)
+
 <img/primitives_vary-contention_rtt-100.eps>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -457,14 +456,11 @@ File: img/fixService-150_varyLatency.eps Graphic file (type eps)
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[6]
+[7]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [7]
-[8]) (./conclusion.tex) (./CostOfConsensus.bbl
+ [8])
+(./conclusion.tex) (./CostOfConsensus.bbl
 Missing character: There is no Ô in font ptmr7t!
 Missing character: There is no ¨ in font ptmr7t!
 Missing character: There is no Å in font ptmr7t!
@@ -484,10 +480,10 @@ Before submitting the final camera ready copy, remember to:
 Here is how much of TeX's memory you used:
  3867 strings out of 495062
  58599 string characters out of 1182644
- 125767 words of memory out of 3000000
+ 126767 words of memory out of 3000000
  6958 multiletter control sequences out of 15000+50000
  35904 words of font info for 97 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  44i,10n,45p,1438b,390s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on CostOfConsensus.dvi (9 pages, 57280 bytes).
+Output written on CostOfConsensus.dvi (9 pages, 57844 bytes).
