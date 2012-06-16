@@ -14,24 +14,24 @@
 \newlabel{sec:intro}{{I}{1}}
 \@writefile{toc}{\contentsline {section}{\numberline {II}Framework and overview}{1}}
 \newlabel{sec:framework}{{II}{1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Testbed setting used for evaluation\relax }}{1}}
-\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:framework}{{1}{1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-A}}testbed}{1}}
 \citation{paxos}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Testbed setting used for evaluation\relax }}{2}}
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:framework}{{1}{2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-B}}consensus protocol}{2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-C}}Zookeeper}{2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Pseudo code of acquiring and releasing queue locks\relax }}{2}}
-\newlabel{fig:queue_lock_pseudo}{{2}{2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-D}}synchronization primitives}{2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Pseudo code of acquiring and releasing queue locks\relax }}{3}}
+\newlabel{fig:queue_lock_pseudo}{{2}{3}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces A time diagram showing time required to acquire a queue lock if no other user is holding it\relax }}{3}}
 \newlabel{fig:queue_lock_time}{{3}{3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {II-D}1}Synchronous test-and-set lock}{3}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces A time diagram showing time required to acquire a queue lock if no other user is holding it using asynchronous calls. Dashed arrows from user to server are getChildren operations. Dashed arrows from server to user represent getChildren replies before the lock is acquired. Solid arrow from server to user is getChildren reply with user having the smallest sequenced file. The callback for asynchronous create is not shown.\relax }}{3}}
 \newlabel{fig:async_queue_lock_time}{{4}{3}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {II-D}1}Synchronous test-and-set lock}{3}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {II-D}2}Synchronous queue lock}{3}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {II-D}3}Asynchronous queue lock}{3}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {II-D}4}Synchronous test-and-set lock}{3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {II-D}4}Synchronous test-and-set lock}{4}}
 \@writefile{toc}{\contentsline {section}{\numberline {III}Analysis of consensus cost}{4}}
 \newlabel{sec:analysis}{{III}{4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-A}}Round-trip time latency}{4}}
@@ -46,46 +46,39 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-D}}Overall system}{5}}
 \@writefile{toc}{\contentsline {section}{\numberline {IV}Experimental evaluation}{5}}
 \newlabel{sec:eval}{{IV}{5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-A}}Baseline performance}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-A}}Baseline performance}{6}}
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Zookeeper basic operations latencies for a cluster of five servers\relax }}{6}}
 \newlabel{fig:ops_latencies}{{7}{6}}
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Zookeeper asynchronous average create operation latency with different inter-cluster and user-server RTTs\relax }}{6}}
 \newlabel{fig:async_heatmap}{{8}{6}}
 \@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Zookeeper synchronous average create operation latency with different inter-cluster and user-server RTTs\relax }}{6}}
 \newlabel{fig:sync_heatmap}{{9}{6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}}synchronization primitives}{6}}
-\newlabel{fig:first}{{10a}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Synchronization primitives latency while varying inter-cluster latency and not changing user-to-server latency\relax }}{7}}
+\newlabel{fig:primitives_vary_intercluster}{{11}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces The spectrum of RTT and contention used for our experiments. Ovals represent a span of a performed experiment\relax }}{7}}
+\newlabel{fig:spectrum}{{12}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}}synchronization primitives}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Synchronization primitives latency while varying contention and fixing RTT to 100ms (varying contention with high RTT)\relax }}{7}}
+\newlabel{fig:primitives_vary_contention_rtt100}{{13}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Synchronization primitives latency while varying contention and no additional delay to RTT (varying contention with low RTT)\relax }}{7}}
+\newlabel{fig:primitives_vary_contention_rtt0}{{14}{7}}
+\newlabel{fig:first}{{10a}{8}}
 \newlabel{sub@fig:first}{{(a)}{a}}
-\newlabel{fig:second}{{10b}{7}}
+\newlabel{fig:second}{{10b}{8}}
 \newlabel{sub@fig:second}{{(b)}{b}}
-\newlabel{fig:third}{{10c}{7}}
+\newlabel{fig:third}{{10c}{8}}
 \newlabel{sub@fig:third}{{(c)}{c}}
-\newlabel{fig:fourth}{{10d}{7}}
+\newlabel{fig:fourth}{{10d}{8}}
 \newlabel{sub@fig:fourth}{{(d)}{d}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces  Heatmaps of different synchronization primitives' latencies while varying inter-cluster RTT and user-to-server RTT. \relax }}{7}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Latency of synchronous queue locks}}}{7}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Latency of synchronous TAS}}}{7}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Latency of asynchronous queue locks}}}{7}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Latency of asynchronous TAS}}}{7}}
-\newlabel{fig:subfigures}{{10}{7}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Synchronization primitives latency while varying inter-cluster latency and not changing user-to-server latency\relax }}{8}}
-\newlabel{fig:primitives_vary_intercluster}{{11}{8}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces The spectrum of RTT and contention used for our experiments. Ovals represent a span of a performed experiment\relax }}{8}}
-\newlabel{fig:spectrum}{{12}{8}}
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Synchronization primitives latency while varying contention and fixing RTT to 100ms (varying contention with high RTT)\relax }}{8}}
-\newlabel{fig:primitives_vary_contention_rtt100}{{13}{8}}
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Synchronization primitives latency while varying contention and no additional delay to RTT (varying contention with low RTT)\relax }}{8}}
-\newlabel{fig:primitives_vary_contention_rtt0}{{14}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces  Heatmaps of different synchronization primitives' latencies while varying inter-cluster RTT and user-to-server RTT. \relax }}{8}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Latency of synchronous queue locks}}}{8}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Latency of synchronous TAS}}}{8}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Latency of asynchronous queue locks}}}{8}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Latency of asynchronous TAS}}}{8}}
+\newlabel{fig:subfigures}{{10}{8}}
 \bibstyle{plain}
 \bibdata{concurrency}
 \bibcite{chubby}{1}
-\bibcite{zookeeper_recipes}{2}
-\bibcite{two_phase_commit}{3}
-\bibcite{transactional_memory}{4}
-\bibcite{zookeeper}{5}
-\bibcite{ZAB}{6}
-\bibcite{paxos}{7}
-\bibcite{reactive}{8}
 \@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Synchronization primitives latency while varying user-cluster RTT, with no additional inter-cluster delay, and fixing service time to 1ms and interarrival time to 500ms (low contention with varying latency)\relax }}{9}}
 \newlabel{fig:primitives_vary_delay_lowcontention}{{15}{9}}
 \@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Synchronization primitives latency while varying user-cluster RTT, with no additional inter-cluster delay, and fixing service time to 150ms and interarrival time to 200ms (high contention with varying latency)\relax }}{9}}
@@ -93,5 +86,12 @@
 \@writefile{toc}{\contentsline {section}{\numberline {V}Conclusions and Future Work}{9}}
 \newlabel{sec:conclusions}{{V}{9}}
 \@writefile{toc}{\contentsline {section}{References}{9}}
+\bibcite{zookeeper_recipes}{2}
+\bibcite{two_phase_commit}{3}
+\bibcite{transactional_memory}{4}
+\bibcite{zookeeper}{5}
+\bibcite{ZAB}{6}
+\bibcite{paxos}{7}
+\bibcite{reactive}{8}
 \bibcite{lock_elision}{9}
 \bibcite{google_f1}{10}
