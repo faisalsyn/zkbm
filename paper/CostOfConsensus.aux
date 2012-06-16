@@ -1,4 +1,15 @@
 \relax 
+\citation{zookeeper}
+\citation{chubby}
+\citation{reactive}
+\citation{reactive}
+\citation{lock_elison}
+\citation{transactional_memory}
+\citation{two_phase_commit}
+\citation{paxos}
+\citation{google_f1}
+\citation{zookeeper_recipes}
+\citation{ZAB}
 \@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}}
 \newlabel{sec:intro}{{I}{1}}
 \@writefile{toc}{\contentsline {section}{\numberline {II}Framework and overview}{1}}
@@ -37,51 +48,4 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Zookeeper basic operations latencies for a cluster of five servers\relax }}{6}}
 \newlabel{fig:ops_latencies}{{7}{6}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-A}}Baseline performance}{6}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Zookeeper asynchronous average create operation latency with different inter-cluster and user-server RTTs\relax }}{6}}
-\newlabel{fig:async_heatmap}{{8}{6}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Zookeeper synchronous average create operation latency with different inter-cluster and user-server RTTs\relax }}{6}}
-\newlabel{fig:sync_heatmap}{{9}{6}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Synchronization primitives latency while varying inter-cluster latency and not changing user-to-server latency\relax }}{7}}
-\newlabel{fig:primitives_vary_intercluster}{{11}{7}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces The spectrum of RTT and contention used for our experiments. Ovals represent a span of a performed experiment\relax }}{7}}
-\newlabel{fig:spectrum}{{12}{7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}}synchronization primitives}{7}}
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Synchronization primitives latency while varying contention and fixing RTT to 100ms (varying contention with high RTT)\relax }}{7}}
-\newlabel{fig:primitives_vary_contention_rtt100}{{13}{7}}
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Synchronization primitives latency while varying contention and no additional delay to RTT (varying contention with low RTT)\relax }}{7}}
-\newlabel{fig:primitives_vary_contention_rtt0}{{14}{7}}
-\newlabel{fig:first}{{10a}{8}}
-\newlabel{sub@fig:first}{{(a)}{a}}
-\newlabel{fig:second}{{10b}{8}}
-\newlabel{sub@fig:second}{{(b)}{b}}
-\newlabel{fig:third}{{10c}{8}}
-\newlabel{sub@fig:third}{{(c)}{c}}
-\newlabel{fig:fourth}{{10d}{8}}
-\newlabel{sub@fig:fourth}{{(d)}{d}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces  Heatmaps of different synchronization primitives' latencies while varying inter-cluster RTT and user-to-server RTT. \relax }}{8}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Latency of synchronous queue locks}}}{8}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Latency of synchronous TAS}}}{8}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Latency of asynchronous queue locks}}}{8}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Latency of asynchronous TAS}}}{8}}
-\newlabel{fig:subfigures}{{10}{8}}
-\citation{Zookeeper,YCSB,ZAB,Rao:2011:UPB:1938545.1938549,activemessages,reactive,cloudsuite,chubby,93948,paxos,Herlihy:1991:WS:114005.102808}
-\bibstyle{plain}
-\bibdata{concurrency}
-\bibcite{chubby}{1}
-\bibcite{cloudsuite}{2}
-\bibcite{93948}{3}
-\bibcite{Herlihy:1991:WS:114005.102808}{4}
-\bibcite{Zookeeper}{5}
-\bibcite{ZAB}{6}
-\bibcite{paxos}{7}
-\bibcite{reactive}{8}
-\bibcite{YCSB}{9}
-\bibcite{Rao:2011:UPB:1938545.1938549}{10}
-\bibcite{activemessages}{11}
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Synchronization primitives latency while varying user-cluster RTT, with no additional inter-cluster delay, and fixing service time to 1ms and interarrival time to 500ms (low contention with varying latency)\relax }}{9}}
-\newlabel{fig:primitives_vary_delay_lowcontention}{{15}{9}}
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Synchronization primitives latency while varying user-cluster RTT, with no additional inter-cluster delay, and fixing service time to 150ms and interarrival time to 200ms (high contention with varying latency)\relax }}{9}}
-\newlabel{fig:primitives_vary_delay_highcontention}{{16}{9}}
-\@writefile{toc}{\contentsline {section}{\numberline {V}Conclusions and Future Work}{9}}
-\newlabel{sec:conclusions}{{V}{9}}
-\@writefile{toc}{\contentsline {section}{References}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\i
