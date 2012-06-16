@@ -4,7 +4,7 @@
 \subsection{Round-trip time latency}
 In distributed systems communication overhead is much larger than multiprocessing systems. RTTs can reach up to a millisecond in systems in a single data center and can reach hundreds of milliseconds in geographically separated data centers. It is important to understand the behavior of RTTs and the factors that affect its value. Also, it is important to observe how different communication patterns affect observed RTTs. In this section we will show some results on simple experiments to observe the distribution of RTT values. Afterwards, we will analyze the effect of RTT distribution, control patterns, and number of systems on observed latency.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[scale=0.5]{img/rttpdf2.eps}
 \caption{probability density function of two machines in the same cluster. X-axis is RTT in milliseconds and y-axis is number of ocurrences}
@@ -15,7 +15,7 @@ First, we show a probability density function of RTTs between two machines in th
 
 Simple analysis of a distributed protocol's latency might be deceptive. Lets take 2-Phase commit~(2PC) for example. In this protocol, two rounds of message exchange are required. An observer might naively expect the latency of each operation to be 2 RTTs. However, as we will show in our analysis, this is not the case. The importance of this observation is driven from the fact that coordination systems employ, in one way or another, a consensus or atomic broadcast protocols. These protocol exhibit the same behavior that we will demonstrate analytically in the rest of this section.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[scale=0.8]{img/markov_general.eps}
 \caption{Markov chain to model latency for one master and two slave servers}
@@ -69,7 +69,7 @@ We laid the building blocks of modeling the whole synchronization system above. 
 \item{\emph{Releasing the lock}: The time required to release the lock. Our implementations release the lock by asynchronously deleting a file representing holding the lock, denoted as $T(delete_{async})$. }
 \item{\emph{Closing the connection}: time required to close the connection, denoted as $T(close)$. }
 \end{itemize}
-Putting all these components together we can arrive to an expression of synchronization primitives latency with respect to the user. Each of these aspects require separate treatment to minimize its latency. Further, different contention and network condition will dictate which primitive to be used, since different ones have different influences on each component. This question is what we will tackle in the next section.
+Putting all these components together we can arrive to an expression of synchronization primitives latency with respect to the user. Each of these aspects requires separate treatment to minimize its latency. Further, different contention and network conditions will dictate which primitive to be used, since different ones have different influences on each component. This question is what we will tackle in the next section.
 
 
 

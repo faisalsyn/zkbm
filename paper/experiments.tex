@@ -1,5 +1,5 @@
 \section{Experimental evaluation}\label{sec:eval}
-This section provides results of our experiments and a discussion of relevant findings. We begin by establishing baseline performance for our Zookeeper testbed which support reasoning for follow-up experiments with synchronization primitves. The synchronization mechanisms benchmarked are Queues and Locks, each implemented with both, synchronous and asynchronous messaging. For this quantitative analysis we focus on average latency and graceful degradation.
+This section provides results of our experiments and a discussion of relevant findings. We begin by establishing baseline performance for our Zookeeper testbed which support reasoning for follow-up experiments with synchronization primitves. The synchronization mechanisms benchmarked are queues and TAS locks, each implemented with both, synchronous and asynchronous messaging. For this quantitative analysis we focus on average latency and graceful degradation.
 
 %\subsection{Experimental setup}
 %The testbed consists of 5 machine containing a quad-core Xeon 2135, 16GB RAM and commodity 500GB 7.2k rpm disks running stock Ubuntu 12.04. They are interconnected with 1Gbps Ethernet on a single switch. A separate machine acts as client without being a Zookeeper server. For our experiments these nodes for quorums out of 1, 3 or 5 nodes as indicated. The server-side uses Zookeeper version 3.3.5 whereas the client-side implementation of benchmarks uses Python bindings for the baseline "smoke test" and Java bindings for Locks and Queues.
@@ -37,7 +37,7 @@ This section provides results of our experiments and a discussion of relevant fi
 %Our next set of results are done to test the effect of increasing the number of Zookeeper servers. Results are shown in Figure~\ref{fig:1machine_diffcpu_latency}. These results are collected when running all servers in one machine. Thus, communication overhead between servers is minimal. As shown in the figure, increasing the number of servers to five servers have a dramatic effect on latency.
 %In Figure~\ref{fig:1machine_diffservers} we show results of fanning out Zookeeper servers. We test the performance of three Zookeeper servers running on different number of machines, namely 1, 2, and 3 servers\footnote{results for five servers are not ready yet}. \ldots
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[scale=0.75]{img/ops_latencies_logscale.eps}
 \caption{Zookeeper basic operations latencies for a cluster of five servers}
@@ -46,14 +46,14 @@ This section provides results of our experiments and a discussion of relevant fi
 
 Our first experiments test basic Zookeeper operations' latencies. We test both synchronous and asynchronous versions of these operations. For testing we use zk-smoketest\footnote{https://github.com/phunt/zk-smoketest}. Each operation is run for a thousand time and we report average latency. Results are shown in Figure~\ref{fig:ops_latencies}. Synchronous operations block until the operation is performed, thus giving an indication on the total time taken to perform the actual operation. Asynchronous operations on the other hand do not block. The figure shown that synchronous operations takes more than ten times the latency of asynchronous operations for \emph{put} operations (operations that update znodes), and around double the latency for \emph{get} operations (operations that does not update znodes). Another interesting observation is that for both synchronous and asynchronous operations set operations (and get operations) have a close latency. This will enable us to pick only a representative of those operations to collect more thorough results. In the next experiment we use create as a representative for set operations. We chose create as it is involved in all our synchronization primitives.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[scale=0.75]{img/async_ops_latencies_heatmap.eps}
 \caption{Zookeeper asynchronous average create operation latency with different inter-cluster and user-server RTTs}
 \label{fig:async_heatmap}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[scale=0.75]{img/sync_ops_latencies_heatmap.eps}
 \caption{Zookeeper synchronous average create operation latency with different inter-cluster and user-server RTTs}
@@ -89,42 +89,42 @@ Now we test synchronous create while varying user-to-server and inter-cluster la
    \label{fig:subfigures}
 \end{figure*}
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[scale=0.68]{img/primitives_fixUserLatency-0.eps}
 \caption{Synchronization primitives latency while varying inter-cluster latency and not changing user-to-server latency}
 \label{fig:primitives_vary_intercluster}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[scale=1.55]{img/spectrum.eps}
 \caption{The spectrum of RTT and contention used for our experiments. Ovals represent a span of a performed experiment}
 \label{fig:spectrum}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[scale=0.68]{img/primitives_vary-contention_rtt-100.eps}
 \caption{Synchronization primitives latency while varying contention and fixing RTT to 100ms (varying contention with high RTT)}
 \label{fig:primitives_vary_contention_rtt100}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[scale=0.68]{img/primitives_vary-contention_rtt-0.eps}
 \caption{Synchronization primitives latency while varying contention and no additional delay to RTT (varying contention with low RTT)}
 \label{fig:primitives_vary_contention_rtt0}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[scale=0.68]{img/primitives_fixClusterLatency-0.eps}
 \caption{Synchronization primitives latency while varying user-cluster RTT, with no additional inter-cluster delay, and fixing service time to 1ms and interarrival time to 500ms (low contention with varying latency)}
 \label{fig:primitives_vary_delay_lowcontention}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[scale=0.68]{img/fixService-150_varyLatency.eps}
 \caption{Synchronization primitives latency while varying user-cluster RTT, with no additional inter-cluster delay, and fixing service time to 150ms and interarrival time to 200ms (high contention with varying latency)}

@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{chubby}
 Mike Burrows.
@@ -7,13 +7,16 @@ Mike Burrows.
   and implementation}, OSDI '06, pages 335--350, Berkeley, CA, USA, 2006.
   USENIX Association.
 
+\bibitem{zookeeper_recipes}
+The Apache~Software Foundation.
+\newblock Zookeeper recipes and solutions, 2012.
+
 \bibitem{two_phase_commit}
 J.~Gray.
 \newblock Notes on data base operating systems.
 \newblock In R.~Bayer, R.~Graham, and G.~Seegmüller, editors, {\em Operating
   Systems}, volume~60 of {\em Lecture Notes in Computer Science}, pages
   393--481. Springer Berlin / Heidelberg, 1978.
-\newblock 10.1007/3-540-08755-9_9.
 
 \bibitem{transactional_memory}
 Maurice Herlihy and J.~Eliot~B. Moss.
@@ -43,6 +46,14 @@ Leslie Lamport.
 Beng-Hong Lim and Anant Agarwal.
 \newblock Reactive synchronization algorithms for multiprocessors.
 \newblock {\em SIGOPS Oper. Syst. Rev.}, 28(5):25--35, November 1994.
+
+\bibitem{lock_elision}
+Ravi Rajwar and James~R. Goodman.
+\newblock Speculative lock elision: enabling highly concurrent multithreaded
+  execution.
+\newblock In {\em Proceedings of the 34th annual ACM/IEEE international
+  symposium on Microarchitecture}, MICRO 34, pages 294--305, Washington, DC,
+  USA, 2001. IEEE Computer Society.
 
 \bibitem{google_f1}
 J.~et~al Shute.
