@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.2.29)  15 JUN 2012 18:02
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.2.29)  15 JUN 2012 18:09
 entering extended mode
  %&-line parsing enabled.
 **CostOfConsensus.tex
@@ -360,24 +360,7 @@ File: img/async_queue_lock_time.eps Graphic file (type eps)
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[2] [3]
-
-! LaTeX Error: \begin{document} ended by \end{itemize}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.79 \end{itemize}
-                  
-? 
-! Extra \endgroup.
-<recently read> \endgroup 
-                          
-l.79 \end{itemize}
-                  
-? 
-) (./analysis.tex
+[2] [3]) (./analysis.tex
 File: img/rttpdf2.eps Graphic file (type eps)
  <img/rttpdf2.eps>
 
@@ -477,6 +460,9 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [6]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
  [7]
 [8]) (./conclusion.tex) (./CostOfConsensus.bbl
 Missing character: There is no ï in font ptmr7t!
@@ -496,12 +482,12 @@ Before submitting the final camera ready copy, remember to:
 
 [9] (./CostOfConsensus.aux) ) 
 Here is how much of TeX's memory you used:
- 3868 strings out of 495062
- 58604 string characters out of 1182644
- 124767 words of memory out of 3000000
- 6959 multiletter control sequences out of 15000+50000
+ 3867 strings out of 495062
+ 58599 string characters out of 1182644
+ 125767 words of memory out of 3000000
+ 6958 multiletter control sequences out of 15000+50000
  35904 words of font info for 97 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  44i,10n,45p,1438b,390s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on CostOfConsensus.dvi (9 pages, 56536 bytes).
+Output written on CostOfConsensus.dvi (9 pages, 57280 bytes).
