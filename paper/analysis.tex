@@ -69,6 +69,7 @@ We laid the building blocks of modeling the whole synchronization system above. 
 \item{\emph{Releasing the lock}: The time required to release the lock. Our implementations release the lock by asynchronously deleting a file representing holding the lock, denoted as $T(delete_{async})$. }
 \item{\emph{Closing the connection}: time required to close the connection, denoted as $T(close)$. }
 \end{itemize}
+Putting all these components together we can arrive to an expression of synchronization primitives latency with respect to the user. Each of these aspects require separate treatment to minimize its latency. Further, different contention and network condition will dictate which primitive to be used, since different ones have different influences on each component. This question is what we will tackle in the next section.
 
 
 
